@@ -35,7 +35,7 @@ class SignedInLinksBurger extends Component {
           width="50%"
           styles={burgerStyles}
         >
-          <div styles={divStyles}>
+          <div className="remove-outline">
             <div>
               <NavLink onClick={() => this.closeMenu()} to="/">
                 {this.props.profile.firstName ? (
@@ -125,11 +125,4 @@ const burgerStyles = {
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0.3)',
   },
-};
-
-const divStyles = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
 };
