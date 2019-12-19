@@ -10,21 +10,27 @@ const initialState = {
   firstNames: [],
   lastNames: [],
   // planetNames: [],
+  disabledClear: true,
 };
 
 // Actions
 const GOT_FIRST_NAME = 'GOT_FIRST_NAME';
 const GOT_LAST_NAME = 'GOT_LAST_NAME';
+const CLEARED_ALL_NAMES = 'CLEARED_ALL_NAMES';
 
 // Action Creators
-const gotFirstNameActionCreator = name => ({
+export const gotFirstNameActionCreator = name => ({
   type: GOT_FIRST_NAME,
   name,
 });
 
-const gotLastNameActionCreator = name => ({
+export const gotLastNameActionCreator = name => ({
   type: GOT_LAST_NAME,
   name,
+});
+
+export const clearedAllNamesActionCreator = () => ({
+  type: CLEARED_ALL_NAMES,
 });
 
 // Thunk Creators
@@ -81,12 +87,23 @@ const namesReducer = (state = initialState, action) => {
     case GOT_FIRST_NAME:
       // console.log('action.name in GOT_FIRST_NAMES: ', action.name);
 
-      return { ...state, firstNames: [...state.firstNames, action.name] };
+      return {
+        ...state,
+        firstNames: [...state.firstNames, action.name],
+        disabledClear: false,
+      };
 
     case GOT_LAST_NAME:
       // console.log('action.name in GOT_LAST_NAME: ', action.name);
 
-      return { ...state, lastNames: [...state.lastNames, action.name] };
+      return {
+        ...state,
+        lastNames: [...state.lastNames, action.name],
+        disabledClear: false,
+      };
+
+    case CLEARED_ALL_NAMES:
+      return { ...state, firstNames: [], lastNames: [], disabledClear: true };
 
     default:
       return state;
