@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getFirstNameThunkCreator } from '../../store/reducers/namesReducer';
+import { getLastNameThunkCreator } from '../../store/reducers/namesReducer';
 
 export class GenerateNames extends Component {
   constructor() {
@@ -10,7 +11,7 @@ export class GenerateNames extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      countryName: '',
+      // countryName: '',
       gender: 'Male',
     };
 
@@ -33,12 +34,16 @@ export class GenerateNames extends Component {
 
     event.preventDefault();
 
-    const { firstName, gender } = this.state;
+    const { getFirstNameThunk, getLastNameThunk } = this.props;
+    const { firstName, lastName, gender } = this.state;
 
     // console.log('firstName in GenerateNames handleSubmit: ', firstName);
+    // console.log('lastName in GenerateNames handleSubmit: ', lastName);
+    // console.log('countryName in GenerateNames handleSubmit: ', countryName);
     // console.log('gender in GenerateNames handleSubmit: ', gender);
 
-    this.props.getFirstNameThunk(firstName, gender);
+    getFirstNameThunk(firstName, gender);
+    getLastNameThunk(lastName);
   }
 
   render() {
@@ -84,7 +89,7 @@ export class GenerateNames extends Component {
               />
             </div>
 
-            <div className="input-field">
+            {/* <div className="input-field">
               <label htmlFor="countryName">
                 Country Name<span className="red-text-color">*</span>
               </label>
@@ -96,7 +101,7 @@ export class GenerateNames extends Component {
                 title="May only contain uppercase and lowercase letters"
                 onChange={this.handleChange}
               />
-            </div>
+            </div> */}
 
             <div className="input-field col s12">
               <label htmlFor="gender">
@@ -121,7 +126,7 @@ export class GenerateNames extends Component {
               </select>
             </div>
 
-            <button className="btn blue lighten-1 z-depth-0">Generate</button>
+            <button className="btn black lighten-1 z-depth-0">Generate</button>
 
             {/* <div className="red-text center">
             {authError ? (
@@ -140,6 +145,9 @@ export class GenerateNames extends Component {
 const mapDispatchToProps = dispatch => ({
   getFirstNameThunk(firstName, gender) {
     dispatch(getFirstNameThunkCreator(firstName, gender));
+  },
+  getLastNameThunk(lastName) {
+    dispatch(getLastNameThunkCreator(lastName));
   },
 });
 
