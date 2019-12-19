@@ -33,16 +33,12 @@ class Navbar extends Component {
 
     return (
       <div className="navbar-fixed">
-        <nav className="nav-wrapper grey darken-3">
+        <nav className="nav-wrapper black">
           <div>
             <NavLink to="/" className="left brand-logo name-text-positioning">
-              {largeViewCheck ? (
-                <span className="bold-text-style">
-                  Star Wars Name Generator
-                </span>
-              ) : (
-                <span className="bold-text-style">SWNameGen</span>
-              )}
+              <span className="bold-text-style glow-text-style">
+                {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
+              </span>
             </NavLink>
 
             {largeViewCheck ? <Links /> : <LinksBurger />}
