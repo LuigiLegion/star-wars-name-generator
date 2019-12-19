@@ -85,6 +85,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
   left: 30px;
 }
 
+.clear-form {
+  padding: 0px;
+  margin-top: 0px;
+}
+
 .bold-text-style {
   font-weight: bold;
 }
