@@ -14,7 +14,7 @@ body {
   color: #fafafa;
   background-size: 100%;
   background-position: bottom;
-  background-color: #212121;
+  background-color: #000000;
 }
 
 code {
@@ -36,7 +36,7 @@ input[type='text']:not(.browser-default):focus:not([readonly]),
 input[type='email']:not(.browser-default):focus:not([readonly]),
 input[type='password']:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-color: #039be5;
+  border-color: #424242;
   box-shadow: none;
 }
 
@@ -87,6 +87,14 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .bold-text-style {
   font-weight: bold;
+}
+
+.italic-text-style {
+  font-style: italic;
+}
+
+.glow-text-style {
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
 }
 
 .gray-text-color {
