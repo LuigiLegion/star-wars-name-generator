@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const DisplayNames = ({ firstNames }) => {
+const DisplayNames = ({ firstNames, lastNames }) => {
   return (
     <div className="section">
       <div className="card z-depth-0">
@@ -15,7 +15,10 @@ const DisplayNames = ({ firstNames }) => {
               firstNames.map((curFirstName, idx) => {
                 return (
                   <li key={idx}>
-                    <span>{curFirstName}</span>
+                    <span>{`${idx + 1}. ${curFirstName} ${
+                      lastNames[idx]
+                    }`}
+                    </span>
                   </li>
                 );
               })
@@ -33,6 +36,7 @@ const DisplayNames = ({ firstNames }) => {
 
 const mapStateToProps = state => ({
   firstNames: state.names.firstNames,
+  lastNames: state.names.lastNames,
 });
 
 export default connect(mapStateToProps)(DisplayNames);
