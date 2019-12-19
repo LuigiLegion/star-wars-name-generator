@@ -7,7 +7,8 @@ export const burgerStyles = {
     top: '14px',
   },
   bmBurgerBars: {
-    background: '#039be5',
+    background: '#ffffff',
+    boxShadow: '0 0 2px #ffffff, 0 0 5px #ffffff',
   },
   bmBurgerBarsHover: {
     background: '#a90000',
@@ -18,6 +19,7 @@ export const burgerStyles = {
   },
   bmCross: {
     background: '#ffffff',
+    boxShadow: '0 0 2px #ffffff, 0 0 5px #ffffff',
   },
   bmMenuWrap: {
     position: 'fixed',
@@ -32,7 +34,7 @@ export const burgerStyles = {
   },
   bmItemList: {
     color: '#b8b7ad',
-    backgroundColor: '#039be5',
+    backgroundColor: '#000000',
     padding: '0.8em',
   },
   bmItem: {

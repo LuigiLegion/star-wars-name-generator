@@ -14,7 +14,7 @@ body {
   color: #fafafa;
   background-size: 100%;
   background-position: bottom;
-  background-color: #212121;
+  background-color: #000000;
 }
 
 code {
@@ -32,11 +32,19 @@ form h5 {
   margin: 20px 0;
 }
 
+a {
+  color: #42a5f5;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 input[type='text']:not(.browser-default):focus:not([readonly]),
 input[type='email']:not(.browser-default):focus:not([readonly]),
 input[type='password']:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-color: #039be5;
+  border-color: #424242;
   box-shadow: none;
 }
 
@@ -85,8 +93,21 @@ textarea.materialize-textarea:focus:not([readonly]) {
   left: 30px;
 }
 
+.clear-form {
+  padding: 0px;
+  margin-top: 0px;
+}
+
 .bold-text-style {
   font-weight: bold;
+}
+
+.italic-text-style {
+  font-style: italic;
+}
+
+.glow-text-style {
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
 }
 
 .gray-text-color {
@@ -101,6 +122,22 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #ef5350;
 }
 
+.navbar-logo {
+  left: 30px;
+}
+
+.navbar-logo:hover {
+  text-decoration: none;
+}
+
 .remove-outline {
   outline: none;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.padding-bottom {
+  padding-bottom: 40px;
 }

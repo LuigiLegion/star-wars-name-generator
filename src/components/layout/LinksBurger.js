@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 import { burgerStyles } from '../../styles';
@@ -36,9 +35,54 @@ class LinksBurger extends Component {
         >
           <div className="remove-outline">
             <div>
-              <NavLink onClick={() => this.closeMenu()} to="/placeholder">
-                <span className="bold-text-style">Placeholder</span>
-              </NavLink>
+              <a
+                onClick={() => this.closeMenu()}
+                href="https://github.com/LuigiLegion/star-wars-name-generator"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="bold-text-style glow-text-style">
+                  GitHub Repo
+                </span>
+              </a>
+            </div>
+            <div>
+              <a
+                onClick={() => this.closeMenu()}
+                href="https://github.com/LuigiLegion/star-wars-name-generator/tree/master/src/data/sets"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="bold-text-style glow-text-style">
+                  Data Sets
+                </span>
+              </a>
+            </div>
+
+            <div>
+              <a
+                onClick={() => this.closeMenu()}
+                href="https://www.wikia.com/api/v1/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="bold-text-style glow-text-style">
+                  Wikia API
+                </span>
+              </a>
+            </div>
+
+            <div>
+              <a
+                onClick={() => this.closeMenu()}
+                href="http://taluigi.netlify.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="bold-text-style glow-text-style">
+                  Contact Info
+                </span>
+              </a>
             </div>
           </div>
         </Menu>

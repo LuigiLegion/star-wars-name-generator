@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { gotFirstNameActionCreator } from '../../store/reducers/namesReducer';
+import {
+  getFirstNameThunkCreator,
+  getLastNameThunkCreator,
+} from '../../store/reducers/namesReducer';
 
 export class GenerateNames extends Component {
   constructor() {
@@ -10,8 +13,8 @@ export class GenerateNames extends Component {
     this.state = {
       firstName: '',
       lastName: '',
+      // countryName: '',
       gender: 'Male',
-      countryName: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,11 +36,25 @@ export class GenerateNames extends Component {
 
     event.preventDefault();
 
-    this.props.gotFirstNameAction(this.state.firstName);
+    const { getFirstNameThunk, getLastNameThunk } = this.props;
+    const { firstName, lastName, gender } = this.state;
+
+    // console.log('firstName in GenerateNames handleSubmit: ', firstName);
+    // console.log('lastName in GenerateNames handleSubmit: ', lastName);
+    // console.log('countryName in GenerateNames handleSubmit: ', countryName);
+    // console.log('gender in GenerateNames handleSubmit: ', gender);
+
+    getFirstNameThunk(firstName, gender);
+    getLastNameThunk(lastName);
   }
 
   render() {
-    // const { auth, authError } = this.props;
+    const { firstName, lastName } = this.state;
+
+    // console.log('firstName in GenerateNames: ', firstName);
+    // console.log('lastName in GenerateNames: ', lastName);
+
+    const namesCheck = firstName && lastName;
 
     return (
       <div className="container">
@@ -79,7 +96,7 @@ export class GenerateNames extends Component {
               />
             </div>
 
-            <div className="input-field">
+            {/* <div className="input-field">
               <label htmlFor="countryName">
                 Country Name<span className="red-text-color">*</span>
               </label>
@@ -87,12 +104,11 @@ export class GenerateNames extends Component {
               <input
                 type="text"
                 id="countryName"
-                required
                 pattern="[A-Za-z]{1,32}"
                 title="May only contain uppercase and lowercase letters"
                 onChange={this.handleChange}
               />
-            </div>
+            </div> */}
 
             <div className="input-field col s12">
               <label htmlFor="gender">
@@ -117,15 +133,12 @@ export class GenerateNames extends Component {
               </select>
             </div>
 
-            <button className="btn blue lighten-1 z-depth-0">Generate</button>
-
-            {/* <div className="red-text center">
-            {authError ? (
-              <p>{authError}</p>
-            ) : this.state.accessTokenError ? (
-              'Invalid Access Token! Please try again.'
-            ) : null}
-          </div> */}
+            <button
+              className="btn black lighten-1 z-depth-0"
+              disabled={!namesCheck}
+            >
+              Generate
+            </button>
           </form>
         </div>
       </div>
@@ -134,8 +147,11 @@ export class GenerateNames extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  gotFirstNameAction(firstName) {
-    dispatch(gotFirstNameActionCreator(firstName));
+  getFirstNameThunk(firstName, gender) {
+    dispatch(getFirstNameThunkCreator(firstName, gender));
+  },
+  getLastNameThunk(lastName) {
+    dispatch(getLastNameThunkCreator(lastName));
   },
 });
 
