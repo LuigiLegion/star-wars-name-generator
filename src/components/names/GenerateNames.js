@@ -1,11 +1,14 @@
+// Imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {
   getFirstNameThunkCreator,
   getLastNameThunkCreator,
 } from '../../store/reducers/namesReducer';
 
+// Component
 export class GenerateNames extends Component {
   constructor() {
     super();
@@ -68,7 +71,7 @@ export class GenerateNames extends Component {
 
             <div className="input-field">
               <label htmlFor="firstName">
-                First Name<span className="red-text-color">*</span>
+                First Name IRL<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -83,7 +86,7 @@ export class GenerateNames extends Component {
 
             <div className="input-field">
               <label htmlFor="lastName">
-                Last Name<span className="red-text-color">*</span>
+                Last Name IRL<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -146,6 +149,7 @@ export class GenerateNames extends Component {
   }
 }
 
+// Container
 const mapDispatchToProps = dispatch => ({
   getFirstNameThunk(firstName, gender) {
     dispatch(getFirstNameThunkCreator(firstName, gender));
@@ -159,3 +163,9 @@ export default connect(
   null,
   mapDispatchToProps
 )(GenerateNames);
+
+// Prop Types
+GenerateNames.propTypes = {
+  getFirstNameThunk: PropTypes.func,
+  getLastNameThunk: PropTypes.func,
+};

@@ -1,7 +1,11 @@
+// Imports
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
+
+// Component
 class DisplayNames extends Component {
   constructor() {
     super();
@@ -61,6 +65,7 @@ class DisplayNames extends Component {
   }
 }
 
+// Container
 const mapStateToProps = state => ({
   firstNames: state.names.firstNames,
   lastNames: state.names.lastNames,
@@ -77,3 +82,11 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(DisplayNames);
+
+// Prop Types
+DisplayNames.propTypes = {
+  firstNames: PropTypes.array,
+  lastNames: PropTypes.array,
+  disabledClear: PropTypes.bool,
+  clearedAllNamesAction: PropTypes.func,
+};

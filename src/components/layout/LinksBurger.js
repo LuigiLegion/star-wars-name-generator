@@ -1,8 +1,11 @@
+// Imports
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 
 import { burgerStyles } from '../../styles';
 
+// Component
 class LinksBurger extends Component {
   constructor() {
     super();
@@ -35,6 +38,12 @@ class LinksBurger extends Component {
         >
           <div className="remove-outline">
             <div>
+              <NavLink to="/about" onClick={() => this.closeMenu()}>
+                <span className="bold-text-style glow-text-style">About</span>
+              </NavLink>
+            </div>
+
+            <div>
               <a
                 onClick={() => this.closeMenu()}
                 href="https://github.com/LuigiLegion/star-wars-name-generator"
@@ -55,19 +64,6 @@ class LinksBurger extends Component {
               >
                 <span className="bold-text-style glow-text-style">
                   Data Sets
-                </span>
-              </a>
-            </div>
-
-            <div>
-              <a
-                onClick={() => this.closeMenu()}
-                href="https://www.wikia.com/api/v1/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="bold-text-style glow-text-style">
-                  Wikia API
                 </span>
               </a>
             </div>
