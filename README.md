@@ -1,33 +1,25 @@
-### Setting Up Dev Environment:
+# Star Wars Name Generator
 
-- Clone the repo and `npm install` the dependencies.
-- Create a Firebase project.
-- Create a Firestore db using the following schema:
+![Star Wars Name Generator Screenshot](./public/screenshot.png)
 
-```javascript
-SCHEMA PLACEHOLDER
-```
+### Video Presentation:
 
-- Set the Firestore db rules to the following rules:
+Coming soon...
 
-```javascript
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /users/{userId} {
-    	allow create
-      allow read: if request.auth.uid != null
-      allow write: if request.auth.uid == userId
-    }
-    match /notifications/{notifications} {
-      allow read: if request.auth.uid != null
-    }
-  }
-}
-```
+### Deployed Web App:
 
-- Fill in your actual keys in `src/config/`.
-- `npm run start` will run in a dev environment.
+https://star-wars-name-generator.web.app
 
-### Firebase Deployment:
+### Description:
 
-- PLACEHOLDER
+Responsive web app that allows users to find their very own Star Wars name based on their name in real life out of a little over 22,000 first names and 10,000 last names from both Canon and Legends by utilizing a set of matching algorithms.
+
+MVP completed in 4 days for a solo project.
+
+### Tech Stack:
+
+Built using React, Redux, Materialize.css, and the Wikia API.
+
+### Dev Team:
+
+- Tal Luigi ([LinkedIn](https://www.linkedin.com/in/talluigi) | [GitHub](https://github.com/luigilegion))
