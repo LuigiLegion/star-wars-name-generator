@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getFirstNameThunkCreator } from '../../store/reducers/namesReducer';
-import { getLastNameThunkCreator } from '../../store/reducers/namesReducer';
+import {
+  getFirstNameThunkCreator,
+  getLastNameThunkCreator,
+} from '../../store/reducers/namesReducer';
 
 export class GenerateNames extends Component {
   constructor() {
@@ -47,7 +49,12 @@ export class GenerateNames extends Component {
   }
 
   render() {
-    // const { auth, authError } = this.props;
+    const { firstName, lastName } = this.state;
+
+    // console.log('firstName in GenerateNames: ', firstName);
+    // console.log('lastName in GenerateNames: ', lastName);
+
+    const namesCheck = firstName && lastName;
 
     return (
       <div className="container">
@@ -126,15 +133,12 @@ export class GenerateNames extends Component {
               </select>
             </div>
 
-            <button className="btn black lighten-1 z-depth-0">Generate</button>
-
-            {/* <div className="red-text center">
-            {authError ? (
-              <p>{authError}</p>
-            ) : this.state.accessTokenError ? (
-              'Invalid Access Token! Please try again.'
-            ) : null}
-          </div> */}
+            <button
+              className="btn black lighten-1 z-depth-0"
+              disabled={!namesCheck}
+            >
+              Generate
+            </button>
           </form>
         </div>
       </div>
