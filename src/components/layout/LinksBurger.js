@@ -37,7 +37,9 @@ class LinksBurger extends Component {
           <div className="remove-outline">
             <div>
               <NavLink onClick={() => this.closeMenu()} to="/placeholder">
-                <span className="bold-text-style">Placeholder</span>
+                <span className="bold-text-style glow-text-style">
+                  Placeholder
+                </span>
               </NavLink>
             </div>
           </div>
