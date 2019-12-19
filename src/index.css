@@ -32,6 +32,14 @@ form h5 {
   margin: 20px 0;
 }
 
+a {
+  color: #42a5f5;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 input[type='text']:not(.browser-default):focus:not([readonly]),
 input[type='email']:not(.browser-default):focus:not([readonly]),
 input[type='password']:not(.browser-default):focus:not([readonly]),
@@ -114,6 +122,22 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #ef5350;
 }
 
+.navbar-logo {
+  left: 30px;
+}
+
+.navbar-logo:hover {
+  text-decoration: none;
+}
+
 .remove-outline {
   outline: none;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.padding-bottom {
+  padding-bottom: 40px;
 }
