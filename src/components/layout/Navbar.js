@@ -35,7 +35,10 @@ class Navbar extends Component {
       <div className="navbar-fixed">
         <nav className="nav-wrapper black">
           <div>
-            <NavLink to="/" className="left brand-logo name-text-positioning">
+            <NavLink
+              to="/"
+              className="left brand-logo name-text-positioning navbar-logo "
+            >
               <span className="bold-text-style glow-text-style">
                 {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
               </span>
