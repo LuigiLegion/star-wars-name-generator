@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { gotFirstNameActionCreator } from '../../store/reducers/namesReducer';
+import { getFirstNameThunkCreator } from '../../store/reducers/namesReducer';
 
 export class GenerateNames extends Component {
   constructor() {
@@ -10,8 +10,8 @@ export class GenerateNames extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      gender: 'Male',
       countryName: '',
+      gender: 'Male',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,7 +33,12 @@ export class GenerateNames extends Component {
 
     event.preventDefault();
 
-    this.props.gotFirstNameAction(this.state.firstName);
+    const { firstName, gender } = this.state;
+
+    // console.log('firstName in GenerateNames handleSubmit: ', firstName);
+    // console.log('gender in GenerateNames handleSubmit: ', gender);
+
+    this.props.getFirstNameThunk(firstName, gender);
   }
 
   render() {
@@ -87,7 +92,6 @@ export class GenerateNames extends Component {
               <input
                 type="text"
                 id="countryName"
-                required
                 pattern="[A-Za-z]{1,32}"
                 title="May only contain uppercase and lowercase letters"
                 onChange={this.handleChange}
@@ -134,8 +138,8 @@ export class GenerateNames extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  gotFirstNameAction(firstName) {
-    dispatch(gotFirstNameActionCreator(firstName));
+  getFirstNameThunk(firstName, gender) {
+    dispatch(getFirstNameThunkCreator(firstName, gender));
   },
 });
 
