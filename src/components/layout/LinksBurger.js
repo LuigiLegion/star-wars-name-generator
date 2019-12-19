@@ -4,7 +4,7 @@ import { slide as Menu } from 'react-burger-menu';
 
 import { burgerStyles } from '../../styles';
 
-class SignedOutLinksBurger extends Component {
+class LinksBurger extends Component {
   constructor() {
     super();
 
@@ -36,24 +36,8 @@ class SignedOutLinksBurger extends Component {
         >
           <div className="remove-outline">
             <div>
-              <NavLink
-                onClick={() => {
-                  this.closeMenu();
-                }}
-                to="/signin"
-              >
-                <span className="bold-text-style">Sign In</span>
-              </NavLink>
-            </div>
-
-            <div>
-              <NavLink
-                onClick={() => {
-                  this.closeMenu();
-                }}
-                to="/signup"
-              >
-                <span className="bold-text-style">Sign Up</span>
+              <NavLink onClick={() => this.closeMenu()} to="/placeholder">
+                <span className="bold-text-style">Placeholder</span>
               </NavLink>
             </div>
           </div>
@@ -63,4 +47,4 @@ class SignedOutLinksBurger extends Component {
   }
 }
 
-export default SignedOutLinksBurger;
+export default LinksBurger;

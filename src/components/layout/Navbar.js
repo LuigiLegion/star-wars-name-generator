@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-import SignedInLinks from './SignedInLinks';
-import SignedInLinksBurger from './SignedInLinksBurger';
-import SignedOutLinks from './SignedOutLinks';
-import SignedOutLinksBurger from './SignedOutLinksBurger';
+import Links from './Links';
+import LinksBurger from './LinksBurger';
 
 class Navbar extends Component {
   constructor() {
@@ -32,21 +29,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const { auth, profile } = this.props;
     const largeViewCheck = this.state.width > 1007;
-    let curLinks;
-
-    if (auth.uid) {
-      if (largeViewCheck) {
-        curLinks = <SignedInLinks profile={profile} />;
-      } else {
-        curLinks = <SignedInLinksBurger profile={profile} />;
-      }
-    } else if (largeViewCheck) {
-      curLinks = <SignedOutLinks />;
-    } else {
-      curLinks = <SignedOutLinksBurger />;
-    }
 
     return (
       <div className="navbar-fixed">
@@ -54,13 +37,15 @@ class Navbar extends Component {
           <div>
             <NavLink to="/" className="left brand-logo name-text-positioning">
               {largeViewCheck ? (
-                <span className="bold-text-style">Boilerplater</span>
+                <span className="bold-text-style">
+                  Star Wars Name Generator
+                </span>
               ) : (
-                <span className="bold-text-style">Bplater</span>
+                <span className="bold-text-style">SWNameGen</span>
               )}
             </NavLink>
 
-            {curLinks}
+            {largeViewCheck ? <Links /> : <LinksBurger />}
           </div>
         </nav>
       </div>
@@ -68,10 +53,4 @@ class Navbar extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  // console.log('state: ', state);
-
-  return { auth: state.firebase.auth, profile: state.firebase.profile };
-};
-
-export default connect(mapStateToProps)(Navbar);
+export default Navbar;
