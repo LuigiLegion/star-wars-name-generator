@@ -8,15 +8,23 @@ import { getName } from '../../functions/generate';
 // Initial State
 const initialState = {
   firstNames: [],
+  lastNames: [],
+  // planetNames: [],
 };
 
 // Actions
 const GOT_FIRST_NAME = 'GOT_FIRST_NAME';
+const GOT_LAST_NAME = 'GOT_LAST_NAME';
 
 // Action Creators
-export const gotFirstNameActionCreator = firstName => ({
+const gotFirstNameActionCreator = name => ({
   type: GOT_FIRST_NAME,
-  firstName,
+  name,
+});
+
+const gotLastNameActionCreator = name => ({
+  type: GOT_LAST_NAME,
+  name,
 });
 
 // Thunk Creators
@@ -48,13 +56,37 @@ export const getFirstNameThunkCreator = (firstName, gender) => {
   };
 };
 
+export const getLastNameThunkCreator = lastName => {
+  return dispatch => {
+    try {
+      // console.log('lastName in getLastNameThunkCreator: ', lastName);
+
+      let generatedLastName = getName(lastName, allLastNames);
+
+      // console.log(
+      //   'generatedLastName in getLastNameThunkCreator: ',
+      //   generatedLastName
+      // );
+
+      dispatch(gotLastNameActionCreator(generatedLastName));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
 // Reducer
 const namesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_FIRST_NAME:
-      // console.log('action.firstName in GOT_FIRST_NAMES: ', action.firstName);
+      // console.log('action.name in GOT_FIRST_NAMES: ', action.name);
 
-      return { ...state, firstNames: [...state.firstNames, action.firstName] };
+      return { ...state, firstNames: [...state.firstNames, action.name] };
+
+    case GOT_LAST_NAME:
+      // console.log('action.name in GOT_LAST_NAME: ', action.name);
+
+      return { ...state, lastNames: [...state.lastNames, action.name] };
 
     default:
       return state;
