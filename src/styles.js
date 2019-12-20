@@ -35,6 +35,7 @@ export const burgerStyles = {
   bmItemList: {
     color: '#b8b7ad',
     backgroundColor: '#000000',
+    boxShadow: '0 0 2px #000000, 0 0 5px #000000',
     padding: '0.8em',
   },
   bmItem: {
