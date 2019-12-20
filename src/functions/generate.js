@@ -7,7 +7,6 @@ import { allFirstNames } from '../data/sets/sorted/all/all-first-names';
 
 export const generateRandomIdx = arrLength => {
   const randomIdx = Math.floor(Math.random() * arrLength);
-
   return randomIdx;
 };
 
@@ -40,8 +39,14 @@ export const getNameRating = (capUserName, capCharName) => {
   return nameRating;
 };
 
-export const getOptionalNames = (userName, charNames) => {
-  let optionalNames = [];
+export const getOptionalNames = (
+  userName,
+  charNames,
+  optionalNames = []
+  // counter = 1
+) => {
+  // console.log(`Call #${counter} optionalNames: ${optionalNames}`);
+
   let highestRating = 0;
 
   for (let i = 0; i < charNames.length; i++) {
@@ -58,26 +63,28 @@ export const getOptionalNames = (userName, charNames) => {
     }
   }
 
+  if (optionalNames.length < 3 || !userName.length) {
+    const shortenedUserName = userName.slice(1);
+
+    optionalNames = getOptionalNames(
+      shortenedUserName,
+      charNames,
+      optionalNames
+      // ++counter
+    );
+  }
+
+  // console.log('Final optionalNames: ', optionalNames);
+
   return optionalNames;
 };
 
 export const getName = (userName, allCharNames) => {
   const userNameInitial = userName[0].toUpperCase();
   const charNames = allCharNames[userNameInitial];
-
-  let optionalNames = getOptionalNames(userName, charNames);
-
-  while (!optionalNames.length || !userName.length) {
-    optionalNames = getOptionalNames(userName.slice(1), charNames);
-  }
-
-  if (!optionalNames.length) {
-    return '';
-  }
-
+  const optionalNames = getOptionalNames(userName, charNames);
   const randomIdx = generateRandomIdx(optionalNames.length);
   const randomName = optionalNames[randomIdx];
-
   return randomName;
 };
 
