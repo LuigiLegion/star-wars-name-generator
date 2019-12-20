@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -34,15 +34,27 @@ class DisplayNames extends Component {
 
             <ul className="names">
               {firstNames.length ? (
-                firstNames.map((curFirstName, idx) => {
-                  return (
-                    <li key={idx}>
-                      <span>
-                        {`${idx + 1}. ${curFirstName} ${lastNames[idx]}`}
-                      </span>
-                    </li>
-                  );
-                })
+                <Fragment>
+                  <div>
+                    <label>These aren't the names you're looking for?</label>
+                  </div>
+
+                  <div>
+                    <label>Try shortening your input names!</label>
+                  </div>
+
+                  <br />
+
+                  {firstNames.map((curFirstName, idx) => {
+                    return (
+                      <li key={idx}>
+                        <span>
+                          {`${idx + 1}. ${curFirstName} ${lastNames[idx]}`}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </Fragment>
               ) : (
                 <li>
                   <span>Generate names to populate this list.</span>
