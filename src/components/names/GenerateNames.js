@@ -78,8 +78,6 @@ export class GenerateNames extends Component {
                 type="text"
                 id="firstName"
                 required
-                pattern="[A-Za-z]{1,32}"
-                title="May only contain uppercase and lowercase letters"
                 onChange={this.handleChange}
               />
             </div>
@@ -93,8 +91,6 @@ export class GenerateNames extends Component {
                 type="text"
                 id="lastName"
                 required
-                pattern="[A-Za-z]{1,32}"
-                title="May only contain uppercase and lowercase letters"
                 onChange={this.handleChange}
               />
             </div>
@@ -107,8 +103,7 @@ export class GenerateNames extends Component {
               <input
                 type="text"
                 id="countryName"
-                pattern="[A-Za-z]{1,32}"
-                title="May only contain uppercase and lowercase letters"
+                required
                 onChange={this.handleChange}
               />
             </div> */}
