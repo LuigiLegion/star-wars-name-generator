@@ -63,7 +63,7 @@ export const getOptionalNames = (
     }
   }
 
-  if (optionalNames.length < 3 || !userName.length) {
+  if (optionalNames.length < 5 || !userName.length) {
     const shortenedUserName = userName.slice(1);
 
     optionalNames = getOptionalNames(
