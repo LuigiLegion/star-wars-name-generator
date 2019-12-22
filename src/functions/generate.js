@@ -47,6 +47,10 @@ export const getOptionalNames = (
 ) => {
   // console.log(`Call #${counter} optionalNames: ${optionalNames}`);
 
+  if (!userName.length) {
+    return optionalNames;
+  }
+
   let highestRating = 0;
 
   for (let i = 0; i < charNames.length; i++) {
@@ -63,7 +67,7 @@ export const getOptionalNames = (
     }
   }
 
-  if (optionalNames.length < 5 || !userName.length) {
+  if (optionalNames.length < 5) {
     const shortenedUserName = userName.slice(1);
 
     optionalNames = getOptionalNames(
