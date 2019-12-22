@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import Links from './Links';
 import LinksBurger from './LinksBurger';
+import { navbarStyles } from '../../styles';
 
 // Component
 class Navbar extends Component {
@@ -35,12 +36,9 @@ class Navbar extends Component {
 
     return (
       <div className="navbar-fixed">
-        <nav className="nav-wrapper black">
+        <nav className="nav-wrapper black" style={navbarStyles}>
           <div>
-            <NavLink
-              to="/"
-              className="left brand-logo name-text-positioning navbar-logo "
-            >
+            <NavLink to="/" className="left brand-logo name-text-positioning">
               <span className="bold-text-style glow-text-style">
                 {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
               </span>

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import GenerateNames from '../names/GenerateNames';
 import DisplayNames from '../names/DisplayNames';
+import { generateNamesStyle, displayNamesStyle } from '../../styles';
 
 // Component
 const Dashboard = props => {
@@ -13,11 +14,11 @@ const Dashboard = props => {
     <div className="dashboard container">
       <div>
         <div className="row">
-          <div className="col s12 m6">
+          <div className="col s12 m6" style={generateNamesStyle}>
             <GenerateNames />
           </div>
 
-          <div className="col s12 m5 offset-m0.5">
+          <div className="col s12 m5" style={displayNamesStyle}>
             <DisplayNames />
           </div>
         </div>
