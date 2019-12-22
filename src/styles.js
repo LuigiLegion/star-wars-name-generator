@@ -45,3 +45,14 @@ export const burgerStyles = {
     background: 'rgba(0, 0, 0, 0.3)',
   },
 };
+
+export const navbarStyles = {
+  boxShadow: '0 0 2px #000000, 0 0 5px #000000',
+};
+
+export const generateNamesStyle = {
+  paddingRight: '0px',
+  paddingLeft: '0px',
+};
+
+export const displayNamesStyle = { paddingRight: '15px', paddingLeft: '15px' };

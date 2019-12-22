@@ -1,6 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/firestore';
+const firebase = require('firebase/app');
+require('firebase/auth');
+require('firebase/firestore');
 
 const config = {
   apiKey: 'YOUR_API_KEY',
@@ -13,4 +13,5 @@ const config = {
 };
 
 firebase.initializeApp(config);
-export default firebase;
+
+module.exports = firebase;
