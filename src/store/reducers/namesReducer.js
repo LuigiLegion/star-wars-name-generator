@@ -1,8 +1,3 @@
-// import { maleFirstNames } from '../../data/sets/sorted/male/male-first-names';
-// import { femaleFirstNames } from '../../data/sets/sorted/female/female-first-names';
-// import { allLastNames } from '../../data/sets/sorted/all/all-last-names';
-// import { allFirstNames } from '../../data/sets/sorted/all/all-first-names';
-
 import { getName } from '../../functions/generate';
 
 // Initial State
@@ -44,10 +39,10 @@ export const getFirstNameThunkCreator = (firstName, gender) => {
 
       const firstNameInitial = firstName[0].toUpperCase();
 
-      console.log(
-        'firstNameInitial in getFirstNameThunkCreator: ',
-        firstNameInitial
-      );
+      // console.log(
+      //   'firstNameInitial in getFirstNameThunkCreator: ',
+      //   firstNameInitial
+      // );
 
       const firstNamesRaw = await firestore
         .collection(`${gender}FirstNames`)
@@ -56,14 +51,14 @@ export const getFirstNameThunkCreator = (firstName, gender) => {
 
       const { names } = firstNamesRaw.data();
 
-      console.log('names in getFirstNameThunkCreator: ', names);
+      // console.log('names in getFirstNameThunkCreator: ', names);
 
       const generatedFirstName = getName(firstName, names);
 
-      console.log(
-        'generatedFirstName in getFirstNameThunkCreator: ',
-        generatedFirstName
-      );
+      // console.log(
+      //   'generatedFirstName in getFirstNameThunkCreator: ',
+      //   generatedFirstName
+      // );
 
       dispatch(gotFirstNameActionCreator(generatedFirstName));
     } catch (error) {
@@ -81,10 +76,10 @@ export const getLastNameThunkCreator = lastName => {
 
       const lastNameInitial = lastName[0].toUpperCase();
 
-      console.log(
-        'lastNameInitial in getFirstNameThunkCreator: ',
-        lastNameInitial
-      );
+      // console.log(
+      //   'lastNameInitial in getFirstNameThunkCreator: ',
+      //   lastNameInitial
+      // );
 
       const lastNamesRaw = await firestore
         .collection('allLastNames')
@@ -93,7 +88,7 @@ export const getLastNameThunkCreator = lastName => {
 
       const { names } = lastNamesRaw.data();
 
-      console.log('names in getFirstNameThunkCreator: ', names);
+      // console.log('names in getFirstNameThunkCreator: ', names);
 
       const generatedLastName = getName(lastName, names);
 
