@@ -40,7 +40,7 @@ class DisplayNames extends Component {
                   </div>
 
                   <div>
-                    <label>Try shortening your input names!</label>
+                    <label>Try shortening your name inputs!</label>
                   </div>
 
                   <br />
