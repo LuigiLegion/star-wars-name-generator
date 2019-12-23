@@ -23,7 +23,7 @@ const Dashboard = props => {
           </div>
         </div>
 
-        <div className="center-text padding-bottom">
+        <div className="center-text-align padding-bottom">
           <div>Like your new Star Wars name?</div>
 
           <div>
@@ -40,7 +40,7 @@ const Dashboard = props => {
           <div>#StarWars #TheRiseOfSkywalker</div>
         </div>
 
-        <div className="center-text padding-bottom">
+        <div className="center-text-align padding-bottom">
           Made with ❤ by{' '}
           <a
             href="https://www.linkedin.com/in/talluigi"

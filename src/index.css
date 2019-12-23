@@ -72,18 +72,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
   margin-top: 0px;
 }
 
-.bold-text-style {
-  font-weight: bold;
-}
-
-.italic-text-style {
-  font-style: italic;
-}
-
-.glow-text-style {
-  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
-}
-
 .gray-text-color {
   color: #424242;
 }
@@ -96,6 +84,22 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #ef5350;
 }
 
+.glow-text-style {
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+}
+
+.bold-text-style {
+  font-weight: bold;
+}
+
+.italic-text-style {
+  font-style: italic;
+}
+
+.center-text-align {
+  text-align: center;
+}
+
 .navbar-logo {
   left: 30px;
 }
@@ -106,10 +110,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .remove-outline {
   outline: none;
-}
-
-.center-text {
-  text-align: center;
 }
 
 .padding-bottom {
