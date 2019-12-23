@@ -17,7 +17,7 @@ export class GenerateNames extends Component {
       firstName: '',
       lastName: '',
       // countryName: '',
-      gender: 'Male',
+      gender: 'male',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -125,9 +125,9 @@ export class GenerateNames extends Component {
                 <option value="" disabled>
                   --Please choose an option--
                 </option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="all">Other</option>
               </select>
             </div>
 
