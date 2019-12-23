@@ -1,5 +1,5 @@
 // Imports
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -52,8 +52,10 @@ export class GenerateNames extends Component {
   }
 
   render() {
+    const { validInitial } = this.props;
     const { firstName, lastName } = this.state;
 
+    // console.log('validInitial in GenerateNames: ', validInitial);
     // console.log('firstName in GenerateNames: ', firstName);
     // console.log('lastName in GenerateNames: ', lastName);
 
@@ -137,6 +139,20 @@ export class GenerateNames extends Component {
             >
               Generate
             </button>
+
+            {validInitial ? null : (
+              <Fragment>
+                <div className="red-text-color bold-text-style center-text-align">
+                  Names in a galaxy far far away usually start with a letter.
+                </div>
+
+                <br />
+
+                <div className="red-text-color bold-text-style center-text-align">
+                  Please check your name inputs.
+                </div>
+              </Fragment>
+            )}
           </form>
         </div>
       </div>
@@ -145,6 +161,10 @@ export class GenerateNames extends Component {
 }
 
 // Container
+const mapStateToProps = state => ({
+  validInitial: state.names.validInitial,
+});
+
 const mapDispatchToProps = dispatch => ({
   getFirstNameThunk(firstName, gender) {
     dispatch(getFirstNameThunkCreator(firstName, gender));
@@ -155,12 +175,13 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(GenerateNames);
 
 // Prop Types
 GenerateNames.propTypes = {
+  validInitial: PropTypes.bool,
   getFirstNameThunk: PropTypes.func,
   getLastNameThunk: PropTypes.func,
 };
