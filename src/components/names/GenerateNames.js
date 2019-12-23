@@ -3,10 +3,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {
-  getFirstNameThunkCreator,
-  getLastNameThunkCreator,
-} from '../../store/reducers/namesReducer';
+import { getNamesThunkCreator } from '../../store/reducers/namesReducer';
 
 // Component
 export class GenerateNames extends Component {
@@ -14,10 +11,10 @@ export class GenerateNames extends Component {
     super();
 
     this.state = {
+      gender: 'male',
       firstName: '',
       lastName: '',
       // countryName: '',
-      gender: 'male',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -39,16 +36,15 @@ export class GenerateNames extends Component {
 
     event.preventDefault();
 
-    const { getFirstNameThunk, getLastNameThunk } = this.props;
-    const { firstName, lastName, gender } = this.state;
+    const { getNamesThunk } = this.props;
+    const { gender, firstName, lastName } = this.state;
 
+    // console.log('gender in GenerateNames handleSubmit: ', gender);
     // console.log('firstName in GenerateNames handleSubmit: ', firstName);
     // console.log('lastName in GenerateNames handleSubmit: ', lastName);
     // console.log('countryName in GenerateNames handleSubmit: ', countryName);
-    // console.log('gender in GenerateNames handleSubmit: ', gender);
 
-    getFirstNameThunk(firstName, gender);
-    getLastNameThunk(lastName);
+    getNamesThunk(gender, firstName, lastName);
   }
 
   render() {
@@ -166,11 +162,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getFirstNameThunk(firstName, gender) {
-    dispatch(getFirstNameThunkCreator(firstName, gender));
-  },
-  getLastNameThunk(lastName) {
-    dispatch(getLastNameThunkCreator(lastName));
+  getNamesThunk(gender, firstName, lastName) {
+    dispatch(getNamesThunkCreator(gender, firstName, lastName));
   },
 });
 
@@ -182,6 +175,5 @@ export default connect(
 // Prop Types
 GenerateNames.propTypes = {
   validInitial: PropTypes.bool,
-  getFirstNameThunk: PropTypes.func,
-  getLastNameThunk: PropTypes.func,
+  getNamesThunk: PropTypes.func,
 };
