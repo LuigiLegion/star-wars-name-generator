@@ -1,7 +1,7 @@
-import { maleFirstNames } from '../../data/sets/sorted/male/male-first-names';
-import { femaleFirstNames } from '../../data/sets/sorted/female/female-first-names';
-import { allLastNames } from '../../data/sets/sorted/all/all-last-names';
-import { allFirstNames } from '../../data/sets/sorted/all/all-first-names';
+// import { maleFirstNames } from '../../data/sets/sorted/male/male-first-names';
+// import { femaleFirstNames } from '../../data/sets/sorted/female/female-first-names';
+// import { allLastNames } from '../../data/sets/sorted/all/all-last-names';
+// import { allFirstNames } from '../../data/sets/sorted/all/all-first-names';
 
 import { getName } from '../../functions/generate';
 
@@ -35,25 +35,35 @@ export const clearedAllNamesActionCreator = () => ({
 
 // Thunk Creators
 export const getFirstNameThunkCreator = (firstName, gender) => {
-  return dispatch => {
+  return async (dispatch, getState, { getFirestore }) => {
     try {
       // console.log('firstName in getFirstNameThunkCreator: ', firstName);
       // console.log('gender in getFirstNameThunkCreator: ', gender);
 
-      let generatedFirstName;
+      const firestore = getFirestore();
 
-      if (gender === 'Male') {
-        generatedFirstName = getName(firstName, maleFirstNames);
-      } else if (gender === 'Female') {
-        generatedFirstName = getName(firstName, femaleFirstNames);
-      } else {
-        generatedFirstName = getName(firstName, allFirstNames);
-      }
+      const firstNameInitial = firstName[0].toUpperCase();
 
-      // console.log(
-      //   'generatedFirstName in getFirstNameThunkCreator: ',
-      //   generatedFirstName
-      // );
+      console.log(
+        'firstNameInitial in getFirstNameThunkCreator: ',
+        firstNameInitial
+      );
+
+      const firstNamesRaw = await firestore
+        .collection(`${gender}FirstNames`)
+        .doc(firstNameInitial)
+        .get();
+
+      const { names } = firstNamesRaw.data();
+
+      console.log('names in getFirstNameThunkCreator: ', names);
+
+      const generatedFirstName = getName(firstName, names);
+
+      console.log(
+        'generatedFirstName in getFirstNameThunkCreator: ',
+        generatedFirstName
+      );
 
       dispatch(gotFirstNameActionCreator(generatedFirstName));
     } catch (error) {
@@ -63,11 +73,29 @@ export const getFirstNameThunkCreator = (firstName, gender) => {
 };
 
 export const getLastNameThunkCreator = lastName => {
-  return dispatch => {
+  return async (dispatch, getState, { getFirestore }) => {
     try {
       // console.log('lastName in getLastNameThunkCreator: ', lastName);
 
-      let generatedLastName = getName(lastName, allLastNames);
+      const firestore = getFirestore();
+
+      const lastNameInitial = lastName[0].toUpperCase();
+
+      console.log(
+        'lastNameInitial in getFirstNameThunkCreator: ',
+        lastNameInitial
+      );
+
+      const lastNamesRaw = await firestore
+        .collection('allLastNames')
+        .doc(lastNameInitial)
+        .get();
+
+      const { names } = lastNamesRaw.data();
+
+      console.log('names in getFirstNameThunkCreator: ', names);
+
+      const generatedLastName = getName(lastName, names);
 
       // console.log(
       //   'generatedLastName in getLastNameThunkCreator: ',
