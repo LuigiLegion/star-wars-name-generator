@@ -1,10 +1,3 @@
-/* eslint-disable no-unused-vars */
-
-import { maleFirstNames } from '../data/sets/sorted/male/male-first-names';
-import { femaleFirstNames } from '../data/sets/sorted/female/female-first-names';
-import { allLastNames } from '../data/sets/sorted/all/all-last-names';
-import { allFirstNames } from '../data/sets/sorted/all/all-first-names';
-
 export const generateRandomIdx = arrLength => {
   const randomIdx = Math.floor(Math.random() * arrLength);
   return randomIdx;
@@ -83,35 +76,9 @@ export const getOptionalNames = (
   return optionalNames;
 };
 
-export const getName = (userName, allCharNames) => {
-  const userNameInitial = userName[0].toUpperCase();
-  const charNames = allCharNames[userNameInitial];
+export const getName = (userName, charNames) => {
   const optionalNames = getOptionalNames(userName, charNames);
   const randomIdx = generateRandomIdx(optionalNames.length);
   const randomName = optionalNames[randomIdx];
   return randomName;
 };
-
-// Male
-// console.log(
-//   `Your Star Wars name is: ${getName('John', maleFirstNames)} ${getName(
-//     'Doe',
-//     allLastNames
-//   )}`
-// );
-
-// Female
-// console.log(
-//   `Your Star Wars name is: ${getName('Jane', femaleFirstNames)} ${getName(
-//     'Doe',
-//     allLastNames
-//   )}`
-// );
-
-// Other
-// console.log(
-//   `Your Star Wars name is: ${getName('Jaden', allFirstNames)} ${getName(
-//     'Doe',
-//     allLastNames
-//   )}`
-// );
