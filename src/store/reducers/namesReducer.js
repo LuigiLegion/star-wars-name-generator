@@ -13,7 +13,8 @@ const initialState = {
 const GOT_FIRST_NAME = 'GOT_FIRST_NAME';
 const GOT_LAST_NAME = 'GOT_LAST_NAME';
 const CLEARED_ALL_NAMES = 'CLEARED_ALL_NAMES';
-const UPDATED_INITIAL_VALIDITY = 'UPDATED_INITIAL_VALIDITY';
+const UPDATED_INITIAL_VALIDITY_TRUE = 'UPDATED_INITIAL_VALIDITY_TRUE';
+const UPDATED_INITIAL_VALIDITY_FALSE = 'UPDATED_INITIAL_VALIDITY_FALSE';
 
 // Action Creators
 export const gotFirstNameActionCreator = name => ({
@@ -30,81 +31,70 @@ export const clearedAllNamesActionCreator = () => ({
   type: CLEARED_ALL_NAMES,
 });
 
-export const updatedInitialValidity = () => ({
-  type: UPDATED_INITIAL_VALIDITY,
+export const updatedInitialValidityTrue = () => ({
+  type: UPDATED_INITIAL_VALIDITY_TRUE,
+});
+
+export const updatedInitialValidityFalse = () => ({
+  type: UPDATED_INITIAL_VALIDITY_FALSE,
 });
 
 // Thunk Creators
-export const getFirstNameThunkCreator = (firstName, gender) => {
+export const getNamesThunkCreator = (gender, firstName, lastName) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('firstName in getFirstNameThunkCreator: ', firstName);
-      // console.log('gender in getFirstNameThunkCreator: ', gender);
+      // console.log('gender in getNamesThunkCreator: ', gender);
+      // console.log('firstName in getNamesThunkCreator: ', firstName);
+      // console.log('lastName in getNamesThunkCreator: ', lastName);
 
       const firstNameInitial = firstName[0];
       const upperCasedFirstNameInitial = firstNameInitial.toUpperCase();
       const lowerCasedFirstNameInitial = firstNameInitial.toLowerCase();
 
-      if (upperCasedFirstNameInitial !== lowerCasedFirstNameInitial) {
+      const lastNameInitial = lastName[0];
+      const upperCasedLastNameInitial = lastNameInitial.toUpperCase();
+      const lowerCasedLastNameInitial = lastNameInitial.toLowerCase();
+
+      const firstNameInitialIsLetterCheck =
+        upperCasedFirstNameInitial !== lowerCasedFirstNameInitial;
+      const lastNameInitialIsLetterCheck =
+        upperCasedLastNameInitial !== lowerCasedLastNameInitial;
+
+      if (firstNameInitialIsLetterCheck && lastNameInitialIsLetterCheck) {
         const firestore = getFirestore();
 
         const firstNamesRaw = await firestore
           .collection(`${gender}FirstNames`)
           .doc(firstNameInitial)
           .get();
-
-        const { names } = firstNamesRaw.data();
-
-        // console.log('names in getFirstNameThunkCreator: ', names);
-
-        const generatedFirstName = getName(firstName, names);
-
-        // console.log(
-        //   'generatedFirstName in getFirstNameThunkCreator: ',
-        //   generatedFirstName
-        // );
-
-        dispatch(gotFirstNameActionCreator(generatedFirstName));
-      } else {
-        dispatch(updatedInitialValidity());
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
-
-export const getLastNameThunkCreator = lastName => {
-  return async (dispatch, getState, { getFirestore }) => {
-    try {
-      // console.log('lastName in getLastNameThunkCreator: ', lastName);
-
-      const lastNameInitial = lastName[0];
-      const upperCasedLastNameInitial = lastNameInitial.toUpperCase();
-      const lowerCasedLastNameInitial = lastNameInitial.toLowerCase();
-
-      if (upperCasedLastNameInitial !== lowerCasedLastNameInitial) {
-        const firestore = getFirestore();
-
         const lastNamesRaw = await firestore
           .collection('allLastNames')
           .doc(upperCasedLastNameInitial)
           .get();
 
-        const { names } = lastNamesRaw.data();
+        const firstNamesWithInitial = firstNamesRaw.data().names;
+        const lastNamesWithInitial = lastNamesRaw.data().names;
 
-        // console.log('names in getLastNameThunkCreator: ', names);
+        // console.log('firstNamesWithInitial in getNamesThunkCreator: ', firstNamesWithInitial);
+        // console.log('lastNamesWithInitial in getNamesThunkCreator: ', lastNamesWithInitial);
 
-        const generatedLastName = getName(lastName, names);
+        const generatedFirstName = getName(firstName, firstNamesWithInitial);
+        const generatedLastName = getName(lastName, lastNamesWithInitial);
 
         // console.log(
-        //   'generatedLastName in getLastNameThunkCreator: ',
+        //   'generatedFirstName in getNamesThunkCreator: ',
+        //   generatedFirstName
+        // );
+        // console.log(
+        //   'generatedLastName in getNamesThunkCreator: ',
         //   generatedLastName
         // );
 
+        dispatch(updatedInitialValidityTrue());
+        dispatch(gotFirstNameActionCreator(generatedFirstName));
         dispatch(gotLastNameActionCreator(generatedLastName));
       } else {
-        dispatch(updatedInitialValidity());
+        dispatch(updatedInitialValidityFalse());
       }
     } catch (error) {
       console.error(error);
@@ -122,7 +112,6 @@ const namesReducer = (state = initialState, action) => {
         ...state,
         firstNames: [...state.firstNames, action.name],
         disabledClear: false,
-        validInitial: true,
       };
 
     case GOT_LAST_NAME:
@@ -140,10 +129,12 @@ const namesReducer = (state = initialState, action) => {
         firstNames: [],
         lastNames: [],
         disabledClear: true,
-        validInitial: true,
       };
 
-    case UPDATED_INITIAL_VALIDITY:
+    case UPDATED_INITIAL_VALIDITY_TRUE:
+      return { ...state, validInitial: true };
+
+    case UPDATED_INITIAL_VALIDITY_FALSE:
       return { ...state, validInitial: false };
 
     default:
