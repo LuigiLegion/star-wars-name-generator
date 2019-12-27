@@ -9,7 +9,7 @@ const initialState = {
   validInitial: true,
 };
 
-// Actions
+// Action Types
 const GOT_FIRST_NAME = 'GOT_FIRST_NAME';
 const GOT_LAST_NAME = 'GOT_LAST_NAME';
 const CLEARED_ALL_NAMES = 'CLEARED_ALL_NAMES';
