@@ -1,12 +1,12 @@
-import { firebaseReducer } from 'react-redux-firebase';
 import { combineReducers } from 'redux';
+import { firebaseReducer } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';
 
-import namesReducer from './namesReducer';
+import namesReducer from './reducers/namesReducer';
 
 const rootReducer = combineReducers({
-  firestore: firestoreReducer,
   firebase: firebaseReducer,
+  firestore: firestoreReducer,
   names: namesReducer,
 });
 
