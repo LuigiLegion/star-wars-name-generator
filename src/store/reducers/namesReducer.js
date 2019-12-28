@@ -65,7 +65,7 @@ export const getNamesThunkCreator = (gender, firstName, lastName) => {
 
         const firstNamesRaw = await firestore
           .collection(`${gender}FirstNames`)
-          .doc(firstNameInitial)
+          .doc(upperCasedFirstNameInitial)
           .get();
         const lastNamesRaw = await firestore
           .collection('allLastNames')
