@@ -55,6 +55,7 @@ class LinksBurger extends Component {
                 </span>
               </a>
             </div>
+
             <div>
               <a
                 onClick={() => this.closeMenu()}
