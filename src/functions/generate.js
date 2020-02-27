@@ -71,8 +71,6 @@ export const getOptionalNames = (
     );
   }
 
-  // console.log('Final optionalNames: ', optionalNames);
-
   return optionalNames;
 };
 
