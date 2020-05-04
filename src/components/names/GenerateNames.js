@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+
 // Imports
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
@@ -50,12 +52,12 @@ export class GenerateNames extends Component {
   render() {
     const { validInitial } = this.props;
     const { firstName, lastName } = this.state;
+    const namesCheck = firstName && lastName;
 
     // console.log('validInitial in GenerateNames: ', validInitial);
     // console.log('firstName in GenerateNames: ', firstName);
     // console.log('lastName in GenerateNames: ', lastName);
-
-    const namesCheck = firstName && lastName;
+    // console.log('namesCheck in GenerateNames: ', namesCheck);
 
     return (
       <div className="container">

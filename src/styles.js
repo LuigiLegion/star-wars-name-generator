@@ -46,7 +46,7 @@ export const burgerStyles = {
   },
 };
 
-export const navbarStyles = {
+export const navbarStyle = {
   boxShadow: '0 0 2px #000000, 0 0 5px #000000',
 };
 

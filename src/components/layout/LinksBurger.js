@@ -50,9 +50,7 @@ class LinksBurger extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <span className="bold-text-style glow-text-style">
-                  GitHub Repo
-                </span>
+                <span className="bold-text-style glow-text-style">Source</span>
               </a>
             </div>
 
