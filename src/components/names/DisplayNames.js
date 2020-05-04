@@ -26,7 +26,16 @@ class DisplayNames extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClick(fullName) {
+  async handleCopy(fullName) {
+    try {
+      await navigator.clipboard.writeText(fullName);
+      console.log('Name copied to clipboard');
+    } catch (error) {
+      console.error('Failed to copy: ', error);
+    }
+  }
+
+  handleSpeak(fullName) {
     const utterance = new SpeechSynthesisUtterance(fullName);
     const [voice] = voices.filter(curVoice => curVoice.voiceURI === 'Samantha');
     utterance.voice = voice;
@@ -92,13 +101,22 @@ class DisplayNames extends Component {
                         </a>
 
                         <img
-                          className="speaker-icon"
+                          className="name-containee"
                           src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
-                          alt="Text To Voice Speaker Icon"
+                          alt="Text To Voice Icon"
                           onClick={() =>
-                            this.handleClick(
+                            this.handleSpeak(
                               `${curFirstName}, ${lastNames[idx]}`
                             )
+                          }
+                        />
+
+                        <img
+                          className="name-containee"
+                          src="https://img.icons8.com/material-rounded/16/000000/clipboard.png"
+                          alt="Copy To Clipboard Icon"
+                          onClick={() =>
+                            this.handleCopy(`${curFirstName} ${lastNames[idx]}`)
                           }
                         />
                       </li>
