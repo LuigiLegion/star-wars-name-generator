@@ -111,10 +111,9 @@ textarea.materialize-textarea:focus:not([readonly]) {
   white-space: pre;
 }
 
-.speaker-icon {
+.name-containee {
   cursor: pointer;
   padding-left: 0.5em;
-  float: inline-end;
 }
 
 .padding-bottom {
