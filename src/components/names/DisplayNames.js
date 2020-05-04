@@ -7,12 +7,31 @@ import PropTypes from 'prop-types';
 
 import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
 
+// Initializations
+const synth = window.speechSynthesis;
+
+let voices;
+const populateVoices = () => {
+  voices = synth.getVoices();
+};
+populateVoices();
+
+synth.onvoiceschanged = populateVoices;
+
 // Component
 class DisplayNames extends Component {
   constructor() {
     super();
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleClick(fullName) {
+    const utterance = new SpeechSynthesisUtterance(fullName);
+    const [voice] = voices.filter(curVoice => curVoice.voiceURI === 'Samantha');
+    utterance.voice = voice;
+
+    synth.speak(utterance);
   }
 
   handleSubmit(event) {
@@ -53,10 +72,21 @@ class DisplayNames extends Component {
 
                   {firstNames.map((curFirstName, idx) => {
                     return (
-                      <li key={idx}>
+                      <li key={idx} className="name-container">
                         <span>
                           {`${idx + 1}. ${curFirstName} ${lastNames[idx]}`}
                         </span>
+
+                        <img
+                          className="speaker-icon"
+                          src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
+                          alt="Text To Voice Speaker Icon"
+                          onClick={() =>
+                            this.handleClick(
+                              `${curFirstName}, ${lastNames[idx]}`
+                            )
+                          }
+                        />
                       </li>
                     );
                   })}
