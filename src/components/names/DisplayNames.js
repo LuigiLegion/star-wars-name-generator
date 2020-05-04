@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+
 // Imports
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
@@ -23,6 +25,10 @@ class DisplayNames extends Component {
 
   render() {
     const { firstNames, lastNames, disabledClear } = this.props;
+
+    // console.log('firstNames in DisplayNames: ', firstNames);
+    // console.log('lastNames in DisplayNames: ', lastNames);
+    // console.log('disabledClear in DisplayNames: ', disabledClear);
 
     return (
       <div className="section">
