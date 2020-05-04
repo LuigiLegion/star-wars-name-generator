@@ -108,6 +108,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
   display: flex;
   flex-direction: row;
   align-items: center;
+  white-space: pre;
 }
 
 .speaker-icon {

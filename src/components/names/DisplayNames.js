@@ -73,9 +73,23 @@ class DisplayNames extends Component {
                   {firstNames.map((curFirstName, idx) => {
                     return (
                       <li key={idx} className="name-container">
-                        <span>
-                          {`${idx + 1}. ${curFirstName} ${lastNames[idx]}`}
-                        </span>
+                        <span>{`${idx + 1}. `}</span>
+
+                        <a
+                          href={`https://starwars.fandom.com/wiki/Special:Search?query=${curFirstName}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {`${curFirstName} `}
+                        </a>
+
+                        <a
+                          href={`https://starwars.fandom.com/wiki/Special:Search?query=${lastNames[idx]}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {lastNames[idx]}
+                        </a>
 
                         <img
                           className="speaker-icon"
