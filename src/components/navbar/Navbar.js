@@ -1,9 +1,12 @@
 // Imports
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import Links from './Links';
-import LinksBurger from './LinksBurger';
+import Links from '../Links/Links';
+import LinksBurger from '../Links/LinksBurger';
+import Preloader from './Preloader';
 import { navbarStyle } from '../../styles';
 
 // Component
@@ -49,10 +52,22 @@ class Navbar extends Component {
 
             {largeViewCheck ? <Links /> : <LinksBurger />}
           </div>
+
+          <div>{this.props.isLoading ? <Preloader /> : null}</div>
         </nav>
       </div>
     );
   }
 }
 
-export default Navbar;
+// Container
+const mapStateToProps = state => ({
+  isLoading: state.layout.isLoading,
+});
+
+export default connect(mapStateToProps)(Navbar);
+
+// Prop Types
+Navbar.propTypes = {
+  isLoading: PropTypes.bool,
+};

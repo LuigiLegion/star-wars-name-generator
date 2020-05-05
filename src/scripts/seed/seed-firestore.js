@@ -1,8 +1,8 @@
-const firebase = require('../config/fbConfig');
+const firebase = require('../../config/fbConfig');
 require('firebase/firestore');
 const firestore = firebase.firestore();
 
-const datasets = require('../data/sets/sorted');
+const datasets = require('../../data/sets/sorted');
 
 const seedCollection = async (collectionName, dataset) => {
   for (let key in dataset) {

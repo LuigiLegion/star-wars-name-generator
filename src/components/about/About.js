@@ -35,8 +35,7 @@ const About = props => {
                       With a little over 22,000 first names and 10,000 last
                       names from both Canon and Legends and a set of matching
                       algorithms, you're bound to find your very own Star Wars
-                      name based on your name in real life, or based on any
-                      other name - it's completely up to you.
+                      name based on any name.
                     </div>
 
                     <br />

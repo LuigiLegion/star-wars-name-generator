@@ -17,6 +17,18 @@ body {
   background-color: #000000;
 }
 
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #ffffff;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -118,6 +130,24 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .padding-bottom {
   padding-bottom: 40px;
+}
+
+.preloader {
+  margin: 0px;
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+}
+
+.preloader-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress.preloader.preloader-inner-color {
+  background-color: #424242;
+}
+
+.progress .indeterminate.preloader-outer-color {
+  background-color: #ffffff;
 }
 
 .remove-outline {

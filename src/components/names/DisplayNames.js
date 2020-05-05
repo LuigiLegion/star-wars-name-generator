@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
+import { copyToClipboardThunkCreator } from '../../store/reducers/layoutReducer';
 
 // Initializations
 const synth = window.speechSynthesis;
@@ -23,16 +24,9 @@ class DisplayNames extends Component {
   constructor() {
     super();
 
+    this.handleSpeak = this.handleSpeak.bind(this);
+    this.handleCopy = this.handleCopy.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async handleCopy(fullName) {
-    try {
-      await navigator.clipboard.writeText(fullName);
-      console.log('Name copied to clipboard');
-    } catch (error) {
-      console.error('Failed to copy: ', error);
-    }
   }
 
   handleSpeak(fullName) {
@@ -41,6 +35,10 @@ class DisplayNames extends Component {
     utterance.voice = voice;
 
     synth.speak(utterance);
+  }
+
+  handleCopy(fullName) {
+    this.props.copyToClipboardThunk(fullName);
   }
 
   handleSubmit(event) {
@@ -61,7 +59,7 @@ class DisplayNames extends Component {
     return (
       <div className="section">
         <div className="card z-depth-0">
-          <div className="card-content grey-text text-darken-3">
+          <div className="card-content grey-text text-darken-3 center">
             <span className="card-title">
               <span className="bold-text-style">Names List</span>
             </span>
@@ -103,7 +101,8 @@ class DisplayNames extends Component {
                         <img
                           className="name-containee"
                           src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
-                          alt="Text To Voice Icon"
+                          alt="Text To Speech Icon"
+                          title="Text To Speech"
                           onClick={() =>
                             this.handleSpeak(
                               `${curFirstName}, ${lastNames[idx]}`
@@ -115,6 +114,7 @@ class DisplayNames extends Component {
                           className="name-containee"
                           src="https://img.icons8.com/material-rounded/16/000000/clipboard.png"
                           alt="Copy To Clipboard Icon"
+                          title="Copy To Clipboard"
                           onClick={() =>
                             this.handleCopy(`${curFirstName} ${lastNames[idx]}`)
                           }
@@ -138,6 +138,12 @@ class DisplayNames extends Component {
                 Clear
               </button>
             </form>
+
+            {this.props.copyError ? (
+              <div className="red-text-color bold-text-style">
+                Error! Failed to copy to clipboard. Please Try again.
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -149,10 +155,14 @@ class DisplayNames extends Component {
 const mapStateToProps = state => ({
   firstNames: state.names.firstNames,
   lastNames: state.names.lastNames,
+  copyError: state.layout.copyError,
   disabledClear: state.names.disabledClear,
 });
 
 const mapDispatchToProps = dispatch => ({
+  copyToClipboardThunk(text) {
+    dispatch(copyToClipboardThunkCreator(text));
+  },
   clearedAllNamesAction() {
     dispatch(clearedAllNamesActionCreator());
   },
@@ -167,6 +177,8 @@ export default connect(
 DisplayNames.propTypes = {
   firstNames: PropTypes.array,
   lastNames: PropTypes.array,
+  copyError: PropTypes.bool,
   disabledClear: PropTypes.bool,
+  copyToClipboardThunk: PropTypes.func,
   clearedAllNamesAction: PropTypes.func,
 };
