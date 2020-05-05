@@ -120,6 +120,24 @@ textarea.materialize-textarea:focus:not([readonly]) {
   padding-bottom: 40px;
 }
 
+.preloader {
+  margin: 0px;
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+}
+
+.preloader-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.progress.preloader.preloader-inner-color {
+  background-color: #424242;
+}
+
+.progress .indeterminate.preloader-outer-color {
+  background-color: #ffffff;
+}
+
 .remove-outline {
   outline: none;
 }
