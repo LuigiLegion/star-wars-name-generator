@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
+import { copyToClipboardThunkCreator } from '../../store/reducers/layoutReducer';
 
 // Initializations
 const synth = window.speechSynthesis;
@@ -23,16 +24,9 @@ class DisplayNames extends Component {
   constructor() {
     super();
 
+    this.handleSpeak = this.handleSpeak.bind(this);
+    this.handleCopy = this.handleCopy.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  async handleCopy(fullName) {
-    try {
-      await navigator.clipboard.writeText(fullName);
-      console.log('Name copied to clipboard');
-    } catch (error) {
-      console.error('Failed to copy: ', error);
-    }
   }
 
   handleSpeak(fullName) {
@@ -41,6 +35,10 @@ class DisplayNames extends Component {
     utterance.voice = voice;
 
     synth.speak(utterance);
+  }
+
+  handleCopy(fullName) {
+    this.props.copyToClipboardThunk(fullName);
   }
 
   handleSubmit(event) {
@@ -140,6 +138,12 @@ class DisplayNames extends Component {
                 Clear
               </button>
             </form>
+
+            {this.props.copyError ? (
+              <div className="red-text-color bold-text-style">
+                Error! Failed to copy to clipboard. Please Try again.
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -151,10 +155,14 @@ class DisplayNames extends Component {
 const mapStateToProps = state => ({
   firstNames: state.names.firstNames,
   lastNames: state.names.lastNames,
+  copyError: state.layout.copyError,
   disabledClear: state.names.disabledClear,
 });
 
 const mapDispatchToProps = dispatch => ({
+  copyToClipboardThunk(text) {
+    dispatch(copyToClipboardThunkCreator(text));
+  },
   clearedAllNamesAction() {
     dispatch(clearedAllNamesActionCreator());
   },
@@ -169,6 +177,8 @@ export default connect(
 DisplayNames.propTypes = {
   firstNames: PropTypes.array,
   lastNames: PropTypes.array,
+  copyError: PropTypes.bool,
   disabledClear: PropTypes.bool,
+  copyToClipboardThunk: PropTypes.func,
   clearedAllNamesAction: PropTypes.func,
 };
