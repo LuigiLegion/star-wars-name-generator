@@ -71,7 +71,7 @@ export class GenerateNames extends Component {
 
             <div className="input-field">
               <label htmlFor="firstName">
-                First Name IRL<span className="red-text-color">*</span>
+                First Name<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -84,7 +84,7 @@ export class GenerateNames extends Component {
 
             <div className="input-field">
               <label htmlFor="lastName">
-                Last Name IRL<span className="red-text-color">*</span>
+                Last Name<span className="red-text-color">*</span>
               </label>
 
               <input
