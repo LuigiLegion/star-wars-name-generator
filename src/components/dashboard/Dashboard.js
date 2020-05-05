@@ -36,8 +36,6 @@ const Dashboard = props => {
               <span className="bold-text-style">@LuigiLegion</span>
             </a>
           </div>
-
-          <div>#StarWars #TheRiseOfSkywalker</div>
         </div>
 
         <div className="center-text-align padding-bottom">
