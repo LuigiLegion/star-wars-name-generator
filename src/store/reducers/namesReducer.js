@@ -1,4 +1,5 @@
-import { getName } from '../../functions/generate';
+import { toggledPreloaderActionCreator } from './layoutReducer';
+import { getName } from '../../helpers';
 
 // Initial State
 const initialState = {
@@ -47,6 +48,8 @@ export const getNamesThunkCreator = (gender, firstName, lastName) => {
       // console.log('firstName in getNamesThunkCreator: ', firstName);
       // console.log('lastName in getNamesThunkCreator: ', lastName);
 
+      dispatch(toggledPreloaderActionCreator(true));
+
       const firstNameInitial = firstName[0];
       const upperCasedFirstNameInitial = firstNameInitial.toUpperCase();
       const lowerCasedFirstNameInitial = firstNameInitial.toLowerCase();
@@ -93,11 +96,14 @@ export const getNamesThunkCreator = (gender, firstName, lastName) => {
         dispatch(updatedInitialValidityTrue());
         dispatch(gotFirstNameActionCreator(generatedFirstName));
         dispatch(gotLastNameActionCreator(generatedLastName));
+        dispatch(toggledPreloaderActionCreator(false));
       } else {
         dispatch(updatedInitialValidityFalse());
+        dispatch(toggledPreloaderActionCreator(false));
       }
     } catch (error) {
       console.error(error);
+      dispatch(toggledPreloaderActionCreator(false));
     }
   };
 };
