@@ -1,5 +1,5 @@
 import { toggledPreloaderActionCreator } from './layoutReducer';
-import { getName } from '../../helpers';
+import { getName, toastNotificationGenerator } from '../../helpers';
 
 // Initial State
 const initialState = {
@@ -97,13 +97,18 @@ export const getNamesThunkCreator = (gender, firstName, lastName) => {
         dispatch(gotFirstNameActionCreator(generatedFirstName));
         dispatch(gotLastNameActionCreator(generatedLastName));
         dispatch(toggledPreloaderActionCreator(false));
+
+        toastNotificationGenerator('Name Generated Successfully', 'green');
       } else {
         dispatch(updatedInitialValidityFalse());
         dispatch(toggledPreloaderActionCreator(false));
+
+        toastNotificationGenerator('Error! Unable To Generate Names', 'red');
       }
     } catch (error) {
       console.error(error);
       dispatch(toggledPreloaderActionCreator(false));
+      toastNotificationGenerator('Error! Unable To Generate Names', 'red');
     }
   };
 };
