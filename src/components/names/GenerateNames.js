@@ -71,7 +71,7 @@ export class GenerateNames extends Component {
 
             <div className="input-field">
               <label htmlFor="firstName">
-                First Name<span className="red-text-color">*</span>
+                Any First Name<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -84,7 +84,7 @@ export class GenerateNames extends Component {
 
             <div className="input-field">
               <label htmlFor="lastName">
-                Last Name<span className="red-text-color">*</span>
+                Any Last Name<span className="red-text-color">*</span>
               </label>
 
               <input
@@ -143,8 +143,6 @@ export class GenerateNames extends Component {
                 <div className="red-text-color bold-text-style center-text-align">
                   Names in a galaxy far far away usually start with a letter.
                 </div>
-
-                <br />
 
                 <div className="red-text-color bold-text-style center-text-align">
                   Please check your name inputs.
