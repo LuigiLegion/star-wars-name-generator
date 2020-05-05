@@ -141,7 +141,7 @@ class DisplayNames extends Component {
 
             {this.props.copyError ? (
               <div className="red-text-color bold-text-style">
-                Error! Failed to copy to clipboard. Please Try again.
+                Error! Failed to copy to clipboard.
               </div>
             ) : null}
           </div>
