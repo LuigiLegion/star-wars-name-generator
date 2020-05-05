@@ -59,7 +59,7 @@ class DisplayNames extends Component {
     return (
       <div className="section">
         <div className="card z-depth-0">
-          <div className="card-content grey-text text-darken-3">
+          <div className="card-content grey-text text-darken-3 center">
             <span className="card-title">
               <span className="bold-text-style">Names List</span>
             </span>

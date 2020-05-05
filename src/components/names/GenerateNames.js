@@ -61,7 +61,7 @@ export class GenerateNames extends Component {
 
     return (
       <div className="container">
-        <div className="section">
+        <div className="section center">
           <form onSubmit={this.handleSubmit} className="card white">
             <span className="card-title">
               <span className="gray-text-color bold-text-style">
