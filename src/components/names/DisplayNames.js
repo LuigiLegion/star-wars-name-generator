@@ -103,7 +103,8 @@ class DisplayNames extends Component {
                         <img
                           className="name-containee"
                           src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
-                          alt="Text To Voice Icon"
+                          alt="Text To Speech Icon"
+                          title="Text To Speech"
                           onClick={() =>
                             this.handleSpeak(
                               `${curFirstName}, ${lastNames[idx]}`
@@ -115,6 +116,7 @@ class DisplayNames extends Component {
                           className="name-containee"
                           src="https://img.icons8.com/material-rounded/16/000000/clipboard.png"
                           alt="Copy To Clipboard Icon"
+                          title="Copy To Clipboard"
                           onClick={() =>
                             this.handleCopy(`${curFirstName} ${lastNames[idx]}`)
                           }
