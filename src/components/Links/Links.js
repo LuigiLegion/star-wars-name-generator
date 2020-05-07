@@ -34,7 +34,7 @@ const Links = () => {
 
       <li>
         <a
-          href="http://taluigi.netlify.com"
+          href="https://taluigi.netlify.com"
           target="_blank"
           rel="noopener noreferrer"
         >

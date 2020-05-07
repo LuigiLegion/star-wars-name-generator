@@ -70,7 +70,7 @@ class LinksBurger extends Component {
             <div>
               <a
                 onClick={() => this.closeMenu()}
-                href="http://taluigi.netlify.com"
+                href="https://taluigi.netlify.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
