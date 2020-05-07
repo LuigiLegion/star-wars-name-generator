@@ -40,7 +40,7 @@ const DisplayNames = ({
     copyToClipboardThunk(fullName);
   };
 
-  const handleSubmit = event => {
+  const handleClear = event => {
     event.preventDefault();
 
     clearedAllNamesAction();
@@ -118,7 +118,7 @@ const DisplayNames = ({
             )}
           </ul>
 
-          <form className="clear-form" onSubmit={handleSubmit}>
+          <form className="clear-form" onSubmit={handleClear}>
             <button
               className="btn black black-1 z-depth-0"
               disabled={disabledClear}
