@@ -28,14 +28,14 @@ const LinksBurger = () => {
       >
         <div className="remove-outline">
           <div>
-            <NavLink to="/about" onClick={() => closeMenu()}>
+            <NavLink to="/about" onClick={closeMenu}>
               <span className="bold-text-style glow-text-style">About</span>
             </NavLink>
           </div>
 
           <div>
             <a
-              onClick={() => closeMenu()}
+              onClick={closeMenu}
               href="https://github.com/LuigiLegion/star-wars-name-generator"
               target="_blank"
               rel="noopener noreferrer"
@@ -46,7 +46,7 @@ const LinksBurger = () => {
 
           <div>
             <a
-              onClick={() => closeMenu()}
+              onClick={closeMenu}
               href="https://github.com/LuigiLegion/star-wars-name-generator/tree/master/src/data/sets"
               target="_blank"
               rel="noopener noreferrer"
@@ -57,7 +57,7 @@ const LinksBurger = () => {
 
           <div>
             <a
-              onClick={() => closeMenu()}
+              onClick={closeMenu}
               href="https://taluigi.netlify.com"
               target="_blank"
               rel="noopener noreferrer"
