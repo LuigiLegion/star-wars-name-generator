@@ -17,9 +17,6 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
   });
 
   const handleChange = event => {
-    // console.log('event.target.id: ', event.target.id);
-    // console.log('event.target.value: ', event.target.value);
-
     setState({
       ...state,
       [event.target.id]: event.target.value,
@@ -27,25 +24,12 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
   };
 
   const handleSubmit = event => {
-    // console.log('event.target.id: ', event.target.id);
-    // console.log('event.target.value: ', event.target.value);
-
     event.preventDefault();
-    // console.log('firstName in GenerateNames handleSubmit: ', state.firstName);
-    // console.log('lastName in GenerateNames handleSubmit: ', state.lastName);
-    // console.log('countryName in GenerateNames handleSubmit: ', state.countryName);
-    // console.log('gender in GenerateNames handleSubmit: ', state.gender);
 
     getNamesThunk(state.firstName, state.lastName, state.gender);
   };
 
   const namesCheck = state.firstName && state.lastName;
-
-  // console.log('validInitial in GenerateNames: ', validInitial);
-  // console.log('firstName in GenerateNames: ', state.firstName);
-  // console.log('lastName in GenerateNames: ', state.lastName);
-  // console.log('gender in GenerateNames: ', state.gender);
-  // console.log('namesCheck in GenerateNames: ', namesCheck);
 
   return (
     <div className="container">
