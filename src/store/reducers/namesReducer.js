@@ -41,12 +41,12 @@ export const updatedInitialValidityFalse = () => ({
 });
 
 // Thunk Creators
-export const getNamesThunkCreator = (gender, firstName, lastName) => {
+export const getNamesThunkCreator = (firstName, lastName, gender) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('gender in getNamesThunkCreator: ', gender);
       // console.log('firstName in getNamesThunkCreator: ', firstName);
       // console.log('lastName in getNamesThunkCreator: ', lastName);
+      // console.log('gender in getNamesThunkCreator: ', gender);
 
       dispatch(toggledPreloaderActionCreator(true));
 
