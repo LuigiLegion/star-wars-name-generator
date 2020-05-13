@@ -103,9 +103,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
   align-items: center;
 }
 
-.clear-form {
-  padding: 0px;
-  margin-top: 0px;
+.clear-button {
+  margin: 1.5em 0em;
 }
 
 .navbar-logo {

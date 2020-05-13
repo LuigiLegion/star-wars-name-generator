@@ -1,5 +1,3 @@
-/* eslint-disable react/button-has-type */
-
 // Imports
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
@@ -23,27 +21,25 @@ synth.onvoiceschanged = populateVoices;
 const DisplayNames = ({
   firstNames,
   lastNames,
-  copyError,
   disabledClear,
-  copyToClipboardThunk,
+  copyError,
   clearedAllNamesAction,
+  copyToClipboardThunk,
 }) => {
-  const handleSpeak = fullName => {
-    const utterance = new SpeechSynthesisUtterance(fullName);
-    const [voice] = voices.filter(curVoice => curVoice.voiceURI === 'Samantha');
-    utterance.voice = voice;
-
-    synth.speak(utterance);
+  const handleClear = () => {
+    clearedAllNamesAction();
   };
 
   const handleCopy = fullName => {
     copyToClipboardThunk(fullName);
   };
 
-  const handleClear = event => {
-    event.preventDefault();
+  const handleSpeak = fullName => {
+    const utterance = new SpeechSynthesisUtterance(fullName);
+    const [voice] = voices.filter(curVoice => curVoice.voiceURI === 'Samantha');
+    utterance.voice = voice;
 
-    clearedAllNamesAction();
+    synth.speak(utterance);
   };
 
   return (
@@ -118,14 +114,14 @@ const DisplayNames = ({
             )}
           </ul>
 
-          <form className="clear-form" onSubmit={handleClear}>
-            <button
-              className="btn black black-1 z-depth-0"
-              disabled={disabledClear}
-            >
-              Clear
-            </button>
-          </form>
+          <button
+            className="btn black black-1 z-depth-0 clear-button"
+            type="button"
+            disabled={disabledClear}
+            onClick={handleClear}
+          >
+            Clear
+          </button>
 
           {copyError ? (
             <div className="red-text-color bold-text-style">
@@ -142,16 +138,16 @@ const DisplayNames = ({
 const mapStateToProps = state => ({
   firstNames: state.names.firstNames,
   lastNames: state.names.lastNames,
-  copyError: state.layout.copyError,
   disabledClear: state.names.disabledClear,
+  copyError: state.layout.copyError,
 });
 
 const mapDispatchToProps = dispatch => ({
-  copyToClipboardThunk(text) {
-    dispatch(copyToClipboardThunkCreator(text));
-  },
   clearedAllNamesAction() {
     dispatch(clearedAllNamesActionCreator());
+  },
+  copyToClipboardThunk(text) {
+    dispatch(copyToClipboardThunkCreator(text));
   },
 });
 
@@ -164,8 +160,8 @@ export default connect(
 DisplayNames.propTypes = {
   firstNames: PropTypes.array,
   lastNames: PropTypes.array,
-  copyError: PropTypes.bool,
   disabledClear: PropTypes.bool,
-  copyToClipboardThunk: PropTypes.func,
+  copyError: PropTypes.bool,
   clearedAllNamesAction: PropTypes.func,
+  copyToClipboardThunk: PropTypes.func,
 };
