@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
 import { copyToClipboardThunkCreator } from '../../store/reducers/layoutReducer';
+import { toastNotificationGenerator } from '../../helpers';
 
 // Initializations
 const synth = window.speechSynthesis;
@@ -28,6 +29,7 @@ const DisplayNames = ({
 }) => {
   const handleClear = () => {
     clearedAllNamesAction();
+    toastNotificationGenerator('Names Cleared Succesfully', 'green');
   };
 
   const handleCopy = fullName => {
