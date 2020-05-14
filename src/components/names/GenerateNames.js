@@ -16,6 +16,8 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
     gender: 'male',
   });
 
+  const namesCheck = state.firstName && state.lastName;
+
   const handleChange = event => {
     setState({
       ...state,
@@ -28,8 +30,6 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
 
     getNamesThunk(state.firstName, state.lastName, state.gender);
   };
-
-  const namesCheck = state.firstName && state.lastName;
 
   return (
     <div className="container">
