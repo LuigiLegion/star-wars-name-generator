@@ -1,3 +1,4 @@
+// Imports
 import { toggledPreloaderActionCreator } from './layoutReducer';
 import { getName, toastNotificationGenerator } from '../../helpers';
 
@@ -41,13 +42,9 @@ export const updatedInitialValidityFalse = () => ({
 });
 
 // Thunk Creators
-export const getNamesThunkCreator = (gender, firstName, lastName) => {
+export const getNamesThunkCreator = (firstName, lastName, gender) => {
   return async (dispatch, getState, { getFirestore }) => {
     try {
-      // console.log('gender in getNamesThunkCreator: ', gender);
-      // console.log('firstName in getNamesThunkCreator: ', firstName);
-      // console.log('lastName in getNamesThunkCreator: ', lastName);
-
       dispatch(toggledPreloaderActionCreator(true));
 
       const firstNameInitial = firstName[0];
@@ -78,20 +75,8 @@ export const getNamesThunkCreator = (gender, firstName, lastName) => {
         const firstNamesWithInitial = firstNamesRaw.data().names;
         const lastNamesWithInitial = lastNamesRaw.data().names;
 
-        // console.log('firstNamesWithInitial in getNamesThunkCreator: ', firstNamesWithInitial);
-        // console.log('lastNamesWithInitial in getNamesThunkCreator: ', lastNamesWithInitial);
-
         const generatedFirstName = getName(firstName, firstNamesWithInitial);
         const generatedLastName = getName(lastName, lastNamesWithInitial);
-
-        // console.log(
-        //   'generatedFirstName in getNamesThunkCreator: ',
-        //   generatedFirstName
-        // );
-        // console.log(
-        //   'generatedLastName in getNamesThunkCreator: ',
-        //   generatedLastName
-        // );
 
         dispatch(updatedInitialValidityTrue());
         dispatch(gotFirstNameActionCreator(generatedFirstName));
@@ -117,8 +102,6 @@ export const getNamesThunkCreator = (gender, firstName, lastName) => {
 const namesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_FIRST_NAME:
-      // console.log('action.name in GOT_FIRST_NAMES: ', action.name);
-
       return {
         ...state,
         firstNames: [...state.firstNames, action.name],
@@ -126,8 +109,6 @@ const namesReducer = (state = initialState, action) => {
       };
 
     case GOT_LAST_NAME:
-      // console.log('action.name in GOT_LAST_NAME: ', action.name);
-
       return {
         ...state,
         lastNames: [...state.lastNames, action.name],
@@ -143,10 +124,16 @@ const namesReducer = (state = initialState, action) => {
       };
 
     case UPDATED_INITIAL_VALIDITY_TRUE:
-      return { ...state, validInitial: true };
+      return {
+        ...state,
+        validInitial: true,
+      };
 
     case UPDATED_INITIAL_VALIDITY_FALSE:
-      return { ...state, validInitial: false };
+      return {
+        ...state,
+        validInitial: false,
+      };
 
     default:
       return state;

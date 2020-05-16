@@ -1,15 +1,12 @@
 // Imports
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import GenerateNames from '../names/GenerateNames';
 import DisplayNames from '../names/DisplayNames';
 import { generateNamesStyle, displayNamesStyle } from '../../styles';
 
 // Component
-const Dashboard = props => {
-  // console.log('props in Dashboard: ', props);
-
+const Dashboard = () => {
   return (
     <div className="dashboard container">
       <div>
@@ -54,8 +51,3 @@ const Dashboard = props => {
 };
 
 export default Dashboard;
-
-// Prop Types
-Dashboard.propTypes = {
-  props: PropTypes.object,
-};

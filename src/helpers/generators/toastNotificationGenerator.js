@@ -1,10 +1,10 @@
-// Generator
+// Initializations
 const toastNotificationGenerator = (message, color) => {
   window.M.toast({
     html: `<span>${message}</span>`,
-    classes: color
-  })
-}
+    classes: color,
+  });
+};
 
 // Exports
-export default toastNotificationGenerator
+export default toastNotificationGenerator;

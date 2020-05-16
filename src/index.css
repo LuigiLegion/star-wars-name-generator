@@ -88,28 +88,16 @@ textarea.materialize-textarea:focus:not([readonly]) {
   text-align: center;
 }
 
-.navigation-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #212121;
+.clear-button {
+  margin: 1.5em 0em;
 }
 
-.navigation-containee {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.clear-form {
-  padding: 0px;
-  margin-top: 0px;
+.navbar-container {
+  padding-left: 1em;
 }
 
 .navbar-logo {
-  left: 30px;
+  font-size: xx-large;
 }
 
 .navbar-logo:hover {
@@ -152,8 +140,4 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .remove-outline {
   outline: none;
-}
-
-.name-text-positioning {
-  left: 30px;
 }

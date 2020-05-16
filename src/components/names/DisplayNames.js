@@ -1,12 +1,11 @@
-/* eslint-disable react/button-has-type */
-
 // Imports
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
 import { copyToClipboardThunkCreator } from '../../store/reducers/layoutReducer';
+import { toastNotificationGenerator } from '../../helpers';
 
 // Initializations
 const synth = window.speechSynthesis;
@@ -20,151 +19,137 @@ populateVoices();
 synth.onvoiceschanged = populateVoices;
 
 // Component
-class DisplayNames extends Component {
-  constructor() {
-    super();
+const DisplayNames = ({
+  firstNames,
+  lastNames,
+  disabledClear,
+  copyError,
+  clearedAllNamesAction,
+  copyToClipboardThunk,
+}) => {
+  const handleClear = () => {
+    clearedAllNamesAction();
+    toastNotificationGenerator('Names Cleared Succesfully', 'green');
+  };
 
-    this.handleSpeak = this.handleSpeak.bind(this);
-    this.handleCopy = this.handleCopy.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  const handleCopy = fullName => {
+    copyToClipboardThunk(fullName);
+  };
 
-  handleSpeak(fullName) {
+  const handleSpeak = fullName => {
     const utterance = new SpeechSynthesisUtterance(fullName);
     const [voice] = voices.filter(curVoice => curVoice.voiceURI === 'Samantha');
     utterance.voice = voice;
 
     synth.speak(utterance);
-  }
+  };
 
-  handleCopy(fullName) {
-    this.props.copyToClipboardThunk(fullName);
-  }
+  return (
+    <div className="section">
+      <div className="card z-depth-0">
+        <div className="card-content grey-text text-darken-3 center">
+          <span className="card-title">
+            <span className="bold-text-style">Names List</span>
+          </span>
 
-  handleSubmit(event) {
-    event.preventDefault();
+          <ul className="names">
+            {firstNames.length ? (
+              <Fragment>
+                <div>
+                  <label>These aren't the names you're looking for?</label>
+                </div>
 
-    const { clearedAllNamesAction } = this.props;
+                <div>
+                  <label>Try shortening your name inputs!</label>
+                </div>
 
-    clearedAllNamesAction();
-  }
+                <br />
 
-  render() {
-    const { firstNames, lastNames, disabledClear } = this.props;
+                {firstNames.map((curFirstName, idx) => {
+                  return (
+                    <li key={idx} className="name-container">
+                      <span>{`${idx + 1}. `}</span>
 
-    // console.log('firstNames in DisplayNames: ', firstNames);
-    // console.log('lastNames in DisplayNames: ', lastNames);
-    // console.log('disabledClear in DisplayNames: ', disabledClear);
+                      <a
+                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${curFirstName}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {`${curFirstName} `}
+                      </a>
 
-    return (
-      <div className="section">
-        <div className="card z-depth-0">
-          <div className="card-content grey-text text-darken-3 center">
-            <span className="card-title">
-              <span className="bold-text-style">Names List</span>
-            </span>
+                      <a
+                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${lastNames[idx]}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {lastNames[idx]}
+                      </a>
 
-            <ul className="names">
-              {firstNames.length ? (
-                <Fragment>
-                  <div>
-                    <label>These aren't the names you're looking for?</label>
-                  </div>
+                      <img
+                        className="name-containee"
+                        src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
+                        alt="Text To Speech Icon"
+                        title="Text To Speech"
+                        onClick={() =>
+                          handleSpeak(`${curFirstName}, ${lastNames[idx]}`)
+                        }
+                      />
 
-                  <div>
-                    <label>Try shortening your name inputs!</label>
-                  </div>
+                      <img
+                        className="name-containee"
+                        src="https://img.icons8.com/material-rounded/16/000000/clipboard.png"
+                        alt="Copy To Clipboard Icon"
+                        title="Copy To Clipboard"
+                        onClick={() =>
+                          handleCopy(`${curFirstName} ${lastNames[idx]}`)
+                        }
+                      />
+                    </li>
+                  );
+                })}
+              </Fragment>
+            ) : (
+              <li>
+                <span>Generate names to populate this list.</span>
+              </li>
+            )}
+          </ul>
 
-                  <br />
+          <button
+            className="btn black black-1 z-depth-0 clear-button"
+            type="button"
+            disabled={disabledClear}
+            onClick={handleClear}
+          >
+            Clear
+          </button>
 
-                  {firstNames.map((curFirstName, idx) => {
-                    return (
-                      <li key={idx} className="name-container">
-                        <span>{`${idx + 1}. `}</span>
-
-                        <a
-                          href={`https://starwars.fandom.com/wiki/Special:Search?query=${curFirstName}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {`${curFirstName} `}
-                        </a>
-
-                        <a
-                          href={`https://starwars.fandom.com/wiki/Special:Search?query=${lastNames[idx]}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {lastNames[idx]}
-                        </a>
-
-                        <img
-                          className="name-containee"
-                          src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
-                          alt="Text To Speech Icon"
-                          title="Text To Speech"
-                          onClick={() =>
-                            this.handleSpeak(
-                              `${curFirstName}, ${lastNames[idx]}`
-                            )
-                          }
-                        />
-
-                        <img
-                          className="name-containee"
-                          src="https://img.icons8.com/material-rounded/16/000000/clipboard.png"
-                          alt="Copy To Clipboard Icon"
-                          title="Copy To Clipboard"
-                          onClick={() =>
-                            this.handleCopy(`${curFirstName} ${lastNames[idx]}`)
-                          }
-                        />
-                      </li>
-                    );
-                  })}
-                </Fragment>
-              ) : (
-                <li>
-                  <span>Generate names to populate this list.</span>
-                </li>
-              )}
-            </ul>
-
-            <form className="clear-form" onSubmit={this.handleSubmit}>
-              <button
-                className="btn black black-1 z-depth-0"
-                disabled={disabledClear}
-              >
-                Clear
-              </button>
-            </form>
-
-            {this.props.copyError ? (
-              <div className="red-text-color bold-text-style">
-                Error! Failed to copy to clipboard.
-              </div>
-            ) : null}
-          </div>
+          {copyError ? (
+            <div className="red-text-color bold-text-style">
+              Error! Failed to copy to clipboard.
+            </div>
+          ) : null}
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 // Container
 const mapStateToProps = state => ({
   firstNames: state.names.firstNames,
   lastNames: state.names.lastNames,
-  copyError: state.layout.copyError,
   disabledClear: state.names.disabledClear,
+  copyError: state.layout.copyError,
 });
 
 const mapDispatchToProps = dispatch => ({
-  copyToClipboardThunk(text) {
-    dispatch(copyToClipboardThunkCreator(text));
-  },
   clearedAllNamesAction() {
     dispatch(clearedAllNamesActionCreator());
+  },
+  copyToClipboardThunk(text) {
+    dispatch(copyToClipboardThunkCreator(text));
   },
 });
 
@@ -177,8 +162,8 @@ export default connect(
 DisplayNames.propTypes = {
   firstNames: PropTypes.array,
   lastNames: PropTypes.array,
-  copyError: PropTypes.bool,
   disabledClear: PropTypes.bool,
-  copyToClipboardThunk: PropTypes.func,
+  copyError: PropTypes.bool,
   clearedAllNamesAction: PropTypes.func,
+  copyToClipboardThunk: PropTypes.func,
 };

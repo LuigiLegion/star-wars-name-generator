@@ -1,12 +1,9 @@
 // Imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Component
-const Links = props => {
-  // console.log('props in Links: ', props);
-
+const Links = () => {
   return (
     <ul className="right">
       <li>
@@ -37,7 +34,7 @@ const Links = props => {
 
       <li>
         <a
-          href="http://taluigi.netlify.com"
+          href="https://taluigi.netlify.com"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -49,8 +46,3 @@ const Links = props => {
 };
 
 export default Links;
-
-// Prop Types
-Links.propTypes = {
-  props: PropTypes.object,
-};

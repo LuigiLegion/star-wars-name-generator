@@ -1,12 +1,9 @@
 // Imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Component
-const About = props => {
-  // console.log('props in About: ', props);
-
+const About = () => {
   return (
     <div className="dashboard container">
       <div className="row">
@@ -65,8 +62,3 @@ const About = props => {
 };
 
 export default About;
-
-// Prop Types
-About.propTypes = {
-  props: PropTypes.object,
-};
