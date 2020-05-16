@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Links from '../Links/Links';
 import LinksBurger from '../Links/LinksBurger';
 import Preloader from './Preloader';
-import { navbarStyle } from '../../styles';
 
 // Component
 const Navbar = ({ isLoading }) => {
@@ -31,9 +30,9 @@ const Navbar = ({ isLoading }) => {
 
   return (
     <div className="navbar-fixed">
-      <nav className="nav-wrapper black" style={navbarStyle}>
+      <nav className="nav-wrapper navbar-container black">
         <div>
-          <NavLink to="/" className="left navbar-logo name-text-positioning">
+          <NavLink to="/" className="left navbar-logo">
             <span className="bold-text-style glow-text-style">
               {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
             </span>
