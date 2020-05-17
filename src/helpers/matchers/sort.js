@@ -1,10 +1,7 @@
 /* eslint-disable complexity */
-/* eslint-disable no-unused-vars */
 
-import { maleFullNames } from '../data/sets/sorted/male/male-full-names';
-import { femaleFullNames } from '../data/sets/sorted/female/female-full-names';
-
-export const generateDict = () => ({
+// Initializations
+const generateDict = () => ({
   A: [],
   B: [],
   C: [],
@@ -33,7 +30,7 @@ export const generateDict = () => ({
   Z: [],
 });
 
-export const sortDict = dict => {
+const sortDict = dict => {
   for (let key in dict) {
     if (dict.hasOwnProperty(key)) {
       dict[key].sort();
@@ -41,7 +38,7 @@ export const sortDict = dict => {
   }
 };
 
-export const printDict = dict => {
+const printDict = dict => {
   const dictKeys = Object.keys(dict);
 
   for (let i = 0; i < dictKeys.length; i++) {
@@ -54,7 +51,7 @@ export const printDict = dict => {
   }
 };
 
-export const sortNames = fullNames => {
+const sortNames = fullNames => {
   const firstNamesDict = generateDict();
   const lastNamesDict = generateDict();
 
@@ -105,6 +102,13 @@ export const sortNames = fullNames => {
   printDict(firstNamesDict);
   printDict(lastNamesDict);
 };
+
+// Exports
+export { generateDict, sortDict, printDict, sortNames };
+
+// Checks
+// import { maleFullNames } from '../data/sets/sorted/male/male-full-names';
+// import { femaleFullNames } from '../data/sets/sorted/female/female-full-names';
 
 // sortNames(maleFullNames);
 // sortNames(femaleFullNames);

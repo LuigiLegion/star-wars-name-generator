@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-
-import { maleFirstNames } from '../data/sets/sorted/male/male-first-names';
-import { maleLastNames } from '../data/sets/sorted/male/male-last-names';
-import { femaleFirstNames } from '../data/sets/sorted/female/female-first-names';
-import { femaleLastNames } from '../data/sets/sorted/female/female-last-names';
+// Imports
 import { generateDict, sortDict, printDict } from './sort';
 
-export const removeDuplicates = dict => {
+// Initializations
+const removeDuplicates = dict => {
   const cleanedDict = generateDict();
 
   for (let key in dict) {
@@ -29,7 +25,7 @@ export const removeDuplicates = dict => {
   return cleanedDict;
 };
 
-export const mergeDicts = (dictOne, dictTwo) => {
+const mergeDicts = (dictOne, dictTwo) => {
   const mergedDict = generateDict();
 
   for (let key in mergedDict) {
@@ -44,6 +40,15 @@ export const mergeDicts = (dictOne, dictTwo) => {
 
   printDict(cleanedMergedDict);
 };
+
+// Exports
+export { removeDuplicates, mergeDicts };
+
+// Checks
+// import { maleFirstNames } from '../data/sets/sorted/male/male-first-names';
+// import { maleLastNames } from '../data/sets/sorted/male/male-last-names';
+// import { femaleFirstNames } from '../data/sets/sorted/female/female-first-names';
+// import { femaleLastNames } from '../data/sets/sorted/female/female-last-names';
 
 // mergeDicts(maleFirstNames, femaleFirstNames);
 // mergeDicts(maleLastNames, femaleLastNames);

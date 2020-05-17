@@ -1,16 +1,6 @@
 /* eslint-disable complexity */
-/* eslint-disable no-unused-vars */
 
-import { malesOneOfSix } from '../data/sets/raw/males/males-1-of-6';
-import { malesTwoOfSix } from '../data/sets/raw/males/males-2-of-6';
-import { malesThreeOfSix } from '../data/sets/raw/males/males-3-of-6';
-import { malesFourOfSix } from '../data/sets/raw/males/males-4-of-6';
-import { malesFiveOfSix } from '../data/sets/raw/males/males-5-of-6';
-import { malesSixOfSix } from '../data/sets/raw/males/males-6-of-6';
-
-import { femalesOneOfTwo } from '../data/sets/raw/females/females-1-of-2';
-import { femalesTwoOfTwo } from '../data/sets/raw/females/females-2-of-2';
-
+// Initializations
 export const extractFullNames = articles => {
   const fullNames = articles.items.reduce((acc, curArticle) => {
     const curArticleTitle = curArticle.title;
@@ -45,12 +35,21 @@ export const extractFullNames = articles => {
   console.log(JSON.stringify(fullNames));
 };
 
+// Checks
+// import { malesOneOfSix } from '../data/sets/raw/males/males-1-of-6';
+// import { malesTwoOfSix } from '../data/sets/raw/males/males-2-of-6';
+// import { malesThreeOfSix } from '../data/sets/raw/males/males-3-of-6';
+// import { malesFourOfSix } from '../data/sets/raw/males/males-4-of-6';
+// import { malesFiveOfSix } from '../data/sets/raw/males/males-5-of-6';
+// import { malesSixOfSix } from '../data/sets/raw/males/males-6-of-6';
+// import { femalesOneOfTwo } from '../data/sets/raw/females/females-1-of-2';
+// import { femalesTwoOfTwo } from '../data/sets/raw/females/females-2-of-2';
+
 // console.log(extractFullNames(malesOneOfSix));
 // console.log(extractFullNames(malesTwoOfSix));
 // console.log(extractFullNames(malesThreeOfSix));
 // console.log(extractFullNames(malesFourOfSix));
 // console.log(extractFullNames(malesFiveOfSix));
 // console.log(extractFullNames(malesSixOfSix));
-
 // console.log(extractFullNames(femalesOneOfTwo));
 // console.log(extractFullNames(femalesTwoOfTwo));

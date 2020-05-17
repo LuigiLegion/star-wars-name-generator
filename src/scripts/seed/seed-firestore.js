@@ -1,9 +1,11 @@
+// Imports
 const firebase = require('../../config/fbConfig');
 require('firebase/firestore');
 const firestore = firebase.firestore();
 
 const datasets = require('../../data/sets/sorted');
 
+// Initializations
 const seedCollection = async (collectionName, dataset) => {
   for (let key in dataset) {
     if (dataset.hasOwnProperty(key)) {

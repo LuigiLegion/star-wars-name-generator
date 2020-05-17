@@ -1,9 +1,10 @@
-export const generateRandomIdx = arrLength => {
+// Initializations
+const generateRandomIdx = arrLength => {
   const randomIdx = Math.floor(Math.random() * arrLength);
   return randomIdx;
 };
 
-export const getNameRating = (capUserName, capCharName) => {
+const getNameRating = (capUserName, capCharName) => {
   const userName = capUserName.toLowerCase();
   const charName = capCharName.toLowerCase();
 
@@ -32,13 +33,13 @@ export const getNameRating = (capUserName, capCharName) => {
   return nameRating;
 };
 
-export const getOptionalNames = (
+const getOptionalNames = (
   userName,
   charNames,
   optionalNames = []
   // counter = 1
 ) => {
-  // console.log(`Call #${counter} optionalNames: ${optionalNames}`);
+  // console.log(`Invocation #${counter} optionalNames: ${optionalNames}`);
 
   if (!userName.length) {
     return optionalNames;
@@ -76,9 +77,12 @@ export const getOptionalNames = (
   return optionalNames;
 };
 
-export const getName = (userName, charNames) => {
+const getName = (userName, charNames) => {
   const optionalNames = getOptionalNames(userName, charNames);
   const randomIdx = generateRandomIdx(optionalNames.length);
   const randomName = optionalNames[randomIdx];
   return randomName;
 };
+
+// Exports
+export default getName;
