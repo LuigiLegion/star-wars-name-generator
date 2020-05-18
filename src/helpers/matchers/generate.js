@@ -1,6 +1,8 @@
 // Initializations
 const randomIndex = length => Math.floor(Math.random() * length);
 
+const randomElement = array => array[randomIndex(array.length)];
+
 const nameRating = (rawInputName, rawSwName) => {
   const inputName = rawInputName.toLowerCase();
   const swName = rawSwName.toLowerCase();
@@ -63,12 +65,8 @@ const optionalNames = (inputName, allSwNames, optionalSwNames = []) => {
   return optionalSwNames;
 };
 
-const getName = (userName, charNames) => {
-  const optionalSwNames = optionalNames(userName, charNames);
-  const randomIdx = randomIndex(optionalSwNames.length);
-  const randomName = optionalSwNames[randomIdx];
-  return randomName;
-};
+const randomOptionalName = (inputName, allSwNames) =>
+  randomElement(optionalNames(inputName, allSwNames));
 
 // Exports
-export default getName;
+export default randomOptionalName;
