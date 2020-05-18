@@ -37,9 +37,7 @@ const optionalNames = (inputName, allSwNames, optionalSwNames = []) => {
 
   let highestSwNameRating = 0;
 
-  for (let i = 0; i < allSwNames.length; i++) {
-    const curSwName = allSwNames[i];
-
+  allSwNames.forEach(curSwName => {
     if (curSwName !== inputName) {
       const curSwNameRating = nameRating(inputName, curSwName);
 
@@ -50,7 +48,7 @@ const optionalNames = (inputName, allSwNames, optionalSwNames = []) => {
         optionalSwNames = [curSwName];
       }
     }
-  }
+  });
 
   if (optionalSwNames.length < 5) {
     const shortenedInputName = inputName.slice(1);
