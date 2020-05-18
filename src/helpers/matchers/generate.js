@@ -1,8 +1,5 @@
 // Initializations
-const generateRandomIdx = arrLength => {
-  const randomIdx = Math.floor(Math.random() * arrLength);
-  return randomIdx;
-};
+const randomIndex = length => Math.floor(Math.random() * length);
 
 const getNameRating = (capUserName, capCharName) => {
   const userName = capUserName.toLowerCase();
@@ -79,7 +76,7 @@ const getOptionalNames = (
 
 const getName = (userName, charNames) => {
   const optionalNames = getOptionalNames(userName, charNames);
-  const randomIdx = generateRandomIdx(optionalNames.length);
+  const randomIdx = randomIndex(optionalNames.length);
   const randomName = optionalNames[randomIdx];
   return randomName;
 };
