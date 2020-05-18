@@ -1,33 +1,33 @@
 // Initializations
 const randomIndex = length => Math.floor(Math.random() * length);
 
-const getNameRating = (capUserName, capCharName) => {
-  const userName = capUserName.toLowerCase();
-  const charName = capCharName.toLowerCase();
+const nameRating = (rawInputName, rawSwName) => {
+  const inputName = rawInputName.toLowerCase();
+  const swName = rawSwName.toLowerCase();
 
-  let nameRating = 0;
-  let userNamePointer = 0;
-  let charNamePointer = 0;
+  let swNameRating = 0;
+  let inputNamePointer = 0;
+  let swNamePointer = 0;
   let letterFoundPointer = 0;
 
-  while (userNamePointer < userName.length) {
-    const userNameLetter = userName[userNamePointer];
-    const charNameLetter = charName[charNamePointer];
+  while (inputNamePointer < inputName.length) {
+    const curInputNameLetter = inputName[inputNamePointer];
+    const curSwNameLetter = swName[swNamePointer];
 
-    if (userNameLetter === charNameLetter) {
-      nameRating++;
-      letterFoundPointer = charNamePointer;
-      userNamePointer++;
-      charNamePointer++;
-    } else if (charNamePointer < charName.length) {
-      charNamePointer++;
+    if (curInputNameLetter === curSwNameLetter) {
+      swNameRating++;
+      letterFoundPointer = swNamePointer;
+      inputNamePointer++;
+      swNamePointer++;
+    } else if (swNamePointer < swName.length) {
+      swNamePointer++;
     } else {
-      userNamePointer++;
-      charNamePointer = letterFoundPointer;
+      inputNamePointer++;
+      swNamePointer = letterFoundPointer;
     }
   }
 
-  return nameRating;
+  return swNameRating;
 };
 
 const getOptionalNames = (
@@ -47,7 +47,7 @@ const getOptionalNames = (
   for (let i = 0; i < charNames.length; i++) {
     const charName = charNames[i];
     if (charName !== userName) {
-      const curCharNameRating = getNameRating(userName, charName);
+      const curCharNameRating = nameRating(userName, charName);
 
       if (curCharNameRating === highestRating) {
         optionalNames.push(charName);
