@@ -30,54 +30,45 @@ const nameRating = (rawInputName, rawSwName) => {
   return swNameRating;
 };
 
-const getOptionalNames = (
-  userName,
-  charNames,
-  optionalNames = []
-  // counter = 1
-) => {
-  // console.log(`Invocation #${counter} optionalNames: ${optionalNames}`);
-
-  if (!userName.length) {
-    return optionalNames;
+const optionalNames = (inputName, allSwNames, optionalSwNames = []) => {
+  if (!inputName.length) {
+    return optionalSwNames;
   }
 
-  let highestRating = 0;
+  let highestSwNameRating = 0;
 
-  for (let i = 0; i < charNames.length; i++) {
-    const charName = charNames[i];
-    if (charName !== userName) {
-      const curCharNameRating = nameRating(userName, charName);
+  for (let i = 0; i < allSwNames.length; i++) {
+    const curSwName = allSwNames[i];
 
-      if (curCharNameRating === highestRating) {
-        optionalNames.push(charName);
-      } else if (curCharNameRating > highestRating) {
-        highestRating = curCharNameRating;
-        optionalNames = [charName];
+    if (curSwName !== inputName) {
+      const curSwNameRating = nameRating(inputName, curSwName);
+
+      if (curSwNameRating === highestSwNameRating) {
+        optionalSwNames.push(curSwName);
+      } else if (curSwNameRating > highestSwNameRating) {
+        highestSwNameRating = curSwNameRating;
+        optionalSwNames = [curSwName];
       }
     }
   }
 
-  if (optionalNames.length < 5) {
-    const shortenedUserName = userName.slice(1);
+  if (optionalSwNames.length < 5) {
+    const shortenedInputName = inputName.slice(1);
 
-    optionalNames = getOptionalNames(
-      shortenedUserName,
-      charNames,
-      optionalNames
-      // ++counter
+    optionalSwNames = optionalNames(
+      shortenedInputName,
+      allSwNames,
+      optionalSwNames
     );
   }
 
-  // console.log('Final optionalNames: ', optionalNames);
-
-  return optionalNames;
+  return optionalSwNames;
 };
 
 const getName = (userName, charNames) => {
-  const optionalNames = getOptionalNames(userName, charNames);
-  const randomIdx = randomIndex(optionalNames.length);
-  const randomName = optionalNames[randomIdx];
+  const optionalSwNames = optionalNames(userName, charNames);
+  const randomIdx = randomIndex(optionalSwNames.length);
+  const randomName = optionalSwNames[randomIdx];
   return randomName;
 };
 
