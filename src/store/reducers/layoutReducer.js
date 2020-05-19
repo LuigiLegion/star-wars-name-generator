@@ -1,5 +1,5 @@
 // Imports
-import { toastNotificationGenerator } from '../../helpers';
+import { toastNotification } from '../../helpers';
 
 // Initial State
 const initialState = {
@@ -29,11 +29,11 @@ export const copyToClipboardThunkCreator = text => {
       await navigator.clipboard.writeText(text);
 
       dispatch(copiedToClipboardActionCreator(false));
-      toastNotificationGenerator('Copied To Clipboard', 'green');
+      toastNotification('Copied To Clipboard', 'green');
     } catch (error) {
       console.error(error);
       dispatch(copiedToClipboardActionCreator(true));
-      toastNotificationGenerator('Error! Failed To Copy To Clipboard', 'red');
+      toastNotification('Error! Failed To Copy To Clipboard', 'red');
     }
   };
 };
