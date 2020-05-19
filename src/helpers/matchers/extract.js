@@ -1,7 +1,7 @@
 /* eslint-disable complexity */
 
 // Initializations
-export const extractFullNames = articles => {
+const extractFullNames = articles => {
   const fullNames = articles.items.reduce((acc, curArticle) => {
     const curArticleTitle = curArticle.title;
 
@@ -34,6 +34,9 @@ export const extractFullNames = articles => {
 
   console.log(JSON.stringify(fullNames));
 };
+
+// Exports
+export default extractFullNames;
 
 // Checks
 // import { malesOneOfSix } from '../data/sets/raw/males/males-1-of-6';
