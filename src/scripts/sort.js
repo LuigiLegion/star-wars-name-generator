@@ -1,5 +1,9 @@
 /* eslint-disable complexity */
 
+// Imports
+import { maleFullNames } from '../data/sets/sorted/male/male-full-names';
+import { femaleFullNames } from '../data/sets/sorted/female/female-full-names';
+
 // Initializations
 const generateDict = () => ({
   A: [],
@@ -30,85 +34,71 @@ const generateDict = () => ({
   Z: [],
 });
 
-const sortDict = dict => {
-  for (let key in dict) {
-    if (dict.hasOwnProperty(key)) {
-      dict[key].sort();
-    }
-  }
-};
+const sortDict = dict =>
+  Object.keys(dict).forEach(curKey => dict[curKey].sort());
 
-const printDict = dict => {
-  const dictKeys = Object.keys(dict);
-
-  for (let i = 0; i < dictKeys.length; i++) {
-    const curKey = dictKeys[i];
-
+const printDict = dict =>
+  Object.keys(dict).forEach((curKey, idx) => {
     setTimeout(() => {
       console.log({ curKey });
       console.log(JSON.stringify(dict[curKey]));
-    }, 20000 * i);
-  }
-};
+    }, 20000 * idx);
+  });
+
+const printDicts = dicts => dicts.forEach(curDict => printDict(curDict));
 
 const sortNames = fullNames => {
   const firstNamesDict = generateDict();
   const lastNamesDict = generateDict();
 
-  for (let i = 0; i < fullNames.length; i++) {
-    let curFullNameStr = fullNames[i];
+  fullNames.forEach(curFullName => {
+    let cleanCurFullName;
 
-    let curFullNameStrCleaned;
-    if (curFullNameStr.includes('/')) {
-      curFullNameStrCleaned = curFullNameStr.split('/');
-      curFullNameStr = curFullNameStrCleaned[0];
+    if (curFullName.includes('/')) {
+      cleanCurFullName = curFullName.split('/');
+      curFullName = cleanCurFullName[0];
     }
 
-    if (curFullNameStr.includes(' (')) {
-      curFullNameStrCleaned = curFullNameStr.split(' (');
-      curFullNameStr = curFullNameStrCleaned[0];
+    if (curFullName.includes(' (')) {
+      cleanCurFullName = curFullName.split(' (');
+      curFullName = cleanCurFullName[0];
     }
 
-    const curFullNameArr = curFullNameStr.split(' ');
+    const curFullNameWords = curFullName.split(' ');
 
-    const curFirstName = curFullNameArr[0];
+    const curFirstName = curFullNameWords[0];
     const curFirstNameInitial = curFirstName[0];
 
-    if (curFirstName) {
-      if (firstNamesDict[curFirstNameInitial]) {
-        if (curFirstName !== 'Darth') {
-          if (!firstNamesDict[curFirstNameInitial].includes(curFirstName)) {
-            firstNamesDict[curFirstNameInitial].push(curFirstName);
-          }
-        }
-      }
+    if (
+      curFirstName &&
+      curFirstName !== 'Darth' &&
+      firstNamesDict[curFirstNameInitial] &&
+      !firstNamesDict[curFirstNameInitial].includes(curFirstName)
+    ) {
+      firstNamesDict[curFirstNameInitial].push(curFirstName);
     }
 
-    const curLastName = curFullNameArr.slice(1).join(' ');
+    const curLastName = curFullNameWords.slice(1).join(' ');
     const curLastNameInitial = curLastName[0];
 
-    if (curLastName) {
-      if (lastNamesDict[curLastNameInitial]) {
-        if (!lastNamesDict[curLastNameInitial].includes(curLastName)) {
-          lastNamesDict[curLastNameInitial].push(curLastName);
-        }
-      }
+    if (
+      curLastName &&
+      lastNamesDict[curLastNameInitial] &&
+      !lastNamesDict[curLastNameInitial].includes(curLastName)
+    ) {
+      lastNamesDict[curLastNameInitial].push(curLastName);
     }
-  }
+  });
 
   sortDict(firstNamesDict);
   sortDict(lastNamesDict);
 
-  printDict(firstNamesDict);
-  printDict(lastNamesDict);
+  return [firstNamesDict, lastNamesDict];
 };
 
-// Exports
-export { generateDict, sortDict, printDict, sortNames };
-
 // Checks
-// import { maleFullNames } from '../data/sets/sorted/male/male-full-names';
-// import { femaleFullNames } from '../data/sets/sorted/female/female-full-names';
+printDicts(sortNames(maleFullNames));
+printDicts(sortNames(femaleFullNames));
 
-// sortNames(maleFullNames);
-// sortNames(femaleFullNames);
+// Exports
+export { generateDict, sortDict, printDict };
