@@ -1,5 +1,3 @@
 // Exports
-export { getName } from './matchers/generate';
-export {
-  default as toastNotificationGenerator,
-} from './generators/toastNotificationGenerator';
+export { default as randomOptionalName } from './generators/randomOptionalName';
+export { default as toastNotification } from './generators/toastNotification';

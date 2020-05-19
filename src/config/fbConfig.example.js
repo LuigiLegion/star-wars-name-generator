@@ -1,7 +1,9 @@
+// Imports
 const firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/firestore');
 
+// Initializations
 const config = {
   apiKey: 'YOUR_API_KEY',
   authDomain: 'YOUR_DOMAIN_HERE',
@@ -14,4 +16,5 @@ const config = {
 
 firebase.initializeApp(config);
 
+// Exports
 module.exports = firebase;

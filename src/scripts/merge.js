@@ -1,35 +1,34 @@
-/* eslint-disable no-unused-vars */
+// Imports
+import { generateDict, sortDict, printDict } from './sort';
 
 import { maleFirstNames } from '../data/sets/sorted/male/male-first-names';
 import { maleLastNames } from '../data/sets/sorted/male/male-last-names';
 import { femaleFirstNames } from '../data/sets/sorted/female/female-first-names';
 import { femaleLastNames } from '../data/sets/sorted/female/female-last-names';
-import { generateDict, sortDict, printDict } from './sort';
 
-export const removeDuplicates = dict => {
-  const cleanedDict = generateDict();
+// Initializations
+const removeDuplicates = dict => {
+  const cleanDict = generateDict();
 
   for (let key in dict) {
     if (dict.hasOwnProperty(key)) {
       const curLetterNames = dict[key];
-      let curName;
-      let nextName;
 
       for (let i = 0; i < curLetterNames.length; i++) {
-        curName = curLetterNames[i];
-        nextName = curLetterNames[i + 1];
+        const curName = curLetterNames[i];
+        const nextName = curLetterNames[i + 1];
 
         if (curName !== nextName) {
-          cleanedDict[key].push(curName);
+          cleanDict[key].push(curName);
         }
       }
     }
   }
 
-  return cleanedDict;
+  return cleanDict;
 };
 
-export const mergeDicts = (dictOne, dictTwo) => {
+const mergeDicts = (dictOne, dictTwo) => {
   const mergedDict = generateDict();
 
   for (let key in mergedDict) {
@@ -40,10 +39,9 @@ export const mergeDicts = (dictOne, dictTwo) => {
 
   sortDict(mergedDict);
 
-  const cleanedMergedDict = removeDuplicates(mergedDict);
-
-  printDict(cleanedMergedDict);
+  return mergedDict;
 };
 
-// mergeDicts(maleFirstNames, femaleFirstNames);
-// mergeDicts(maleLastNames, femaleLastNames);
+// Checks
+printDict(removeDuplicates(mergeDicts(maleFirstNames, femaleFirstNames)));
+printDict(removeDuplicates(mergeDicts(maleLastNames, femaleLastNames)));

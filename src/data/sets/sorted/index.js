@@ -1,3 +1,4 @@
+// Imports
 const { allFirstNames } = require('./all/all-first-names.json');
 const { allLastNames } = require('./all/all-last-names.json');
 const { maleFirstNames } = require('./male/male-first-names.json');
@@ -5,6 +6,7 @@ const { maleLastNames } = require('./male/male-last-names.json');
 const { femaleFirstNames } = require('./female/female-first-names.json');
 const { femaleLastNames } = require('./female/female-last-names.json');
 
+// Initializations
 const datasets = [
   {
     collectionName: 'allFirstNames',
@@ -32,4 +34,5 @@ const datasets = [
   },
 ];
 
+// Exports
 module.exports = datasets;
