@@ -1,29 +1,37 @@
 /* eslint-disable complexity */
 
-// Initializations
-const extractFullNames = articles => {
-  const fullNames = articles.items.reduce((acc, curArticle) => {
-    const curArticleTitle = curArticle.title;
+// Imports
+import { malesOneOfSix } from '../data/sets/raw/males/males-1-of-6';
+import { malesTwoOfSix } from '../data/sets/raw/males/males-2-of-6';
+import { malesThreeOfSix } from '../data/sets/raw/males/males-3-of-6';
+import { malesFourOfSix } from '../data/sets/raw/males/males-4-of-6';
+import { malesFiveOfSix } from '../data/sets/raw/males/males-5-of-6';
+import { malesSixOfSix } from '../data/sets/raw/males/males-6-of-6';
+import { femalesOneOfTwo } from '../data/sets/raw/females/females-1-of-2';
+import { femalesTwoOfTwo } from '../data/sets/raw/females/females-2-of-2';
 
+// Initializations
+const extractFullNames = articles =>
+  articles.items.reduce((acc, curArticle) => {
     if (
-      !curArticleTitle.includes("'s ") &&
-      !curArticleTitle.includes("s' ") &&
-      !curArticleTitle.includes('0') &&
-      !curArticleTitle.includes('1') &&
-      !curArticleTitle.includes('2') &&
-      !curArticleTitle.includes('3') &&
-      !curArticleTitle.includes('4') &&
-      !curArticleTitle.includes('5') &&
-      !curArticleTitle.includes('6') &&
-      !curArticleTitle.includes('7') &&
-      !curArticleTitle.includes('8') &&
-      !curArticleTitle.includes('9')
+      !curArticle.title.includes("'s ") &&
+      !curArticle.title.includes("s' ") &&
+      !curArticle.title.includes('0') &&
+      !curArticle.title.includes('1') &&
+      !curArticle.title.includes('2') &&
+      !curArticle.title.includes('3') &&
+      !curArticle.title.includes('4') &&
+      !curArticle.title.includes('5') &&
+      !curArticle.title.includes('6') &&
+      !curArticle.title.includes('7') &&
+      !curArticle.title.includes('8') &&
+      !curArticle.title.includes('9')
     ) {
-      const curArticleTitleArr = curArticleTitle.split(' ');
+      const curArticleTitleWords = curArticle.title.split(' ');
 
       if (
-        curArticleTitleArr[0] !== 'The' &&
-        curArticleTitleArr[0] !== 'Unidentified'
+        curArticleTitleWords[0] !== 'The' &&
+        curArticleTitleWords[0] !== 'Unidentified'
       ) {
         acc.push(curArticle.title);
       }
@@ -32,27 +40,14 @@ const extractFullNames = articles => {
     return acc;
   }, []);
 
-  console.log(JSON.stringify(fullNames));
-};
-
-// Exports
-export default extractFullNames;
+const printFullNames = fullNames => console.log(JSON.stringify(fullNames));
 
 // Checks
-// import { malesOneOfSix } from '../data/sets/raw/males/males-1-of-6';
-// import { malesTwoOfSix } from '../data/sets/raw/males/males-2-of-6';
-// import { malesThreeOfSix } from '../data/sets/raw/males/males-3-of-6';
-// import { malesFourOfSix } from '../data/sets/raw/males/males-4-of-6';
-// import { malesFiveOfSix } from '../data/sets/raw/males/males-5-of-6';
-// import { malesSixOfSix } from '../data/sets/raw/males/males-6-of-6';
-// import { femalesOneOfTwo } from '../data/sets/raw/females/females-1-of-2';
-// import { femalesTwoOfTwo } from '../data/sets/raw/females/females-2-of-2';
-
-// console.log(extractFullNames(malesOneOfSix));
-// console.log(extractFullNames(malesTwoOfSix));
-// console.log(extractFullNames(malesThreeOfSix));
-// console.log(extractFullNames(malesFourOfSix));
-// console.log(extractFullNames(malesFiveOfSix));
-// console.log(extractFullNames(malesSixOfSix));
-// console.log(extractFullNames(femalesOneOfTwo));
-// console.log(extractFullNames(femalesTwoOfTwo));
+printFullNames(extractFullNames(malesOneOfSix));
+printFullNames(extractFullNames(malesTwoOfSix));
+printFullNames(extractFullNames(malesThreeOfSix));
+printFullNames(extractFullNames(malesFourOfSix));
+printFullNames(extractFullNames(malesFiveOfSix));
+printFullNames(extractFullNames(malesSixOfSix));
+printFullNames(extractFullNames(femalesOneOfTwo));
+printFullNames(extractFullNames(femalesTwoOfTwo));
