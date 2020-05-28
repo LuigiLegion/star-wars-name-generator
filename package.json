@@ -5,6 +5,7 @@
   "private": false,
   "author": "Tal Luigi",
   "license": "MIT",
+  "main": "index.js",
   "dependencies": {
     "axios": "^0.19.0",
     "firebase": "^6.2.0",
@@ -28,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy"
   },
   "browserslist": {
     "production": [
