@@ -29,7 +29,7 @@ const LinksBurger = () => {
         <div className="remove-outline">
           <div>
             <NavLink to="/about" onClick={closeMenu}>
-              <span className="bold-text-style glow-text-style">About</span>
+              <span className="text-style-bold text-style-glow">About</span>
             </NavLink>
           </div>
 
@@ -40,7 +40,7 @@ const LinksBurger = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="bold-text-style glow-text-style">Source</span>
+              <span className="text-style-bold text-style-glow">Source</span>
             </a>
           </div>
 
@@ -51,7 +51,7 @@ const LinksBurger = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="bold-text-style glow-text-style">Data Sets</span>
+              <span className="text-style-bold text-style-glow">Data Sets</span>
             </a>
           </div>
 
@@ -62,7 +62,7 @@ const LinksBurger = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="bold-text-style glow-text-style">
+              <span className="text-style-bold text-style-glow">
                 Contact Info
               </span>
             </a>

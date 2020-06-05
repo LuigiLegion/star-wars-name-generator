@@ -20,7 +20,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="center-text-align padding-bottom">
+        <div className="text-align-center padding-bottom">
           <div>Like your new Star Wars name?</div>
 
           <div>
@@ -30,19 +30,19 @@ const Dashboard = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="bold-text-style">@LuigiLegion</span>
+              <span className="text-style-bold">@LuigiLegion</span>
             </a>
           </div>
         </div>
 
-        <div className="center-text-align padding-bottom">
+        <div className="text-align-center padding-bottom">
           Made with ❤ by{' '}
           <a
             href="https://www.linkedin.com/in/talluigi"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="bold-text-style">Tal Luigi</span>
+            <span className="text-style-bold">Tal Luigi</span>
           </a>
         </div>
       </div>

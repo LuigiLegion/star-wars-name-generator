@@ -12,7 +12,7 @@ const PageNotFound = () => {
             <div className="card z-depth-0">
               <div className="card-content grey-text text-darken-3">
                 <span className="card-title">
-                  <span className="bold-text-style">404 - Page Not Found</span>
+                  <span className="text-style-bold">404 - Page Not Found</span>
                 </span>
 
                 <h5 className="grey-text text-darken-3">
@@ -24,7 +24,7 @@ const PageNotFound = () => {
                 <ul>
                   <li>
                     <NavLink to="/">
-                      <span className="bold-text-style">
+                      <span className="text-style-bold">
                         ← Back To Main Page
                       </span>
                     </NavLink>

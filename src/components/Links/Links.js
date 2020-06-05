@@ -8,7 +8,7 @@ const Links = () => {
     <ul className="right">
       <li>
         <NavLink to="/about">
-          <span className="bold-text-style glow-text-style">About</span>
+          <span className="text-style-bold text-style-glow">About</span>
         </NavLink>
       </li>
 
@@ -18,7 +18,7 @@ const Links = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="bold-text-style glow-text-style">Source</span>
+          <span className="text-style-bold text-style-glow">Source</span>
         </a>
       </li>
 
@@ -28,7 +28,7 @@ const Links = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="bold-text-style glow-text-style">Data Sets</span>
+          <span className="text-style-bold text-style-glow">Data Sets</span>
         </a>
       </li>
 
@@ -38,7 +38,7 @@ const Links = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="bold-text-style glow-text-style">Contact Info</span>
+          <span className="text-style-bold text-style-glow">Contact Info</span>
         </a>
       </li>
     </ul>

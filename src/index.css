@@ -60,31 +60,23 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
 }
 
-.gray-text-color {
+.text-color-gray {
   color: #424242;
 }
 
-.blue-text-color {
-  color: #039be5;
-}
-
-.red-text-color {
+.text-color-red {
   color: #ef5350;
 }
 
-.glow-text-style {
+.text-style-glow {
   text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
 }
 
-.bold-text-style {
+.text-style-bold {
   font-weight: bold;
 }
 
-.italic-text-style {
-  font-style: italic;
-}
-
-.center-text-align {
+.text-align-center {
   text-align: center;
 }
 
