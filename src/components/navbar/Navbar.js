@@ -33,7 +33,7 @@ const Navbar = ({ isLoading }) => {
       <nav className="nav-wrapper navbar-container black">
         <div>
           <NavLink to="/" className="left navbar-logo">
-            <span className="bold-text-style glow-text-style">
+            <span className="text-style-bold text-style-glow">
               {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
             </span>
           </NavLink>

@@ -36,14 +36,14 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
       <div className="section center">
         <form onSubmit={handleSubmit} className="card white">
           <span className="card-title">
-            <span className="gray-text-color bold-text-style">
+            <span className="text-color-gray text-style-bold">
               Generate Names
             </span>
           </span>
 
           <div className="input-field">
             <label htmlFor="firstName">
-              Any First Name<span className="red-text-color">*</span>
+              Any First Name<span className="text-color-red">*</span>
             </label>
 
             <input
@@ -56,7 +56,7 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
 
           <div className="input-field">
             <label htmlFor="lastName">
-              Any Last Name<span className="red-text-color">*</span>
+              Any Last Name<span className="text-color-red">*</span>
             </label>
 
             <input type="text" id="lastName" required onChange={handleChange} />
@@ -64,7 +64,7 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
 
           {/* <div className="input-field">
               <label htmlFor="countryName">
-                Country Name<span className="red-text-color">*</span>
+                Country Name<span className="text-color-red">*</span>
               </label>
 
               <input
@@ -77,7 +77,7 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
 
           <div className="input-field col s12">
             <label htmlFor="gender">
-              Gender<span className="red-text-color">*</span>
+              Gender<span className="text-color-red">*</span>
             </label>
 
             <br />
@@ -107,11 +107,11 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
 
           {validInitial ? null : (
             <Fragment>
-              <div className="red-text-color bold-text-style center-text-align">
+              <div className="text-color-red text-style-bold text-align-center">
                 Names in a galaxy far far away usually start with a letter.
               </div>
 
-              <div className="red-text-color bold-text-style center-text-align">
+              <div className="text-color-red text-style-bold text-align-center">
                 Please check your name inputs.
               </div>
             </Fragment>

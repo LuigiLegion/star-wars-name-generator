@@ -49,7 +49,7 @@ const DisplayNames = ({
       <div className="card z-depth-0">
         <div className="card-content grey-text text-darken-3 center">
           <span className="card-title">
-            <span className="bold-text-style">Names List</span>
+            <span className="text-style-bold">Names List</span>
           </span>
 
           <ul className="names">
@@ -126,7 +126,7 @@ const DisplayNames = ({
           </button>
 
           {copyError ? (
-            <div className="red-text-color bold-text-style">
+            <div className="text-color-red text-style-bold">
               Error! Failed to copy to clipboard.
             </div>
           ) : null}
