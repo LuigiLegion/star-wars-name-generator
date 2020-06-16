@@ -58,4 +58,5 @@ const layoutReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default layoutReducer;

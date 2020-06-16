@@ -133,13 +133,14 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(GenerateNames);
-
 // Prop Types
 GenerateNames.propTypes = {
   validInitial: PropTypes.bool,
   getNamesThunk: PropTypes.func,
 };
+
+// Exports
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GenerateNames);

@@ -146,4 +146,5 @@ const namesReducer = (state = initialState, action) => {
   }
 };
 
+// Exports
 export default namesReducer;

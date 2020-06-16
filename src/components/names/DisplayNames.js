@@ -153,11 +153,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DisplayNames);
-
 // Prop Types
 DisplayNames.propTypes = {
   firstNames: PropTypes.array,
@@ -167,3 +162,9 @@ DisplayNames.propTypes = {
   clearedAllNamesAction: PropTypes.func,
   copyToClipboardThunk: PropTypes.func,
 };
+
+// Exports
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DisplayNames);
