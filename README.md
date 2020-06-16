@@ -18,7 +18,7 @@ MVP completed in 4 days for a solo project.
 
 ### Tech Stack:
 
-Built using Node.js and Firebase on the backend, React, Redux, and Materialize on the frontend, and utilizes the Wikia API.
+Built using Node.js and Firebase on the backend, React, Redux, and Materialize on the frontend, and utilizes the Web Speech, Clipboard, and Wikia APIs.
 
 ### Dev Team:
 
