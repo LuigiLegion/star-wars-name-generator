@@ -1,6 +1,6 @@
 // Imports
 import { toggledPreloaderActionCreator } from './layoutReducer';
-import { randomOptionalName, toastNotification } from '../../helpers';
+import { randomOptionalName, toastNotification } from '../../utilities';
 
 // Initial State
 const initialState = {
