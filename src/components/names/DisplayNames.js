@@ -145,12 +145,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  clearedAllNamesAction() {
-    dispatch(clearedAllNamesActionCreator());
-  },
-  copyToClipboardThunk(text) {
-    dispatch(copyToClipboardThunkCreator(text));
-  },
+  clearedAllNamesAction: () => dispatch(clearedAllNamesActionCreator()),
+  copyToClipboardThunk: text => dispatch(copyToClipboardThunkCreator(text)),
 });
 
 // Prop Types
