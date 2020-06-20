@@ -128,9 +128,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getNamesThunk(firstName, lastName, gender) {
-    dispatch(getNamesThunkCreator(firstName, lastName, gender));
-  },
+  getNamesThunk: (firstName, lastName, gender) =>
+    dispatch(getNamesThunkCreator(firstName, lastName, gender)),
 });
 
 // Prop Types
