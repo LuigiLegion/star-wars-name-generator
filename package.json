@@ -2,7 +2,7 @@
   "name": "star-wars-name-generator",
   "version": "1.0.0",
   "description": "",
-  "private": false,
+  "private": true,
   "author": "Tal Luigi",
   "license": "MIT",
   "main": "index.js",
