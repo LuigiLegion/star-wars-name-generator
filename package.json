@@ -6,6 +6,13 @@
   "author": "Tal Luigi",
   "license": "MIT",
   "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && firebase deploy"
+  },
   "dependencies": {
     "axios": "^0.19.0",
     "firebase": "^6.2.0",
@@ -24,13 +31,6 @@
     "redux-firestore": "^0.8.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build && firebase deploy"
   },
   "browserslist": {
     "production": [
