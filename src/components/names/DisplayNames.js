@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
 import { copyToClipboardThunkCreator } from '../../store/reducers/layoutReducer';
-import { toastNotification } from '../../utilities';
+import { toastNotification } from '../../utils';
 
 // Initializations
 const synth = window.speechSynthesis;

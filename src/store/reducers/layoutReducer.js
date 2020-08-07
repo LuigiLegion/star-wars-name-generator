@@ -1,5 +1,5 @@
 // Imports
-import { toastNotification } from '../../utilities';
+import { toastNotification } from '../../utils';
 
 // Initial State
 const initialState = {
