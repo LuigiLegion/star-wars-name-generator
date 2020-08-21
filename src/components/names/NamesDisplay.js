@@ -19,7 +19,7 @@ populateVoices();
 synth.onvoiceschanged = populateVoices;
 
 // Component
-const DisplayNames = ({
+const NamesDisplay = ({
   firstNames,
   lastNames,
   disabledClear,
@@ -150,7 +150,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Prop Types
-DisplayNames.propTypes = {
+NamesDisplay.propTypes = {
   firstNames: PropTypes.array,
   lastNames: PropTypes.array,
   disabledClear: PropTypes.bool,
@@ -163,4 +163,4 @@ DisplayNames.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DisplayNames);
+)(NamesDisplay);

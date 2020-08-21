@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { getNamesThunkCreator } from '../../store/reducers/namesReducer';
 
 // Component
-const GenerateNames = ({ validInitial, getNamesThunk }) => {
+const NamesGenerate = ({ validInitial, getNamesThunk }) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -130,7 +130,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Prop Types
-GenerateNames.propTypes = {
+NamesGenerate.propTypes = {
   validInitial: PropTypes.bool,
   getNamesThunk: PropTypes.func,
 };
@@ -139,4 +139,4 @@ GenerateNames.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GenerateNames);
+)(NamesGenerate);
