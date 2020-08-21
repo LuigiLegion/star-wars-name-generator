@@ -26,7 +26,7 @@ const LinksBurger = () => {
         width="50%"
         styles={burgerStyles}
       >
-        <div className="remove-outline">
+        <div className="outline-none">
           <div>
             <NavLink to="/about" onClick={closeMenu}>
               <span className="text-style-bold text-style-glow">About</span>
