@@ -60,24 +60,49 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
 }
 
-.text-color-gray {
-  color: #424242;
-}
-
-.text-color-red {
-  color: #ef5350;
-}
-
-.text-style-glow {
-  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+.text-align-center {
+  text-align: center;
 }
 
 .text-style-bold {
   font-weight: bold;
 }
 
-.text-align-center {
-  text-align: center;
+.text-style-italic {
+  font-style: italic;
+}
+
+.text-style-glow {
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+}
+
+.text-color-gray {
+  color: #424242;
+}
+
+.text-color-blue {
+  color: #039be5;
+}
+
+.text-color-red {
+  color: #ef5350;
+}
+
+.outline-none {
+  outline: none;
+}
+
+.preloader {
+  margin: 0px;
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+}
+
+.progress.preloader.preloader-inner-color {
+  background-color: #424242;
+}
+
+.progress .indeterminate.preloader-outer-color {
+  background-color: #ffffff;
 }
 
 .clear-button {
@@ -108,28 +133,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   padding-left: 0.5em;
 }
 
+.page-not-found-message {
+  margin: 30px 0px;
+}
+
 .padding-bottom {
   padding-bottom: 40px;
-}
-
-.preloader {
-  margin: 0px;
-  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
-}
-
-.preloader-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.progress.preloader.preloader-inner-color {
-  background-color: #424242;
-}
-
-.progress .indeterminate.preloader-outer-color {
-  background-color: #ffffff;
-}
-
-.remove-outline {
-  outline: none;
 }
