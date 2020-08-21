@@ -98,10 +98,7 @@ const GenerateNames = ({ validInitial, getNamesThunk }) => {
             </select>
           </div>
 
-          <button
-            className="btn black lighten-1 z-depth-0"
-            disabled={!namesCheck}
-          >
+          <button className="btn black lighten-1" disabled={!namesCheck}>
             Generate
           </button>
 

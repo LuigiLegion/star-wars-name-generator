@@ -46,7 +46,7 @@ const DisplayNames = ({
 
   return (
     <div className="section">
-      <div className="card z-depth-0">
+      <div className="card">
         <div className="card-content grey-text text-darken-3 center">
           <span className="card-title">
             <span className="text-style-bold">Names List</span>
@@ -117,7 +117,7 @@ const DisplayNames = ({
           </ul>
 
           <button
-            className="btn black black-1 z-depth-0 clear-button"
+            className="btn black black-1 clear-button"
             type="button"
             disabled={disabledClear}
             onClick={handleClear}
