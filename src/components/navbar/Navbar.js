@@ -30,7 +30,7 @@ const Navbar = ({ isLoading }) => {
 
   return (
     <div className="navbar-fixed">
-      <nav className="nav-wrapper navbar-container black">
+      <nav className="nav-wrapper black">
         <div>
           <NavLink to="/" className="left navbar-logo">
             <span className="text-style-bold text-style-glow">
