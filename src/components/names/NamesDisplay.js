@@ -88,7 +88,7 @@ const NamesDisplay = ({
 
                       <img
                         className="name-containee"
-                        src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
+                        src="/icons/speaker.png"
                         alt="Text To Speech Icon"
                         title="Text To Speech"
                         onClick={() =>
@@ -98,7 +98,7 @@ const NamesDisplay = ({
 
                       <img
                         className="name-containee"
-                        src="https://img.icons8.com/material-rounded/16/000000/clipboard.png"
+                        src="/icons/clipboard.png"
                         alt="Copy To Clipboard Icon"
                         title="Copy To Clipboard"
                         onClick={() =>
