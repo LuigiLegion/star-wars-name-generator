@@ -87,19 +87,18 @@ export const getNamesThunkCreator = (firstName, lastName, gender) => {
         dispatch(updatedInitialValidityTrue());
         dispatch(gotFirstNameActionCreator(generatedFirstName));
         dispatch(gotLastNameActionCreator(generatedLastName));
-        dispatch(toggledPreloaderActionCreator(false));
 
         toastNotification('Name Generated Successfully', 'green');
       } else {
         dispatch(updatedInitialValidityFalse());
-        dispatch(toggledPreloaderActionCreator(false));
 
         toastNotification('Error! Unable To Generate Names', 'red');
       }
     } catch (error) {
       console.error(error);
-      dispatch(toggledPreloaderActionCreator(false));
       toastNotification('Error! Unable To Generate Names', 'red');
+    } finally {
+      dispatch(toggledPreloaderActionCreator(false));
     }
   };
 };
