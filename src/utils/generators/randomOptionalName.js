@@ -1,4 +1,6 @@
 // Initializations
+const minSwNamesCount = 5;
+
 const randomIndex = length => Math.floor(Math.random() * length);
 
 const randomElement = array => array[randomIndex(array.length)];
@@ -52,7 +54,7 @@ const optionalNames = (inputName, allSwNames, optionalSwNames = []) => {
     }
   });
 
-  if (optionalSwNames.length < 5) {
+  if (optionalSwNames.length < minSwNamesCount) {
     const shortenedInputName = inputName.slice(1);
 
     optionalSwNames = optionalNames(
