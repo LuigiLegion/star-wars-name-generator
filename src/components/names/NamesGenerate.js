@@ -5,7 +5,7 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getNamesThunkCreator } from '../../store/reducers/namesReducer';
+import { getNamesThunkCreator } from '../../store';
 
 // Component
 const NamesGenerate = ({ validInitial, getNamesThunk }) => {

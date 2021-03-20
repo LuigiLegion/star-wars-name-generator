@@ -3,8 +3,10 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
-import { copyToClipboardThunkCreator } from '../../store/reducers/layoutReducer';
+import {
+  clearedAllNamesActionCreator,
+  copyToClipboardThunkCreator,
+} from '../../store';
 import { toastNotification } from '../../utils';
 
 // Initializations
