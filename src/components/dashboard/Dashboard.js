@@ -1,8 +1,7 @@
 // Imports
 import React from 'react';
 
-import NamesGenerate from '../names/NamesGenerate';
-import NamesDisplay from '../names/NamesDisplay';
+import { NamesGenerate, NamesDisplay } from '..';
 import { generateNamesStyle, displayNamesStyle } from '../../styles';
 
 // Component
