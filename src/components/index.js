@@ -1,6 +1,6 @@
 // Exports
 export { default as PageNotFound } from './404/PageNotFound';
-export { default as About } from './dashboard/About';
+export { default as About } from './about/About';
 export { default as Dashboard } from './dashboard/Dashboard';
 export { default as Links } from './links/Links';
 export { default as LinksBurger } from './links/LinksBurger';
