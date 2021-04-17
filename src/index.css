@@ -109,12 +109,9 @@ textarea.materialize-textarea:focus:not([readonly]) {
   margin: 1.5em 0em;
 }
 
-.navbar-container {
-  padding-left: 1em;
-}
-
 .navbar-logo {
   font-size: xx-large;
+  padding-left: 0.5em;
 }
 
 .navbar-logo:hover {
