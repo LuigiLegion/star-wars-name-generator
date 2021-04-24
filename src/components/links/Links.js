@@ -28,7 +28,7 @@ const Links = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="text-style-bold text-style-glow">Data Sets</span>
+          <span className="text-style-bold text-style-glow">Data</span>
         </a>
       </li>
 
@@ -38,7 +38,7 @@ const Links = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="text-style-bold text-style-glow">Contact Info</span>
+          <span className="text-style-bold text-style-glow">Contact</span>
         </a>
       </li>
     </ul>

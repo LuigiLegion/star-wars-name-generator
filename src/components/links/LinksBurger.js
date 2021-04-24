@@ -51,7 +51,7 @@ const LinksBurger = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="text-style-bold text-style-glow">Data Sets</span>
+              <span className="text-style-bold text-style-glow">Data</span>
             </a>
           </div>
 
@@ -62,9 +62,7 @@ const LinksBurger = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <span className="text-style-bold text-style-glow">
-                Contact Info
-              </span>
+              <span className="text-style-bold text-style-glow">Contact</span>
             </a>
           </div>
         </div>
