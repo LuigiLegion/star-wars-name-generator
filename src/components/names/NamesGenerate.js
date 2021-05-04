@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 
 // Imports
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -103,7 +103,7 @@ const NamesGenerate = ({ validInitial, getNamesThunk }) => {
           </button>
 
           {validInitial ? null : (
-            <Fragment>
+            <>
               <div className="text-color-red text-style-bold text-align-center">
                 Names in a galaxy far far away usually start with a letter.
               </div>
@@ -111,7 +111,7 @@ const NamesGenerate = ({ validInitial, getNamesThunk }) => {
               <div className="text-color-red text-style-bold text-align-center">
                 Please check your name inputs.
               </div>
-            </Fragment>
+            </>
           )}
         </form>
       </div>

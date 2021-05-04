@@ -1,5 +1,5 @@
 // Imports
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -56,7 +56,7 @@ const NamesDisplay = ({
 
           <ul className="names">
             {firstNames.length ? (
-              <Fragment>
+              <>
                 <div>
                   <label>These aren't the names you're looking for?</label>
                 </div>
@@ -110,7 +110,7 @@ const NamesDisplay = ({
                     </li>
                   );
                 })}
-              </Fragment>
+              </>
             ) : (
               <li>
                 <span>Generate names to populate this list.</span>
