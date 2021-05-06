@@ -20,10 +20,10 @@ const Dashboard = () => {
         </div>
 
         <div className="text-align-center padding-bottom">
-          <div>Like your new Star Wars name?</div>
+          <div>Got any suggestions for improvement?</div>
 
           <div>
-            Tweet it at me{' '}
+            Message them to me{' '}
             <a
               href="https://twitter.com/LuigiLegion"
               target="_blank"
