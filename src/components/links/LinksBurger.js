@@ -35,10 +35,10 @@ const LinksBurger = () => {
 
           <div>
             <a
-              onClick={closeMenu}
               href="https://github.com/LuigiLegion/star-wars-name-generator"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={closeMenu}
             >
               <span className="text-style-bold text-style-glow">Source</span>
             </a>
@@ -46,10 +46,10 @@ const LinksBurger = () => {
 
           <div>
             <a
-              onClick={closeMenu}
               href="https://github.com/LuigiLegion/star-wars-name-generator/tree/master/src/data/sets"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={closeMenu}
             >
               <span className="text-style-bold text-style-glow">Data</span>
             </a>
@@ -57,10 +57,10 @@ const LinksBurger = () => {
 
           <div>
             <a
-              onClick={closeMenu}
               href="https://taluigi.netlify.com"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={closeMenu}
             >
               <span className="text-style-bold text-style-glow">Contact</span>
             </a>
