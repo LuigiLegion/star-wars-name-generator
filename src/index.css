@@ -127,7 +127,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .name-containee {
   cursor: pointer;
-  padding-left: 0.5em;
+  padding-left: 0.25em;
 }
 
 .page-not-found-message {
