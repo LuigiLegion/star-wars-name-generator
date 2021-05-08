@@ -77,10 +77,11 @@ const NamesDisplay = ({
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {`${curFirstName} `}
+                        {curFirstName}
                       </a>
 
                       <a
+                        className="name-containee"
                         href={`https://starwars.fandom.com/wiki/Special:Search?query=${lastNames[idx]}`}
                         target="_blank"
                         rel="noopener noreferrer"
