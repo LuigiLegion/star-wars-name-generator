@@ -122,7 +122,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
   display: flex;
   flex-direction: row;
   align-items: center;
-  white-space: pre;
 }
 
 .name-containee {
@@ -136,4 +135,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .padding-bottom {
   padding-bottom: 40px;
+}
+
+.white-space-pre {
+  white-space: pre;
 }
