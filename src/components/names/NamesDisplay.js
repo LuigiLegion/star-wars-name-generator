@@ -69,7 +69,7 @@ const NamesDisplay = ({
 
                 {firstNames.map((curFirstName, idx) => {
                   return (
-                    <li key={idx} className="name-container">
+                    <li key={idx} className="name-container white-space-pre">
                       <span>{`${idx + 1}. `}</span>
 
                       <a
