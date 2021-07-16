@@ -154,8 +154,8 @@ const mapDispatchToProps = dispatch => ({
 
 // Prop Types
 NamesDisplay.propTypes = {
-  firstNames: PropTypes.array,
-  lastNames: PropTypes.array,
+  firstNames: PropTypes.arrayOf(PropTypes.string),
+  lastNames: PropTypes.arrayOf(PropTypes.string),
   disabledClear: PropTypes.bool,
   copyError: PropTypes.bool,
   clearedAllNamesAction: PropTypes.func,
