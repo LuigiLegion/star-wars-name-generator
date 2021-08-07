@@ -1,74 +1,70 @@
 // Initializations
-const minSwNamesCount = 5;
+const minOptionalNamesCount = 5;
 
 const randomIndex = length => Math.floor(Math.random() * length);
 
 const randomElement = array => array[randomIndex(array.length)];
 
-const nameRating = (rawInputName, rawSwName) => {
-  const inputName = rawInputName.toLowerCase();
-  const swName = rawSwName.toLowerCase();
-
-  let swNameRating = 0;
+const nameRating = (inputName, starWarsName) => {
+  let starWarsNameRating = 0;
   let inputNamePointer = 0;
-  let swNamePointer = 0;
+  let starWarsNamePointer = 0;
   let letterFoundPointer = 0;
 
   while (inputNamePointer < inputName.length) {
-    const curInputNameLetter = inputName[inputNamePointer];
-    const curSwNameLetter = swName[swNamePointer];
+    const inputNameLetter = inputName[inputNamePointer];
+    const starWarsNameLetter = starWarsName[starWarsNamePointer];
 
-    if (curInputNameLetter === curSwNameLetter) {
-      swNameRating++;
-      letterFoundPointer = swNamePointer;
+    if (inputNameLetter === starWarsNameLetter) {
+      starWarsNameRating++;
+      letterFoundPointer = starWarsNamePointer;
       inputNamePointer++;
-      swNamePointer++;
-    } else if (swNamePointer < swName.length) {
-      swNamePointer++;
+      starWarsNamePointer++;
+    } else if (starWarsNamePointer < starWarsName.length) {
+      starWarsNamePointer++;
     } else {
       inputNamePointer++;
-      swNamePointer = letterFoundPointer;
+      starWarsNamePointer = letterFoundPointer;
     }
   }
 
-  return swNameRating;
+  return starWarsNameRating;
 };
 
-const optionalNames = (inputName, allSwNames, optionalSwNames = []) => {
-  if (!inputName.length) {
-    return optionalSwNames;
+const optionalNames = (rawInputName, allStarWarsNames, optionalStarWarsNames = []) => {
+  if (!rawInputName.length) {
+    return optionalStarWarsNames;
   }
 
-  let highestSwNameRating = 0;
+  const inputName = rawInputName.toLowerCase();
+  let maxStarWarsNameRating = 0;
 
-  allSwNames.forEach(curSwName => {
-    if (curSwName !== inputName) {
-      const curSwNameRating = nameRating(inputName, curSwName);
+  allStarWarsNames.forEach(starWarsName => {
+    if (starWarsName !== inputName) {
+      const starWarsNameRating = nameRating(inputName, starWarsName.toLowerCase());
 
-      if (curSwNameRating === highestSwNameRating) {
-        optionalSwNames.push(curSwName);
-      } else if (curSwNameRating > highestSwNameRating) {
-        highestSwNameRating = curSwNameRating;
-        optionalSwNames = [curSwName];
+      if (starWarsNameRating === maxStarWarsNameRating) {
+        optionalStarWarsNames.push(starWarsName);
+      } else if (starWarsNameRating > maxStarWarsNameRating) {
+        maxStarWarsNameRating = starWarsNameRating;
+        optionalStarWarsNames = [starWarsName];
       }
     }
   });
 
-  if (optionalSwNames.length < minSwNamesCount) {
-    const shortenedInputName = inputName.slice(1);
-
-    optionalSwNames = optionalNames(
-      shortenedInputName,
-      allSwNames,
-      optionalSwNames
+  if (optionalStarWarsNames.length < minOptionalNamesCount) {
+    optionalStarWarsNames = optionalNames(
+      inputName.slice(1),
+      allStarWarsNames,
+      optionalStarWarsNames
     );
   }
 
-  return optionalSwNames;
+  return optionalStarWarsNames;
 };
 
-const randomOptionalName = (inputName, allSwNames) =>
-  randomElement(optionalNames(inputName, allSwNames));
+const randomOptionalName = (inputName, allStarWarsNames) =>
+  randomElement(optionalNames(inputName, allStarWarsNames));
 
 // Exports
 export default randomOptionalName;
