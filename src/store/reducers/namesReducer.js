@@ -15,8 +15,7 @@ const initialState = {
 const GOT_FIRST_NAME = 'GOT_FIRST_NAME';
 const GOT_LAST_NAME = 'GOT_LAST_NAME';
 const CLEARED_ALL_NAMES = 'CLEARED_ALL_NAMES';
-const UPDATED_INITIAL_VALIDITY_TRUE = 'UPDATED_INITIAL_VALIDITY_TRUE';
-const UPDATED_INITIAL_VALIDITY_FALSE = 'UPDATED_INITIAL_VALIDITY_FALSE';
+const TOGGLED_INITIAL_VALIDITY = 'TOGGLED_INITIAL_VALIDITY';
 
 // Action Creators
 export const gotFirstNameActionCreator = name => ({
@@ -33,12 +32,9 @@ export const clearedAllNamesActionCreator = () => ({
   type: CLEARED_ALL_NAMES,
 });
 
-export const updatedInitialValidityTrue = () => ({
-  type: UPDATED_INITIAL_VALIDITY_TRUE,
-});
-
-export const updatedInitialValidityFalse = () => ({
-  type: UPDATED_INITIAL_VALIDITY_FALSE,
+export const toggledInitialValidityActionCreator = status => ({
+  type: TOGGLED_INITIAL_VALIDITY,
+  status,
 });
 
 // Thunk Creators
@@ -83,13 +79,13 @@ export const getNamesThunkCreator = (firstName, lastName, gender) => {
           lastNamesWithInitial
         );
 
-        dispatch(updatedInitialValidityTrue());
+        dispatch(toggledInitialValidityActionCreator(true));
         dispatch(gotFirstNameActionCreator(generatedFirstName));
         dispatch(gotLastNameActionCreator(generatedLastName));
 
         toastNotification('Name Generated Successfully', 'green');
       } else {
-        dispatch(updatedInitialValidityFalse());
+        dispatch(toggledInitialValidityActionCreator(false));
 
         toastNotification('Error! Unable To Generate Names', 'red');
       }
@@ -127,16 +123,10 @@ const namesReducer = (state = initialState, action) => {
         disabledClear: true,
       };
 
-    case UPDATED_INITIAL_VALIDITY_TRUE:
+    case TOGGLED_INITIAL_VALIDITY:
       return {
         ...state,
-        validInitial: true,
-      };
-
-    case UPDATED_INITIAL_VALIDITY_FALSE:
-      return {
-        ...state,
-        validInitial: false,
+        validInitial: action.status,
       };
 
     default:
