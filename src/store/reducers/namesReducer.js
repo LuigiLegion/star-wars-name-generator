@@ -50,30 +50,29 @@ export const getNamesThunkCreator = (firstName, lastName, gender) => {
       const firstNameInitial = firstName[0];
       const upperCasedFirstNameInitial = firstNameInitial.toUpperCase();
       const lowerCasedFirstNameInitial = firstNameInitial.toLowerCase();
+      const firstNameInitialIsLetterCheck =
+        upperCasedFirstNameInitial !== lowerCasedFirstNameInitial;
 
       const lastNameInitial = lastName[0];
       const upperCasedLastNameInitial = lastNameInitial.toUpperCase();
       const lowerCasedLastNameInitial = lastNameInitial.toLowerCase();
-
-      const firstNameInitialIsLetterCheck =
-        upperCasedFirstNameInitial !== lowerCasedFirstNameInitial;
       const lastNameInitialIsLetterCheck =
         upperCasedLastNameInitial !== lowerCasedLastNameInitial;
 
       if (firstNameInitialIsLetterCheck && lastNameInitialIsLetterCheck) {
         const firestore = getFirestore();
 
-        const firstNamesRaw = await firestore
+        const firstNamesRawData = await firestore
           .collection(`${gender}FirstNames`)
           .doc(upperCasedFirstNameInitial)
           .get();
-        const lastNamesRaw = await firestore
+        const lastNamesRawData = await firestore
           .collection('allLastNames')
           .doc(upperCasedLastNameInitial)
           .get();
 
-        const firstNamesWithInitial = firstNamesRaw.data().names;
-        const lastNamesWithInitial = lastNamesRaw.data().names;
+        const firstNamesWithInitial = firstNamesRawData.data().names;
+        const lastNamesWithInitial = lastNamesRawData.data().names;
 
         const generatedFirstName = randomOptionalName(
           firstName,
