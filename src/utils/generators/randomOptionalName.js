@@ -5,6 +5,12 @@ const randomIndex = length => Math.floor(Math.random() * length);
 
 const randomElement = array => array[randomIndex(array.length)];
 
+const randomInteger = (min, max) => Math.floor(Math.random() * (max - min) + min);
+
+const randomInitial = () => String.fromCharCode(randomInteger(65, 91));
+
+const randomName = starWarsNames => randomElement(starWarsNames);
+
 const nameRating = (inputName, starWarsName) => {
   let starWarsNameRating = 0;
   let inputNamePointer = 0;
@@ -67,4 +73,4 @@ const randomOptionalName = (inputName, allStarWarsNames) =>
   randomElement(optionalNames(inputName, allStarWarsNames));
 
 // Exports
-export default randomOptionalName;
+export { randomOptionalName, randomInitial, randomName };
