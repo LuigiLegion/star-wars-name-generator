@@ -15,7 +15,7 @@ const About = () => {
                   <span className="text-style-bold">About</span>
                 </span>
 
-                <ul className="about">
+                <ul>
                   <li>
                     <div>
                       Ever wondered what your name would be had you lived in the
