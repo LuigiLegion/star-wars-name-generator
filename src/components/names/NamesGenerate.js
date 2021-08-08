@@ -115,7 +115,7 @@ const NamesGenerate = ({ validInitial, getNamesThunk, getRandomNamesThunk }) => 
               </div>
 
               <div className="text-color-red text-style-bold text-align-center">
-                Please check your name inputs.
+                Please check your input names.
               </div>
             </>
           )}
