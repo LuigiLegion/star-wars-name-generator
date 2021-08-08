@@ -62,7 +62,7 @@ const NamesDisplay = ({
                 </div>
 
                 <div>
-                  <label>Try shortening your name inputs!</label>
+                  <label>Try shortening your input names!</label>
                 </div>
 
                 <br />
