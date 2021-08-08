@@ -1,6 +1,6 @@
 // Imports
 import { toggledPreloaderActionCreator } from '..';
-import { randomOptionalName, toastNotification } from '../../utils';
+import { randomOptionalName, randomInitial, randomName, toastNotification } from '../../utils';
 
 // Initial State
 const initialState = {
@@ -89,6 +89,44 @@ export const getNamesThunkCreator = (firstName, lastName, gender) => {
 
         toastNotification('Error! Unable To Generate Names', 'red');
       }
+    } catch (error) {
+      console.error(error);
+      toastNotification('Error! Unable To Generate Names', 'red');
+    } finally {
+      dispatch(toggledPreloaderActionCreator(false));
+    }
+  };
+};
+
+export const getRandomNamesThunkCreator = gender => {
+  return async (dispatch, getState, { getFirestore }) => {
+    try {
+      dispatch(toggledPreloaderActionCreator(true));
+
+      const firstNameInitial = randomInitial();
+      const lastNameInitial = randomInitial();
+
+      const firestore = getFirestore();
+
+      const firstNamesRawData = await firestore
+        .collection(`${gender}FirstNames`)
+        .doc(firstNameInitial)
+        .get();
+      const lastNamesRawData = await firestore
+        .collection('allLastNames')
+        .doc(lastNameInitial)
+        .get();
+
+      const firstNamesWithInitial = firstNamesRawData.data().names;
+      const lastNamesWithInitial = lastNamesRawData.data().names;
+
+      const generatedFirstName = randomName(firstNamesWithInitial);
+      const generatedLastName = randomName(lastNamesWithInitial);
+
+      dispatch(gotFirstNameActionCreator(generatedFirstName));
+      dispatch(gotLastNameActionCreator(generatedLastName));
+
+      toastNotification('Name Generated Successfully', 'green');
     } catch (error) {
       console.error(error);
       toastNotification('Error! Unable To Generate Names', 'red');
