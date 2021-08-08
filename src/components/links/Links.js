@@ -13,6 +13,12 @@ const Links = () => {
       </li>
 
       <li>
+        <NavLink to="/changelog">
+          <span className="text-style-bold text-style-glow">Changelog</span>
+        </NavLink>
+      </li>
+
+      <li>
         <a
           href="https://github.com/LuigiLegion/star-wars-name-generator"
           target="_blank"

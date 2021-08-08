@@ -34,6 +34,12 @@ const LinksBurger = () => {
           </div>
 
           <div>
+            <NavLink to="/changelog" onClick={closeMenu}>
+              <span className="text-style-bold text-style-glow">Changelog</span>
+            </NavLink>
+          </div>
+
+          <div>
             <a
               href="https://github.com/LuigiLegion/star-wars-name-generator"
               target="_blank"
