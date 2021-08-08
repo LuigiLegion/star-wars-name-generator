@@ -5,10 +5,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getNamesThunkCreator } from '../../store';
+import { getNamesThunkCreator, getRandomNamesThunkCreator } from '../../store';
 
 // Component
-const NamesGenerate = ({ validInitial, getNamesThunk }) => {
+const NamesGenerate = ({ validInitial, getNamesThunk, getRandomNamesThunk }) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -23,6 +23,12 @@ const NamesGenerate = ({ validInitial, getNamesThunk }) => {
       ...state,
       [event.target.id]: event.target.value,
     });
+  };
+
+  const handleClick = event => {
+    event.preventDefault();
+
+    getRandomNamesThunk(state.gender);
   };
 
   const handleSubmit = event => {
@@ -113,6 +119,20 @@ const NamesGenerate = ({ validInitial, getNamesThunk }) => {
               </div>
             </>
           )}
+
+          <br />
+
+          <div>
+            <label>Can't think of input names or simply in a rush?</label>
+          </div>
+
+          <div>
+            <label>Generate a random name!</label>
+          </div>
+
+          <button className="btn black lighten-1" onClick={handleClick}>
+            I'm Feeling Lucky
+          </button>
         </form>
       </div>
     </div>
@@ -127,12 +147,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getNamesThunk: (firstName, lastName, gender) =>
     dispatch(getNamesThunkCreator(firstName, lastName, gender)),
+  getRandomNamesThunk: gender =>
+    dispatch(getRandomNamesThunkCreator(gender)),
 });
 
 // Prop Types
 NamesGenerate.propTypes = {
   validInitial: PropTypes.bool,
   getNamesThunk: PropTypes.func,
+  getRandomNamesThunk: PropTypes.func,
 };
 
 // Exports
