@@ -1,6 +1,7 @@
 // Exports
 export { default as PageNotFound } from './404/PageNotFound';
 export { default as About } from './about/About';
+export { default as Changelog } from './changelog/Changelog';
 export { default as Dashboard } from './dashboard/Dashboard';
 export { default as Disclaimer } from './dashboard/Disclaimer';
 export { default as MadeBy } from './dashboard/MadeBy';
