@@ -30,7 +30,7 @@ const Links = () => {
 
       <li>
         <a
-          href="https://github.com/LuigiLegion/star-wars-name-generator/tree/master/src/data/sets"
+          href="https://github.com/LuigiLegion/star-wars-name-generator-data/tree/master/data"
           target="_blank"
           rel="noopener noreferrer"
         >
