@@ -12,7 +12,6 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
-    // countryName: '',
     gender: 'male',
   });
 
@@ -67,19 +66,6 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
 
             <input type="text" id="lastName" required onChange={handleChange} />
           </div>
-
-          {/* <div className="input-field">
-              <label htmlFor="countryName">
-                Country Name<span className="text-color-red">*</span>
-              </label>
-
-              <input
-                type="text"
-                id="countryName"
-                required
-                onChange={handleChange}
-              />
-            </div> */}
 
           <div className="input-field col s12">
             <label htmlFor="gender">

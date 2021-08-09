@@ -5,7 +5,6 @@ import { randomOptionalName, randomInitial, randomName, toastNotification } from
 // Initial State
 const initialState = {
   names: [],
-  // planetNames: [],
   disabledClear: true,
   validInitial: true,
 };
