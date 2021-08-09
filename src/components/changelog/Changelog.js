@@ -32,15 +32,15 @@ const Changelog = () => {
                     <div>
                       <span className="text-style-bold">05/04/2020</span>
 
-                      <span> - Name Read Aloud, Name Copy to Clipboard, and Name Origin Search features in celebration of Star Wars Day.</span>
+                      <span> - Name Read Aloud, Name Copy To Clipboard, and Name Origin Search features in celebration of Star Wars Day.</span>
                     </div>
 
                     <br />
 
                     <div>
-                      <span className="text-style-bold">08/07/2021</span>
+                      <span className="text-style-bold">08/09/2021</span>
 
-                      <span> - Random Name Generation feature in celebration of </span>
+                      <span> - Random Name Generation, Originating Input Name Display, and Name Gender Display features in celebration of </span>
 
                       <span className="text-style-italic">The Bad Batch</span>
 
