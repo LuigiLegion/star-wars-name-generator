@@ -4,32 +4,25 @@ import { randomOptionalName, randomInitial, randomName, toastNotification } from
 
 // Initial State
 const initialState = {
-  firstNames: [],
-  lastNames: [],
+  names: [],
   // planetNames: [],
   disabledClear: true,
   validInitial: true,
 };
 
 // Action Types
-const GOT_FIRST_NAME = 'GOT_FIRST_NAME';
-const GOT_LAST_NAME = 'GOT_LAST_NAME';
-const CLEARED_ALL_NAMES = 'CLEARED_ALL_NAMES';
+const GOT_NAME = 'GOT_NAME';
+const CLEARED_NAMES = 'CLEARED_NAMES';
 const TOGGLED_INITIAL_VALIDITY = 'TOGGLED_INITIAL_VALIDITY';
 
 // Action Creators
-export const gotFirstNameActionCreator = name => ({
-  type: GOT_FIRST_NAME,
+export const gotNameActionCreator = name => ({
+  type: GOT_NAME,
   name,
 });
 
-export const gotLastNameActionCreator = name => ({
-  type: GOT_LAST_NAME,
-  name,
-});
-
-export const clearedAllNamesActionCreator = () => ({
-  type: CLEARED_ALL_NAMES,
+export const clearedNamesActionCreator = () => ({
+  type: CLEARED_NAMES,
 });
 
 export const toggledInitialValidityActionCreator = status => ({
@@ -38,8 +31,8 @@ export const toggledInitialValidityActionCreator = status => ({
 });
 
 // Thunk Creators
-export const getNamesThunkCreator = (firstName, lastName, gender) => {
-  return async (dispatch, getState, { getFirestore }) => {
+export const getNameThunkCreator = (firstName, lastName, gender) => {
+  return async (dispatch, _, { getFirestore }) => {
     try {
       dispatch(toggledPreloaderActionCreator(true));
 
@@ -79,9 +72,15 @@ export const getNamesThunkCreator = (firstName, lastName, gender) => {
           lastNamesWithInitial
         );
 
+        const name = {
+          first: generatedFirstName,
+          last: generatedLastName,
+          input: `${firstName} ${lastName}`,
+          gender,
+        }
+
         dispatch(toggledInitialValidityActionCreator(true));
-        dispatch(gotFirstNameActionCreator(generatedFirstName));
-        dispatch(gotLastNameActionCreator(generatedLastName));
+        dispatch(gotNameActionCreator(name));
 
         toastNotification('Name Generated Successfully', 'green');
       } else {
@@ -98,8 +97,8 @@ export const getNamesThunkCreator = (firstName, lastName, gender) => {
   };
 };
 
-export const getRandomNamesThunkCreator = gender => {
-  return async (dispatch, getState, { getFirestore }) => {
+export const getRandomNameThunkCreator = gender => {
+  return async (dispatch, _, { getFirestore }) => {
     try {
       dispatch(toggledPreloaderActionCreator(true));
 
@@ -123,8 +122,14 @@ export const getRandomNamesThunkCreator = gender => {
       const generatedFirstName = randomName(firstNamesWithInitial);
       const generatedLastName = randomName(lastNamesWithInitial);
 
-      dispatch(gotFirstNameActionCreator(generatedFirstName));
-      dispatch(gotLastNameActionCreator(generatedLastName));
+      const name = {
+        first: generatedFirstName,
+        last: generatedLastName,
+        input: 'N/A',
+        gender,
+      }
+
+      dispatch(gotNameActionCreator(name));
 
       toastNotification('Name Generated Successfully', 'green');
     } catch (error) {
@@ -139,25 +144,17 @@ export const getRandomNamesThunkCreator = gender => {
 // Reducer
 const namesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_FIRST_NAME:
+    case GOT_NAME:
       return {
         ...state,
-        firstNames: [...state.firstNames, action.name],
+        names: [...state.names, action.name],
         disabledClear: false,
       };
 
-    case GOT_LAST_NAME:
+    case CLEARED_NAMES:
       return {
         ...state,
-        lastNames: [...state.lastNames, action.name],
-        disabledClear: false,
-      };
-
-    case CLEARED_ALL_NAMES:
-      return {
-        ...state,
-        firstNames: [],
-        lastNames: [],
+        names: [],
         disabledClear: true,
       };
 
