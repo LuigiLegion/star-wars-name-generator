@@ -140,3 +140,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .white-space-pre {
   white-space: pre;
 }
+
+.gender-icon {
+  cursor: text;
+}
