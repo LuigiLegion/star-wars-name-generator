@@ -5,10 +5,10 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getNamesThunkCreator, getRandomNamesThunkCreator } from '../../store';
+import { getNameThunkCreator, getRandomNameThunkCreator } from '../../store';
 
 // Component
-const NamesGenerate = ({ validInitial, getNamesThunk, getRandomNamesThunk }) => {
+const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -28,13 +28,13 @@ const NamesGenerate = ({ validInitial, getNamesThunk, getRandomNamesThunk }) => 
   const handleClick = event => {
     event.preventDefault();
 
-    getRandomNamesThunk(state.gender);
+    getRandomNameThunk(state.gender);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
 
-    getNamesThunk(state.firstName, state.lastName, state.gender);
+    getNameThunk(state.firstName, state.lastName, state.gender);
   };
 
   return (
@@ -145,17 +145,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getNamesThunk: (firstName, lastName, gender) =>
-    dispatch(getNamesThunkCreator(firstName, lastName, gender)),
-  getRandomNamesThunk: gender =>
-    dispatch(getRandomNamesThunkCreator(gender)),
+  getNameThunk: (firstName, lastName, gender) =>
+    dispatch(getNameThunkCreator(firstName, lastName, gender)),
+  getRandomNameThunk: gender =>
+    dispatch(getRandomNameThunkCreator(gender)),
 });
 
 // Prop Types
 NamesGenerate.propTypes = {
   validInitial: PropTypes.bool,
-  getNamesThunk: PropTypes.func,
-  getRandomNamesThunk: PropTypes.func,
+  getNameThunk: PropTypes.func,
+  getRandomNameThunk: PropTypes.func,
 };
 
 // Exports
