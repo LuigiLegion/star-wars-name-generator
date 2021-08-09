@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
-  clearedAllNamesActionCreator,
+  clearedNamesActionCreator,
   copyToClipboardThunkCreator,
 } from '../../store';
 import { toastNotification } from '../../utils';
@@ -22,15 +22,14 @@ synth.onvoiceschanged = populateVoices;
 
 // Component
 const NamesDisplay = ({
-  firstNames,
-  lastNames,
+  names,
   disabledClear,
   copyError,
-  clearedAllNamesAction,
+  clearedNamesAction,
   copyToClipboardThunk,
 }) => {
   const handleClear = () => {
-    clearedAllNamesAction();
+    clearedNamesAction();
     toastNotification('Names Cleared Succesfully', 'green');
   };
 
@@ -55,7 +54,7 @@ const NamesDisplay = ({
           </span>
 
           <ul className="names">
-            {firstNames.length ? (
+            {names.length ? (
               <>
                 <div>
                   <label>These aren't the names you're looking for?</label>
@@ -67,27 +66,38 @@ const NamesDisplay = ({
 
                 <br />
 
-                {firstNames.map((curFirstName, idx) => {
+                {names.map((name, idx) => {
                   return (
                     <li key={idx} className="name-container white-space-pre">
                       <span>{`${idx + 1}. `}</span>
 
                       <a
-                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${curFirstName}`}
+                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.first}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {curFirstName}
+                        {name.first}
                       </a>
 
                       <a
                         className="name-containee"
-                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${lastNames[idx]}`}
+                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.last}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {lastNames[idx]}
+                        {name.last}
                       </a>
+
+                      {/* <span >{` ${name.gender}`}</span> */}
+
+                      {/* <img
+                        className="name-containee"
+                        src={`/icons/${name.gender}.png`}
+                        alt="Gender Icon"
+                        title="Gender"
+                      /> */}
+
+                      <span className="text-style-italic">{` (${name.input}) `}</span>
 
                       <img
                         className="name-containee"
@@ -95,7 +105,7 @@ const NamesDisplay = ({
                         alt="Text To Speech Icon"
                         title="Text To Speech"
                         onClick={() =>
-                          handleSpeak(`${curFirstName}, ${lastNames[idx]}`)
+                          handleSpeak(`${name.first}, ${name.last}`)
                         }
                       />
 
@@ -105,7 +115,7 @@ const NamesDisplay = ({
                         alt="Copy To Clipboard Icon"
                         title="Copy To Clipboard"
                         onClick={() =>
-                          handleCopy(`${curFirstName} ${lastNames[idx]}`)
+                          handleCopy(`${name.first} ${name.last}`)
                         }
                       />
                     </li>
@@ -141,24 +151,22 @@ const NamesDisplay = ({
 
 // Container
 const mapStateToProps = state => ({
-  firstNames: state.names.firstNames,
-  lastNames: state.names.lastNames,
+  names: state.names.names,
   disabledClear: state.names.disabledClear,
   copyError: state.layout.copyError,
 });
 
 const mapDispatchToProps = dispatch => ({
-  clearedAllNamesAction: () => dispatch(clearedAllNamesActionCreator()),
+  clearedNamesAction: () => dispatch(clearedNamesActionCreator()),
   copyToClipboardThunk: text => dispatch(copyToClipboardThunkCreator(text)),
 });
 
 // Prop Types
 NamesDisplay.propTypes = {
-  firstNames: PropTypes.arrayOf(PropTypes.string),
-  lastNames: PropTypes.arrayOf(PropTypes.string),
+  names: PropTypes.arrayOf(PropTypes.object),
   disabledClear: PropTypes.bool,
   copyError: PropTypes.bool,
-  clearedAllNamesAction: PropTypes.func,
+  clearedNamesAction: PropTypes.func,
   copyToClipboardThunk: PropTypes.func,
 };
 
