@@ -88,22 +88,19 @@ const NamesDisplay = ({
                         {name.last}
                       </a>
 
-                      {/* <span >{` ${name.gender}`}</span> */}
-
-                      {/* <img
-                        className="name-containee"
+                      <img
+                        className="name-containee gender-icon"
                         src={`/icons/${name.gender}.png`}
                         alt="Gender Icon"
-                        title="Gender"
-                      /> */}
+                      />
 
-                      <span className="text-style-italic">{` (${name.input}) `}</span>
+                      <span className="text-style-italic">{` (${name.input})`}</span>
 
                       <img
                         className="name-containee"
                         src="/icons/speaker.png"
-                        alt="Text To Speech Icon"
-                        title="Text To Speech"
+                        alt="Read Aloud Icon"
+                        title="Read Aloud"
                         onClick={() =>
                           handleSpeak(`${name.first}, ${name.last}`)
                         }
