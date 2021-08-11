@@ -47,15 +47,15 @@ const burgerStyles = {
   },
 };
 
-const generateNamesStyle = {
+const namesGenerateStyle = {
   paddingRight: '0px',
   paddingLeft: '0px',
 };
 
-const displayNamesStyle = {
+const namesDisplayStyle = {
   paddingRight: '15px',
   paddingLeft: '15px',
 };
 
 // Exports
-export { burgerStyles, generateNamesStyle, displayNamesStyle };
+export { burgerStyles, namesGenerateStyle, namesDisplayStyle };
