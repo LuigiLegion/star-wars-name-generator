@@ -122,10 +122,14 @@ textarea.materialize-textarea:focus:not([readonly]) {
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .name-containee {
-  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
   padding-left: 0.25em;
 }
 
@@ -141,6 +145,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
   white-space: pre;
 }
 
-.gender-icon {
-  cursor: text;
+.cursor-pointer {
+  cursor: pointer;
 }
