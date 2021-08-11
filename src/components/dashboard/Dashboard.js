@@ -8,18 +8,18 @@ import {
   Disclaimer,
   MadeBy,
 } from '..';
-import { generateNamesStyle, displayNamesStyle } from '../../styles';
+import { namesGenerateStyle, namesDisplayStyle } from '../../styles';
 
 // Component
 const Dashboard = () => {
   return (
     <div className="dashboard container">
       <div className="row">
-        <div className="col s12 m6" style={generateNamesStyle}>
+        <div className="col s12 m6" style={namesGenerateStyle}>
           <NamesGenerate />
         </div>
 
-        <div className="col s12 m5" style={displayNamesStyle}>
+        <div className="col s12 m6" style={namesDisplayStyle}>
           <NamesDisplay />
         </div>
       </div>
