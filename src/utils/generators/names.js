@@ -7,7 +7,7 @@ const randomIndex = length => Math.floor(Math.random() * length);
 
 const randomElement = array => array[randomIndex(array.length)];
 
-const nameScore = (inputName, starWarsNameRating) => (starWarsNameRating / inputName.length) * 100;
+const nameScore = (inputName, nameObject) => (nameObject.rating / inputName.length) * 100;
 
 const fullNameScore = (firstNameScore, lastNameScore) => (firstNameScore * 0.5) + (lastNameScore * 0.5);
 
