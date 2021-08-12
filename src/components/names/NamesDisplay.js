@@ -113,7 +113,7 @@ const NamesDisplay = ({
 
                         {`, `}
 
-                        {name.score ?
+                        {name.scores ?
                           <span
                             className="text-style-italic"
                             title={`First Name: ${name.scores.first.toFixed(2)}% match\nLast Name: ${name.scores.last.toFixed(2)}% match`}>
