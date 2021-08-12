@@ -1,6 +1,6 @@
 // Imports
 import { toggledPreloaderActionCreator } from '..';
-import { randomOptionalName, randomInitial, randomName, toastNotification } from '../../utils';
+import { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement, toastNotification } from '../../utils';
 
 // Initial State
 const initialState = {
@@ -62,21 +62,29 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
         const firstNamesWithInitial = firstNamesRawData.data().names;
         const lastNamesWithInitial = lastNamesRawData.data().names;
 
-        const generatedFirstName = randomOptionalName(
+        const generatedFirstName = randomNameByRandomRating(
           firstName,
           firstNamesWithInitial
         );
-        const generatedLastName = randomOptionalName(
+        const generatedFirstNameScore = nameScore(firstName, generatedFirstName);
+
+        const generatedLastName = randomNameByRandomRating(
           lastName,
           lastNamesWithInitial
         );
+        const generatedLastNameScore = nameScore(lastName, generatedLastName);
 
         const name = {
-          first: generatedFirstName,
-          last: generatedLastName,
-          input: `${firstName} ${lastName}`,
+          first: generatedFirstName.name,
+          last: generatedLastName.name,
           gender,
-        }
+          input: `${firstName} ${lastName}`,
+          scores: {
+            first: generatedFirstNameScore,
+            last: generatedLastNameScore,
+            full: fullNameScore(generatedFirstNameScore, generatedLastNameScore),
+          },
+        };
 
         dispatch(toggledInitialValidityActionCreator(true));
         dispatch(gotNameActionCreator(name));
@@ -118,15 +126,16 @@ export const getRandomNameThunkCreator = gender => {
       const firstNamesWithInitial = firstNamesRawData.data().names;
       const lastNamesWithInitial = lastNamesRawData.data().names;
 
-      const generatedFirstName = randomName(firstNamesWithInitial);
-      const generatedLastName = randomName(lastNamesWithInitial);
+      const generatedFirstName = randomElement(firstNamesWithInitial);
+      const generatedLastName = randomElement(lastNamesWithInitial);
 
       const name = {
         first: generatedFirstName,
         last: generatedLastName,
-        input: 'N/A',
         gender,
-      }
+        input: null,
+        scores: null,
+      };
 
       dispatch(gotNameActionCreator(name));
 
