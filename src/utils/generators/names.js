@@ -56,8 +56,8 @@ const nameListsByRating = (inputName, starWarsNames) => {
   return starWarsNameListsByRating.filter(nameList => nameList.length);
 };
 
-const randomNameByRandomRating = (inputName, allStarWarsNames) =>
-  randomElement(randomElement(nameListsByRating(inputName.slice(1).toLowerCase(), allStarWarsNames)));
+const randomNameByRandomRating = (inputName, starWarsNames) =>
+  randomElement(randomElement(nameListsByRating(inputName.slice(1).toLowerCase(), starWarsNames)));
 
 // Exports
 export { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement };
