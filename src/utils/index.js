@@ -1,3 +1,3 @@
 // Exports
-export { randomOptionalName, randomInitial, randomName } from './generators/randomOptionalName';
+export { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement } from './generators/names';
 export { default as toastNotification } from './generators/toastNotification';
