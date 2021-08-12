@@ -1,22 +1,17 @@
 // Initializations
-const minOptionalNamesCount = 5;
+const randomInteger = (min, max) => Math.floor(Math.random() * (max - min) + min);
+
+const randomInitial = () => String.fromCharCode(randomInteger(65, 91));
 
 const randomIndex = length => Math.floor(Math.random() * length);
 
 const randomElement = array => array[randomIndex(array.length)];
 
-const randomInteger = (min, max) => Math.floor(Math.random() * (max - min) + min);
-
-const randomInitial = () => String.fromCharCode(randomInteger(65, 91));
-
-const nameObject = (name, rating) => ({
-  name,
-  rating,
-});
-
-const nameScore = (inputNameLength, starWarsNameRating) => (starWarsNameRating / inputNameLength) * 100;
+const nameScore = (inputName, starWarsNameRating) => (starWarsNameRating / inputName.length) * 100;
 
 const fullNameScore = (firstNameScore, lastNameScore) => (firstNameScore * 0.5) + (lastNameScore * 0.5);
+
+const arrayOfArrays = length => [...Array(length)].map(_ => []);
 
 const nameRating = (inputName, starWarsName) => {
   let starWarsNameRating = 1;
@@ -44,43 +39,25 @@ const nameRating = (inputName, starWarsName) => {
   return starWarsNameRating;
 };
 
-const optionalNames = (inputName, allStarWarsNames, curatedStarWarsNames = [], selectedStarWarsNames = {}) => {
-  if (!inputName.length) {
-    return curatedStarWarsNames;
+const nameObject = (name, rating) => ({
+  name,
+  rating,
+});
+
+const nameListsByRating = (inputName, starWarsNames) => {
+  const starWarsNameListsByRating = arrayOfArrays(inputName.length + 2);
+
+  for (let i = 0; i < starWarsNames.length; i++) {
+    const starWarsName = starWarsNames[i];
+    const starWarsNameRating = nameRating(inputName, starWarsName.slice(1).toLowerCase());
+    starWarsNameListsByRating[starWarsNameRating].push(nameObject(starWarsName, starWarsNameRating));
   }
 
-  let optionalStarWarsNames = []
-  let maxStarWarsNameRating = 0;
-
-  allStarWarsNames.forEach(starWarsName => {
-    if (starWarsName !== inputName && !selectedStarWarsNames[starWarsName]) {
-      const starWarsNameRating = nameRating(inputName, starWarsName.slice(1).toLowerCase());
-
-      if (starWarsNameRating === maxStarWarsNameRating) {
-        optionalStarWarsNames.push(nameObject(starWarsName, starWarsNameRating));
-        selectedStarWarsNames[starWarsName] = starWarsNameRating;
-      } else if (starWarsNameRating > maxStarWarsNameRating) {
-        maxStarWarsNameRating = starWarsNameRating;
-        optionalStarWarsNames = [nameObject(starWarsName, starWarsNameRating)];
-        selectedStarWarsNames[starWarsName] = starWarsNameRating;
-      }
-    }
-  });
-
-  if (curatedStarWarsNames.length < minOptionalNamesCount) {
-    curatedStarWarsNames = optionalNames(
-      inputName.slice(1),
-      allStarWarsNames,
-      curatedStarWarsNames.concat(optionalStarWarsNames),
-      selectedStarWarsNames
-    );
-  }
-
-  return curatedStarWarsNames;
+  return starWarsNameListsByRating.filter(nameList => nameList.length);
 };
 
-const randomOptionalName = (inputName, allStarWarsNames) =>
-  randomElement(optionalNames(inputName.slice(1).toLowerCase(), allStarWarsNames));
+const randomNameByRandomRating = (inputName, allStarWarsNames) =>
+  randomElement(randomElement(nameListsByRating(inputName.slice(1).toLowerCase(), allStarWarsNames)));
 
 // Exports
-export { randomOptionalName, nameScore, fullNameScore, randomInitial, randomElement };
+export { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement };
