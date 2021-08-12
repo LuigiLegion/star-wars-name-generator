@@ -38,9 +38,9 @@ const Changelog = () => {
                     <br />
 
                     <div>
-                      <span className="text-style-bold">08/09/2021</span>
+                      <span className="text-style-bold">08/11/2021</span>
 
-                      <span> - Random Name Generation, Originating Input Name Display, and Name Gender Display features in celebration of </span>
+                      <span> - Name Match Score, Random Name Generation, Originating Input Name Display, and Name Gender Display features in celebration of </span>
 
                       <span className="text-style-italic">The Bad Batch</span>
 
