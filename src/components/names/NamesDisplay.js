@@ -53,7 +53,7 @@ const NamesDisplay = ({
             <span className="text-style-bold">Names List</span>
           </span>
 
-          <ul className="names">
+          <ul>
             {names.length ? (
               <>
                 <div>
@@ -89,15 +89,49 @@ const NamesDisplay = ({
                       </a>
 
                       <img
-                        className="name-containee gender-icon"
+                        className="name-containee"
                         src={`/icons/${name.gender}.png`}
                         alt="Gender Icon"
                       />
 
-                      <span className="text-style-italic">{` (${name.input})`}</span>
+                      <span className="name-containee">
+                        {` (`}
+
+                        {name.input ?
+                          <span
+                            className="text-style-italic"
+                            title="Originating Input Name">
+                              {name.input}
+                          </span>
+                          :
+                          <span
+                            className="text-style-italic"
+                            title="Randomly Generated Names Have No Originating Input Name">
+                              N/A
+                          </span>
+                        }
+
+                        {`, `}
+
+                        {name.score ?
+                          <span
+                            className="text-style-italic"
+                            title={`First Name: ${name.scores.first.toFixed(2)}% match\nLast Name: ${name.scores.last.toFixed(2)}% match`}>
+                            {`${name.scores.full.toFixed(2)}% match`}
+                          </span>
+                          :
+                          <span
+                            className="text-style-italic"
+                            title="Randomly Generated Names Have No Name Match Score">
+                              N/A
+                          </span>
+                        }
+
+                        {`)`}
+                      </span>
 
                       <img
-                        className="name-containee"
+                        className="name-containee cursor-pointer"
                         src="/icons/speaker.png"
                         alt="Read Aloud Icon"
                         title="Read Aloud"
@@ -107,7 +141,7 @@ const NamesDisplay = ({
                       />
 
                       <img
-                        className="name-containee"
+                        className="name-containee cursor-pointer"
                         src="/icons/clipboard.png"
                         alt="Copy To Clipboard Icon"
                         title="Copy To Clipboard"
