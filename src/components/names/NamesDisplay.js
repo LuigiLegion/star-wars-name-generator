@@ -69,7 +69,7 @@ const NamesDisplay = ({
                 {names.map((name, idx) => {
                   return (
                     <li key={idx} className="name-container white-space-pre">
-                      <span>{`${idx + 1}. `}</span>
+                      <span className="text-style-bold">{`${idx + 1}. `}</span>
 
                       <a
                         href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.first}`}
