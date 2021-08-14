@@ -15,11 +15,11 @@ const Dashboard = () => {
   return (
     <div className="dashboard container">
       <div className="row">
-        <div className="col s12 m6" style={namesGenerateStyle}>
+        <div className="col s12 m6 l6 xl6" style={namesGenerateStyle}>
           <NamesGenerate />
         </div>
 
-        <div className="col s12 m6" style={namesDisplayStyle}>
+        <div className="col s12 m6 l6 xl6" style={namesDisplayStyle}>
           <NamesDisplay />
         </div>
       </div>
