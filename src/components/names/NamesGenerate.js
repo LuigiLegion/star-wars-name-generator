@@ -37,89 +37,109 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
   };
 
   return (
-    <div className="container">
-      <div className="section center">
-        <form onSubmit={handleSubmit} className="card white">
-          <span className="card-title">
-            <span className="text-color-gray text-style-bold">
-              Generate Names
-            </span>
-          </span>
-
-          <div className="input-field">
-            <label htmlFor="firstName">
-              Any First Name<span className="text-color-red">*</span>
-            </label>
-
-            <input
-              type="text"
-              id="firstName"
-              required
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="input-field">
-            <label htmlFor="lastName">
-              Any Last Name<span className="text-color-red">*</span>
-            </label>
-
-            <input type="text" id="lastName" required onChange={handleChange} />
-          </div>
-
-          <div className="input-field col s12">
-            <label htmlFor="gender">
-              Gender<span className="text-color-red">*</span>
-            </label>
-
-            <br />
-            <br />
-
-            <select
-              id="gender"
-              className="browser-default"
-              required
-              onChange={handleChange}
+    <div className="col s12 m6 l6 xl6">
+      <div className="container">
+        <div className="section center">
+          <div className="card white">
+            <form
+              className="card-content grey-text text-darken-3"
+              onSubmit={handleSubmit}
             >
-              <option value="" disabled>
-                --Please choose an option--
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="all">Other</option>
-            </select>
-          </div>
+              <span className="card-title">
+                <span className="text-color-gray text-style-bold">
+                  Generate Names
+                </span>
+              </span>
 
-          <button className="btn black lighten-1" disabled={!namesCheck}>
-            Generate
-          </button>
+              <div className="input-field">
+                <label htmlFor="firstName">
+                  Any First Name<span className="text-color-red">*</span>
+                </label>
 
-          {validInitial ? null : (
-            <>
-              <div className="text-color-red text-style-bold text-align-center">
-                Names in a galaxy far far away usually start with a letter.
+                <input
+                  type="text"
+                  id="firstName"
+                  required
+                  onChange={handleChange}
+                />
               </div>
 
-              <div className="text-color-red text-style-bold text-align-center">
-                Please check your input names.
+              <div className="input-field">
+                <label htmlFor="lastName">
+                  Any Last Name<span className="text-color-red">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="lastName"
+                  required
+                  onChange={handleChange}
+                />
               </div>
-            </>
-          )}
 
-          <br />
+              <div className="input-field">
+                <label htmlFor="gender">
+                  Gender<span className="text-color-red">*</span>
+                </label>
 
-          <div>
-            <label>Can't think of input names or simply in a rush?</label>
+                <br />
+                <br />
+
+                <select
+                  id="gender"
+                  className="browser-default"
+                  required
+                  onChange={handleChange}
+                >
+                  <option value="" disabled>
+                    --Please choose an option--
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="all">Other</option>
+                </select>
+              </div>
+
+              <button
+                className="btn black lighten-1 waves-effect waves-light"
+                disabled={!namesCheck}
+              >
+                Generate
+              </button>
+
+              {!validInitial ? (
+                <div className="section">
+                  <div className="text-color-red text-style-bold text-align-center">
+                    Names in a galaxy far far away usually start with a letter.
+                  </div>
+
+                  <div className="text-color-red text-style-bold text-align-center">
+                    Please check your input names.
+                  </div>
+                </div>
+              ) : null}
+
+              <div className="divider" />
+
+              <div className="section">
+                <div>
+                  <label>Can't think of input names or simply in a rush?</label>
+                </div>
+
+                <div>
+                  <label>Generate a random name!</label>
+                </div>
+              </div>
+
+              <button
+                className="btn black lighten-1 waves-effect waves-light"
+                onClick={handleClick}
+              >
+                I'm Feeling Lucky
+              </button>
+            </form>
           </div>
-
-          <div>
-            <label>Generate a random name!</label>
-          </div>
-
-          <button className="btn black lighten-1" onClick={handleClick}>
-            I'm Feeling Lucky
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   );

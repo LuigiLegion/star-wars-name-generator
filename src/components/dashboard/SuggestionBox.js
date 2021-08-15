@@ -8,8 +8,10 @@ const SuggestionBox = () => {
       <div>Got any suggestions for improvement?</div>
 
       <div>
-        Message them to me{' '}
+        <span>Message them to me </span>
+
         <a
+          className="card-action"
           href="https://twitter.com/LuigiLegion"
           target="_blank"
           rel="noopener noreferrer"

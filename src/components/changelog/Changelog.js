@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 // Component
 const Changelog = () => {
   return (
-    <div className="dashboard container">
+    <div className="container">
       <div className="row">
-        <div className="col s12 m12">
+        <div className="col s12 m12 l12 xl12">
           <div className="section">
             <div className="card">
               <div className="card-content grey-text text-darken-3">
@@ -15,51 +15,41 @@ const Changelog = () => {
                   <span className="text-style-bold">Changelog</span>
                 </span>
 
-                <ul>
-                  <li>
-                    <div>
-                      <span className="text-style-bold">12/19/2019</span>
+                <div className="divider" />
 
-                      <span> - Initial release in celebration of </span>
+                <div className="card-content">
+                  <div>
+                    <span className="text-style-bold">12/19/2019</span>
 
-                      <span className="text-style-italic">The Rise of Skywalker</span>
+                    <span> - Initial release in celebration of </span>
 
-                      <span> movie release.</span>
-                    </div>
+                    <span className="text-style-italic">The Rise of Skywalker</span>
 
-                    <br />
+                    <span> movie release.</span>
+                  </div>
 
-                    <div>
-                      <span className="text-style-bold">05/04/2020</span>
+                  <div className="section">
+                    <span className="text-style-bold">05/04/2020</span>
 
-                      <span> - Name Read Aloud, Name Copy To Clipboard, and Name Origin Search features in celebration of Star Wars Day.</span>
-                    </div>
+                    <span> - Name Read Aloud, Name Copy To Clipboard, and Name Origin Search features in celebration of Star Wars Day.</span>
+                  </div>
 
-                    <br />
+                  <div>
+                    <span className="text-style-bold">08/11/2021</span>
 
-                    <div>
-                      <span className="text-style-bold">08/11/2021</span>
+                    <span> - Name Match Score, Random Name Generation, Originating Input Name Display, and Name Gender Display features in celebration of </span>
 
-                      <span> - Name Match Score, Random Name Generation, Originating Input Name Display, and Name Gender Display features in celebration of </span>
+                    <span className="text-style-italic">The Bad Batch</span>
 
-                      <span className="text-style-italic">The Bad Batch</span>
+                    <span> season 1 finale.</span>
+                  </div>
+                </div>
 
-                      <span> season 1 finale.</span>
-                    </div>
-                  </li>
-                </ul>
-
-                <br />
-
-                <ul>
-                  <li>
-                    <NavLink to="/">
-                      <span className="text-style-bold">
-                        ← Back To Main Page
-                      </span>
-                    </NavLink>
-                  </li>
-                </ul>
+                <NavLink to="/">
+                  <span className="text-style-bold">
+                    ← Back To Main Page
+                  </span>
+                </NavLink>
               </div>
             </div>
           </div>

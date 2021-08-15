@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+
 // Imports
 import React from 'react';
 import { connect } from 'react-redux';
@@ -28,11 +30,6 @@ const NamesDisplay = ({
   clearedNamesAction,
   copyToClipboardThunk,
 }) => {
-  const handleClear = () => {
-    clearedNamesAction();
-    toastNotification('Names Cleared Succesfully', 'green');
-  };
-
   const handleCopy = fullName => {
     copyToClipboardThunk(fullName);
   };
@@ -45,135 +42,148 @@ const NamesDisplay = ({
     synth.speak(utterance);
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    clearedNamesAction();
+    toastNotification('Names Cleared Succesfully', 'green');
+  };
+
   return (
-    <div className="section">
-      <div className="card">
-        <div className="card-content grey-text text-darken-3 center">
-          <span className="card-title">
-            <span className="text-style-bold">Names List</span>
-          </span>
+    <div className="col s12 m6 l6 xl6">
+      <div className="container">
+        <div className="section center">
+          <div className="card white">
+            <form
+              className="card-content grey-text text-darken-3"
+              onSubmit={handleSubmit}
+            >
+              <span className="card-title">
+                <span className="text-style-bold">Names List</span>
+              </span>
 
-          <ul>
-            {names.length ? (
-              <>
-                <div>
-                  <label>These aren't the names you're looking for?</label>
+              {names.length ? (
+                <>
+                  <div className="section">
+                    <div>
+                      <label>These aren't the names you're looking for?</label>
+                    </div>
+
+                    <div>
+                      <label>Try shortening your input names!</label>
+                    </div>
+                  </div>
+
+                  <ul>
+                    {names.map((name, idx) => {
+                      return (
+                        <li key={idx} className="name-container white-space-pre">
+                          <span className="text-style-bold">{`${idx + 1}. `}</span>
+
+                          <a
+                            href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.first}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {name.first}
+                          </a>
+
+                          <a
+                            className="name-containee"
+                            href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.last}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {name.last}
+                          </a>
+
+                          <img
+                            className="name-containee"
+                            src={`/icons/${name.gender}.png`}
+                            alt="Gender Icon"
+                          />
+
+                          <span className="name-containee">
+                            <span> (</span>
+
+                            {name.input ?
+                              <span
+                                className="text-style-italic"
+                                title="Originating Input Name">
+                                  {name.input}
+                              </span>
+                              :
+                              <span
+                                className="text-style-italic"
+                                title="Randomly Generated Names Have No Originating Input Name">
+                                  N/A
+                              </span>
+                            }
+
+                            <span>, </span>
+
+                            {name.scores ?
+                              <span
+                                className="text-style-italic"
+                                title={`First Name: ${name.scores.first.toFixed(2)}% match\nLast Name: ${name.scores.last.toFixed(2)}% match`}>
+                                {`${name.scores.full.toFixed(2)}% match`}
+                              </span>
+                              :
+                              <span
+                                className="text-style-italic"
+                                title="Randomly Generated Names Have No Name Match Score">
+                                  N/A
+                              </span>
+                            }
+
+                            <span>)</span>
+                          </span>
+
+                          <img
+                            className="name-containee cursor-pointer"
+                            src="/icons/speaker.png"
+                            alt="Read Aloud Icon"
+                            title="Read Aloud"
+                            onClick={() =>
+                              handleSpeak(`${name.first}, ${name.last}`)
+                            }
+                          />
+
+                          <img
+                            className="name-containee cursor-pointer"
+                            src="/icons/clipboard.png"
+                            alt="Copy To Clipboard Icon"
+                            title="Copy To Clipboard"
+                            onClick={() =>
+                              handleCopy(`${name.first} ${name.last}`)
+                            }
+                          />
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                </>
+              ) : (
+                <div className="section">
+                  Generate names to populate this list.
                 </div>
+              )}
 
-                <div>
-                  <label>Try shortening your input names!</label>
+              <button
+                className="btn black black-1 waves-effect waves-light"
+                disabled={disabledClear}
+              >
+                Clear
+              </button>
+
+              {copyError ? (
+                <div className="text-color-red text-style-bold">
+                  Error! Failed to copy to clipboard.
                 </div>
-
-                <br />
-
-                {names.map((name, idx) => {
-                  return (
-                    <li key={idx} className="name-container white-space-pre">
-                      <span className="text-style-bold">{`${idx + 1}. `}</span>
-
-                      <a
-                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.first}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {name.first}
-                      </a>
-
-                      <a
-                        className="name-containee"
-                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.last}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {name.last}
-                      </a>
-
-                      <img
-                        className="name-containee"
-                        src={`/icons/${name.gender}.png`}
-                        alt="Gender Icon"
-                      />
-
-                      <span className="name-containee">
-                        {` (`}
-
-                        {name.input ?
-                          <span
-                            className="text-style-italic"
-                            title="Originating Input Name">
-                              {name.input}
-                          </span>
-                          :
-                          <span
-                            className="text-style-italic"
-                            title="Randomly Generated Names Have No Originating Input Name">
-                              N/A
-                          </span>
-                        }
-
-                        {`, `}
-
-                        {name.scores ?
-                          <span
-                            className="text-style-italic"
-                            title={`First Name: ${name.scores.first.toFixed(2)}% match\nLast Name: ${name.scores.last.toFixed(2)}% match`}>
-                            {`${name.scores.full.toFixed(2)}% match`}
-                          </span>
-                          :
-                          <span
-                            className="text-style-italic"
-                            title="Randomly Generated Names Have No Name Match Score">
-                              N/A
-                          </span>
-                        }
-
-                        {`)`}
-                      </span>
-
-                      <img
-                        className="name-containee cursor-pointer"
-                        src="/icons/speaker.png"
-                        alt="Read Aloud Icon"
-                        title="Read Aloud"
-                        onClick={() =>
-                          handleSpeak(`${name.first}, ${name.last}`)
-                        }
-                      />
-
-                      <img
-                        className="name-containee cursor-pointer"
-                        src="/icons/clipboard.png"
-                        alt="Copy To Clipboard Icon"
-                        title="Copy To Clipboard"
-                        onClick={() =>
-                          handleCopy(`${name.first} ${name.last}`)
-                        }
-                      />
-                    </li>
-                  );
-                })}
-              </>
-            ) : (
-              <li>
-                <span>Generate names to populate this list.</span>
-              </li>
-            )}
-          </ul>
-
-          <button
-            className="btn black black-1 clear-button"
-            type="button"
-            disabled={disabledClear}
-            onClick={handleClear}
-          >
-            Clear
-          </button>
-
-          {copyError ? (
-            <div className="text-color-red text-style-bold">
-              Error! Failed to copy to clipboard.
-            </div>
-          ) : null}
+              ) : null}
+            </form>
+          </div>
         </div>
       </div>
     </div>
