@@ -105,10 +105,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
   background-color: #ffffff;
 }
 
-.clear-button {
-  margin: 1.5em 0em;
-}
-
 .navbar-logo {
   font-size: xx-large;
   padding-left: 0.5em;
@@ -133,12 +129,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
   padding-left: 0.25em;
 }
 
-.page-not-found-message {
-  margin: 30px 0px;
-}
-
 .padding-bottom {
-  padding-bottom: 40px;
+  padding-bottom: 2em;
 }
 
 .white-space-pre {
