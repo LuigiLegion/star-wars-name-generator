@@ -1,6 +1,6 @@
 // Imports
 import { toggledPreloaderActionCreator } from '..';
-import { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement, toastNotification } from '../../utils';
+import { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
 
 // Initial State
 const initialState = {
@@ -89,15 +89,15 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
         dispatch(toggledInitialValidityActionCreator(true));
         dispatch(gotNameActionCreator(name));
 
-        toastNotification('Name Generated Successfully', 'green');
+        toast('Name Generated Successfully', 'green');
       } else {
         dispatch(toggledInitialValidityActionCreator(false));
 
-        toastNotification('Error! Unable To Generate Names', 'red');
+        toast('Error! Unable To Generate Names', 'red');
       }
     } catch (error) {
       console.error(error);
-      toastNotification('Error! Unable To Generate Names', 'red');
+      toast('Error! Unable To Generate Names', 'red');
     } finally {
       dispatch(toggledPreloaderActionCreator(false));
     }
@@ -139,10 +139,10 @@ export const getRandomNameThunkCreator = gender => {
 
       dispatch(gotNameActionCreator(name));
 
-      toastNotification('Name Generated Successfully', 'green');
+      toast('Name Generated Successfully', 'green');
     } catch (error) {
       console.error(error);
-      toastNotification('Error! Unable To Generate Names', 'red');
+      toast('Error! Unable To Generate Names', 'red');
     } finally {
       dispatch(toggledPreloaderActionCreator(false));
     }

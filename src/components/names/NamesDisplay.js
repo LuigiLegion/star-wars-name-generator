@@ -9,7 +9,7 @@ import {
   clearedNamesActionCreator,
   copyToClipboardThunkCreator,
 } from '../../store';
-import { toastNotification } from '../../utils';
+import { toast } from '../../utils';
 
 // Initializations
 const synth = window.speechSynthesis;
@@ -46,7 +46,7 @@ const NamesDisplay = ({
     event.preventDefault();
 
     clearedNamesAction();
-    toastNotification('Names Cleared Succesfully', 'green');
+    toast('Names Cleared Succesfully', 'green');
   };
 
   return (
