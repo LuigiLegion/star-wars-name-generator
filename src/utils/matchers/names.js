@@ -14,7 +14,7 @@ const fullNameScore = (firstNameScore, lastNameScore) => (firstNameScore * 0.5) 
 const arrayOfArrays = length => [...Array(length)].map(_ => []);
 
 const nameRating = (inputName, starWarsName) => {
-  let starWarsNameRating = 1;
+  let starWarsNameRating = 0;
   let inputNamePointer = 0;
   let starWarsNamePointer = 0;
   let letterFoundPointer = 0;
@@ -45,11 +45,11 @@ const nameObject = (name, rating) => ({
 });
 
 const nameListsByRating = (inputName, starWarsNames) => {
-  const starWarsNameListsByRating = arrayOfArrays(inputName.length + 2);
+  const starWarsNameListsByRating = arrayOfArrays(inputName.length + 1);
 
   for (let i = 0; i < starWarsNames.length; i++) {
     const starWarsName = starWarsNames[i];
-    const starWarsNameRating = nameRating(inputName, starWarsName.slice(1).toLowerCase());
+    const starWarsNameRating = nameRating(inputName, starWarsName.toLowerCase());
     starWarsNameListsByRating[starWarsNameRating].push(nameObject(starWarsName, starWarsNameRating));
   }
 
@@ -57,7 +57,7 @@ const nameListsByRating = (inputName, starWarsNames) => {
 };
 
 const randomNameByRandomRating = (inputName, starWarsNames) =>
-  randomElement(randomElement(nameListsByRating(inputName.slice(1).toLowerCase(), starWarsNames)));
+  randomElement(randomElement(nameListsByRating(inputName.toLowerCase(), starWarsNames)));
 
 // Exports
 export { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement };
