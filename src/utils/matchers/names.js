@@ -11,7 +11,9 @@ const nameScore = (inputName, nameObject) => (nameObject.rating / inputName.leng
 
 const fullNameScore = (firstNameScore, lastNameScore) => (firstNameScore * 0.5) + (lastNameScore * 0.5);
 
-const arrayOfArrays = length => [...Array(length)].map(_ => []);
+const arrayOfEmptyArrays = length => [...Array(length)].map(_ => []);
+
+const arrayOfNonEmptyArrays = arrayOfArrays => arrayOfArrays.filter(array => array.length);
 
 const nameRating = (inputName, starWarsName) => {
   let starWarsNameRating = 0;
@@ -45,7 +47,7 @@ const nameObject = (name, rating) => ({
 });
 
 const nameListsByRating = (inputName, starWarsNames) => {
-  const starWarsNameListsByRating = arrayOfArrays(inputName.length + 1);
+  const starWarsNameListsByRating = arrayOfEmptyArrays(inputName.length + 1);
 
   for (let i = 0; i < starWarsNames.length; i++) {
     const starWarsName = starWarsNames[i];
@@ -53,7 +55,7 @@ const nameListsByRating = (inputName, starWarsNames) => {
     starWarsNameListsByRating[starWarsNameRating].push(nameObject(starWarsName, starWarsNameRating));
   }
 
-  return starWarsNameListsByRating.filter(nameList => nameList.length);
+  return arrayOfNonEmptyArrays(starWarsNameListsByRating);
 };
 
 const randomNameByRandomRating = (inputName, starWarsNames) =>
