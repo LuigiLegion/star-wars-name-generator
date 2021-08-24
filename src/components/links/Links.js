@@ -20,31 +20,34 @@ const Links = () => {
 
       <li>
         <a
+          className="text-style-bold text-style-glow"
           href="https://github.com/LuigiLegion/star-wars-name-generator"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="text-style-bold text-style-glow">Source</span>
+          Source
         </a>
       </li>
 
       <li>
         <a
+          className="text-style-bold text-style-glow"
           href="https://github.com/LuigiLegion/star-wars-name-generator-data/tree/master/data"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="text-style-bold text-style-glow">Data</span>
+          Data
         </a>
       </li>
 
       <li>
         <a
+          className="text-style-bold text-style-glow"
           href="https://taluigi.netlify.com"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="text-style-bold text-style-glow">Contact</span>
+          Contact
         </a>
       </li>
     </ul>

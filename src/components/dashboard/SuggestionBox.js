@@ -11,12 +11,12 @@ const SuggestionBox = () => {
         <span>Message them to me </span>
 
         <a
-          className="card-action"
+          className="text-style-bold"
           href="https://twitter.com/LuigiLegion"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="text-style-bold">@LuigiLegion</span>
+          @LuigiLegion
         </a>
       </div>
     </div>

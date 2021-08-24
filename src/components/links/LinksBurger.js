@@ -40,34 +40,37 @@ const LinksBurger = () => {
 
         <div>
           <a
+            className="text-style-bold text-style-glow"
             href="https://github.com/LuigiLegion/star-wars-name-generator"
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
           >
-            <span className="text-style-bold text-style-glow">Source</span>
+            Source
           </a>
         </div>
 
         <div>
           <a
+            className="text-style-bold text-style-glow"
             href="https://github.com/LuigiLegion/star-wars-name-generator-data/tree/master/data"
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
           >
-            <span className="text-style-bold text-style-glow">Data</span>
+            Data
           </a>
         </div>
 
         <div>
           <a
+            className="text-style-bold text-style-glow"
             href="https://taluigi.netlify.com"
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}
           >
-            <span className="text-style-bold text-style-glow">Contact</span>
+            Contact
           </a>
         </div>
       </div>
