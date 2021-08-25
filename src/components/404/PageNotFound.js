@@ -19,12 +19,15 @@ const PageNotFound = () => {
 
                 <div className="card-content">
                   <div>
-                    This route does not exist.
+                    This page does not exist.
                   </div>
                 </div>
 
-                <NavLink to="/">
-                  <span className="text-style-bold">← Back To Main Page</span>
+                <NavLink
+                  className="text-style-bold"
+                  to="/"
+                >
+                  ← Back To Main Page
                 </NavLink>
               </div>
             </div>

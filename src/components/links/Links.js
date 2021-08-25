@@ -7,14 +7,20 @@ const Links = () => {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/about">
-          <span className="text-style-bold text-style-glow">About</span>
+        <NavLink
+          className="text-style-bold text-style-glow"
+          to="/about"
+        >
+          About
         </NavLink>
       </li>
 
       <li>
-        <NavLink to="/changelog">
-          <span className="text-style-bold text-style-glow">Changelog</span>
+        <NavLink
+          className="text-style-bold text-style-glow"
+          to="/changelog"
+        >
+          Changelog
         </NavLink>
       </li>
 

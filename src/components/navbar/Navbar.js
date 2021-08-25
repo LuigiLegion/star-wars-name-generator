@@ -30,10 +30,11 @@ const Navbar = ({ isLoading }) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper black">
         <div>
-          <NavLink to="/" className="left navbar-logo">
-            <span className="text-style-bold text-style-glow">
-              {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
-            </span>
+          <NavLink
+            className="left navbar-logo text-style-bold text-style-glow"
+            to="/"
+          >
+            {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
           </NavLink>
 
           {largeViewCheck ? <Links /> : <LinksBurger />}

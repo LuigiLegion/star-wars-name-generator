@@ -27,14 +27,22 @@ const LinksBurger = () => {
     >
       <div className="outline-none">
         <div>
-          <NavLink to="/about" onClick={closeMenu}>
-            <span className="text-style-bold text-style-glow">About</span>
+          <NavLink
+            className="text-style-bold text-style-glow"
+            to="/about"
+            onClick={closeMenu}
+          >
+            About
           </NavLink>
         </div>
 
         <div>
-          <NavLink to="/changelog" onClick={closeMenu}>
-            <span className="text-style-bold text-style-glow">Changelog</span>
+          <NavLink
+            className="text-style-bold text-style-glow"
+            to="/changelog"
+            onClick={closeMenu}
+          >
+            Changelog
           </NavLink>
         </div>
 
