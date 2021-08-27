@@ -6,11 +6,15 @@ const Disclaimer = () => {
   return (
     <div className="text-align-center padding-bottom">
       <div>
-        <span className="text-style-bold">Disclaimer:</span> This is a fan site
-        intended to encourage interest in Star Wars. This site is not an
-        official publication and is not in any way, shape, or form affiliated
-        with or endorsed by Star Wars, Lucasfilm, Disney, or any of their
-        licensees.
+        <span className="text-style-bold">Disclaimer: </span>
+
+        <span>
+          This is a fan site
+          intended to encourage interest in Star Wars. This site is not an
+          official publication and is not in any way, shape, or form affiliated
+          with or endorsed by Star Wars, Lucasfilm, Disney, or any of their
+          licensees.
+        </span>
       </div>
 
       <div>

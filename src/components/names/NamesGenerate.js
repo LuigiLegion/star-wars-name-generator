@@ -53,7 +53,9 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
 
               <div className="input-field">
                 <label htmlFor="firstName">
-                  Any First Name<span className="text-color-red">*</span>
+                  <span>Any First Name</span>
+
+                  <span className="text-color-red">*</span>
                 </label>
 
                 <input
@@ -66,7 +68,9 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
 
               <div className="input-field">
                 <label htmlFor="lastName">
-                  Any Last Name<span className="text-color-red">*</span>
+                  <span>Any Last Name</span>
+
+                  <span className="text-color-red">*</span>
                 </label>
 
                 <input
@@ -79,7 +83,9 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
 
               <div className="input-field">
                 <label htmlFor="gender">
-                  Gender<span className="text-color-red">*</span>
+                  <span>Gender</span>
+
+                  <span className="text-color-red">*</span>
                 </label>
 
                 <br />
