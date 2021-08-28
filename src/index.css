@@ -88,13 +88,17 @@ textarea.materialize-textarea:focus:not([readonly]) {
   color: #ef5350;
 }
 
-.outline-none {
-  outline: none;
+.navbar-logo {
+  font-size: xx-large;
+  padding-left: 0.5em;
 }
 
-.preloader {
-  margin: 0px;
-  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+.navbar-logo:hover {
+  text-decoration: none;
+}
+
+.outline-none {
+  outline: none;
 }
 
 .progress.preloader.preloader-inner-color {
@@ -105,13 +109,9 @@ textarea.materialize-textarea:focus:not([readonly]) {
   background-color: #ffffff;
 }
 
-.navbar-logo {
-  font-size: xx-large;
-  padding-left: 0.5em;
-}
-
-.navbar-logo:hover {
-  text-decoration: none;
+.preloader {
+  margin: 0px;
+  text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
 }
 
 .name-container {
@@ -129,12 +129,12 @@ textarea.materialize-textarea:focus:not([readonly]) {
   padding-left: 0.25em;
 }
 
-.padding-bottom {
-  padding-bottom: 2em;
-}
-
 .white-space-pre {
   white-space: pre;
+}
+
+.padding-bottom {
+  padding-bottom: 2em;
 }
 
 .cursor-pointer {
