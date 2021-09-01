@@ -1,6 +1,6 @@
 // Imports
 import { toggledPreloaderActionCreator } from '..';
-import { randomNameByRandomRating, nameScore, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
+import { randomNameByRandomRating, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
 
 // Initial State
 const initialState = {
@@ -66,13 +66,10 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
           firstName,
           firstNamesWithInitial
         );
-        const generatedFirstNameScore = nameScore(firstName, generatedFirstName);
-
         const generatedLastName = randomNameByRandomRating(
           lastName,
           lastNamesWithInitial
         );
-        const generatedLastNameScore = nameScore(lastName, generatedLastName);
 
         const name = {
           first: generatedFirstName.name,
@@ -80,14 +77,20 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
           gender,
           input: `${firstName} ${lastName}`,
           scores: {
-            first: generatedFirstNameScore,
-            last: generatedLastNameScore,
-            full: fullNameScore(generatedFirstNameScore, generatedLastNameScore),
+            first: generatedFirstName.score,
+            last: generatedLastName.score,
+            full: fullNameScore(generatedFirstName.score, generatedLastName.score),
+          },
+          matches: {
+            first: generatedFirstName.matches,
+            last: generatedLastName.matches,
           },
         };
 
         dispatch(toggledInitialValidityActionCreator(true));
         dispatch(gotNameActionCreator(name));
+
+        console.log({name});
 
         toast('Name Generated Successfully', 'green');
       } else {
@@ -135,6 +138,7 @@ export const getRandomNameThunkCreator = gender => {
         gender,
         input: null,
         scores: null,
+        matches: null,
       };
 
       dispatch(gotNameActionCreator(name));
