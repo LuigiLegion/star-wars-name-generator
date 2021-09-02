@@ -9,88 +9,86 @@ const randomElement = array => array[randomIndex(array.length)];
 
 const arrayOfEmptyArrays = length => [...Array(length)].map(_ => []);
 
-const arrayOfNonEmptyArrays = arrayOfArrays => arrayOfArrays.filter(array => array.length);
-
-const nameScore = (inputNameLength, generatedNameRating) => (generatedNameRating / inputNameLength) * 100;
+const nameScore = (sourceNameLength, targetNameRating) => (targetNameRating / sourceNameLength) * 100;
 
 const fullNameScore = (firstNameScore, lastNameScore) => (firstNameScore * 0.5) + (lastNameScore * 0.5);
 
-const nameRating = (inputName, starWarsName) => {
-  let starWarsNameRating = 0;
-  let inputNamePointer = 0;
-  let starWarsNamePointer = 0;
-  let letterFoundPointer = 0;
+const nameRating = (sourceName, targetName) => {
+  let targetNameRating = 0;
+  let sourceNameIndex = 0;
+  let targetNameIndex = 0;
+  let letterFoundIndex = 0;
 
-  while (inputNamePointer < inputName.length) {
-    const inputNameLetter = inputName[inputNamePointer];
-    const starWarsNameLetter = starWarsName[starWarsNamePointer];
+  while (sourceNameIndex < sourceName.length) {
+    const sourceNameLetter = sourceName[sourceNameIndex];
+    const targetNameLetter = targetName[targetNameIndex];
 
-    if (starWarsNameLetter === inputNameLetter) {
-      starWarsNameRating++;
-      inputNamePointer++;
-      starWarsNamePointer++;
-      letterFoundPointer = starWarsNamePointer;
-    } else if (starWarsNamePointer < starWarsName.length) {
-      starWarsNamePointer++;
+    if (targetNameLetter === sourceNameLetter) {
+      targetNameRating++;
+      sourceNameIndex++;
+      targetNameIndex++;
+      letterFoundIndex = targetNameIndex;
+    } else if (targetNameIndex < targetName.length) {
+      targetNameIndex++;
     } else {
-      inputNamePointer++;
-      starWarsNamePointer = letterFoundPointer;
+      sourceNameIndex++;
+      targetNameIndex = letterFoundIndex;
     }
   }
 
-  return starWarsNameRating;
+  return targetNameRating;
 };
 
-const matchingLetterIndeces = (inputName, starWarsName) => {
+const matchingLetterIndeces = (sourceName, targetName) => {
   const indeces = [];
-  let inputNamePointer = 0;
-  let starWarsNamePointer = 0;
-  let letterFoundPointer = 0;
+  let sourceNameIndex = 0;
+  let targetNameIndex = 0;
+  let letterFoundIndex = 0;
 
-  while (inputNamePointer < inputName.length) {
-    const inputNameLetter = inputName[inputNamePointer];
-    const starWarsNameLetter = starWarsName[starWarsNamePointer];
+  while (sourceNameIndex < sourceName.length) {
+    const sourceNameLetter = sourceName[sourceNameIndex];
+    const targetNameLetter = targetName[targetNameIndex];
 
-    if (starWarsNameLetter === inputNameLetter) {
-      indeces.push(starWarsNamePointer);
-      inputNamePointer++;
-      starWarsNamePointer++;
-      letterFoundPointer = starWarsNamePointer;
-    } else if (starWarsNamePointer < starWarsName.length) {
-      starWarsNamePointer++;
+    if (targetNameLetter === sourceNameLetter) {
+      indeces.push(targetNameIndex);
+      sourceNameIndex++;
+      targetNameIndex++;
+      letterFoundIndex = targetNameIndex;
+    } else if (targetNameIndex < targetName.length) {
+      targetNameIndex++;
     } else {
-      inputNamePointer++;
-      starWarsNamePointer = letterFoundPointer;
+      sourceNameIndex++;
+      targetNameIndex = letterFoundIndex;
     }
   }
 
   return indeces;
 };
 
-const nameObject = (inputName, starWarsName) => {
-  const matches = matchingLetterIndeces(inputName.toLowerCase(), starWarsName.toLowerCase());
+const nameObject = (sourceName, targetName) => {
+  const matches = matchingLetterIndeces(sourceName.toLowerCase(), targetName.toLowerCase());
 
   return {
-    name: starWarsName,
-    score: nameScore(inputName.length, matches.length),
+    name: targetName,
+    score: nameScore(sourceName.length, matches.length),
     matches,
   }
 };
 
-const nameListsByRating = (inputName, starWarsNames) => {
-  const starWarsNameListsByRating = arrayOfEmptyArrays(inputName.length + 1);
+const nameListsByRating = (sourceName, targetNames) => {
+  const targetNameListsByRating = arrayOfEmptyArrays(sourceName.length + 1);
 
-  for (let i = 0; i < starWarsNames.length; i++) {
-    const starWarsName = starWarsNames[i];
-    const starWarsNameRating = nameRating(inputName, starWarsName.toLowerCase());
-    starWarsNameListsByRating[starWarsNameRating].push(starWarsName);
+  for (let i = 0; i < targetNames.length; i++) {
+    const targetName = targetNames[i];
+    const targetNameRating = nameRating(sourceName, targetName.toLowerCase());
+    targetNameListsByRating[targetNameRating].push(targetName);
   }
 
-  return arrayOfNonEmptyArrays(starWarsNameListsByRating);
+  return targetNameListsByRating.filter(nameList => nameList.length);
 };
 
-const randomNameByRandomRating = (inputName, starWarsNames) =>
-  nameObject(inputName, randomElement(randomElement(nameListsByRating(inputName.toLowerCase(), starWarsNames))));
+const randomNameByRandomRating = (sourceName, targetNames) =>
+  nameObject(sourceName, randomElement(randomElement(nameListsByRating(sourceName.toLowerCase(), targetNames))));
 
 // Exports
 export { randomNameByRandomRating, fullNameScore, randomInitial, randomElement };
