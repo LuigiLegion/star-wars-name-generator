@@ -1,6 +1,6 @@
 // Imports
 import { toggledPreloaderActionCreator } from '..';
-import { randomNameByRandomRating, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
+import { nameIsValid, randomNameByRandomRating, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
 
 // Initial State
 const initialState = {
@@ -35,28 +35,16 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
     try {
       dispatch(toggledPreloaderActionCreator(true));
 
-      const firstNameInitial = firstName[0];
-      const upperCasedFirstNameInitial = firstNameInitial.toUpperCase();
-      const lowerCasedFirstNameInitial = firstNameInitial.toLowerCase();
-      const firstNameInitialIsLetterCheck =
-        upperCasedFirstNameInitial !== lowerCasedFirstNameInitial;
-
-      const lastNameInitial = lastName[0];
-      const upperCasedLastNameInitial = lastNameInitial.toUpperCase();
-      const lowerCasedLastNameInitial = lastNameInitial.toLowerCase();
-      const lastNameInitialIsLetterCheck =
-        upperCasedLastNameInitial !== lowerCasedLastNameInitial;
-
-      if (firstNameInitialIsLetterCheck && lastNameInitialIsLetterCheck) {
+      if (nameIsValid(firstName) && nameIsValid(lastName)) {
         const firestore = getFirestore();
 
         const firstNamesRawData = await firestore
           .collection(`${gender}FirstNames`)
-          .doc(upperCasedFirstNameInitial)
+          .doc(firstName[0].toUpperCase())
           .get();
         const lastNamesRawData = await firestore
           .collection('allLastNames')
-          .doc(upperCasedLastNameInitial)
+          .doc(lastName[0].toUpperCase())
           .get();
 
         const firstNamesWithInitial = firstNamesRawData.data().names;
@@ -89,8 +77,6 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
 
         dispatch(toggledInitialValidityActionCreator(true));
         dispatch(gotNameActionCreator(name));
-
-        console.log({name});
 
         toast('Name Generated Successfully', 'green');
       } else {
