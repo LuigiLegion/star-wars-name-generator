@@ -11,8 +11,6 @@ const arrayOfEmptyArrays = length => [...Array(length)].map(_ => []);
 
 const initialIsValid = name => name[0].toLowerCase() !== name[0].toUpperCase();
 
-const fullNameIsValid = (firstName, lastName) => initialIsValid(firstName) && initialIsValid(lastName);
-
 const nameScore = (sourceNameLength, targetNameRating) => (targetNameRating / sourceNameLength) * 100;
 
 const fullNameScore = (firstNameScore, lastNameScore) => (firstNameScore * 0.5) + (lastNameScore * 0.5);
@@ -95,4 +93,4 @@ const randomNameByRandomRating = (sourceName, targetNames) =>
   nameObject(sourceName, randomElement(randomElement(nameListsByRating(sourceName.toLowerCase(), targetNames))));
 
 // Exports
-export { fullNameIsValid, randomNameByRandomRating, fullNameScore, randomInitial, randomElement };
+export { initialIsValid, randomNameByRandomRating, fullNameScore, randomInitial, randomElement };
