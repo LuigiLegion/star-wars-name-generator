@@ -63,7 +63,10 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
           first: generatedFirstName.name,
           last: generatedLastName.name,
           gender,
-          input: `${firstName} ${lastName}`,
+          input: {
+            first: firstName,
+            last: lastName,
+          },
           scores: {
             first: generatedFirstName.score,
             last: generatedLastName.score,
@@ -78,15 +81,15 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
         dispatch(toggledInitialValidityActionCreator(true));
         dispatch(gotNameActionCreator(name));
 
-        toast('Name Generated Successfully', 'green');
+        toast('Name generated', 'green');
       } else {
         dispatch(toggledInitialValidityActionCreator(false));
 
-        toast('Error! Unable To Generate Names', 'red');
+        toast('Error! Failed to generate name', 'red');
       }
     } catch (error) {
       console.error(error);
-      toast('Error! Unable To Generate Names', 'red');
+      toast('Error! Failed to generate name', 'red');
     } finally {
       dispatch(toggledPreloaderActionCreator(false));
     }
@@ -129,10 +132,10 @@ export const getRandomNameThunkCreator = gender => {
 
       dispatch(gotNameActionCreator(name));
 
-      toast('Name Generated Successfully', 'green');
+      toast('Name generated', 'green');
     } catch (error) {
       console.error(error);
-      toast('Error! Unable To Generate Names', 'red');
+      toast('Error! Failed to generate name', 'red');
     } finally {
       dispatch(toggledPreloaderActionCreator(false));
     }
