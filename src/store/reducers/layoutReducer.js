@@ -29,11 +29,11 @@ export const copyToClipboardThunkCreator = text => {
       await navigator.clipboard.writeText(text);
 
       dispatch(copiedToClipboardActionCreator(false));
-      toast('Copied To Clipboard', 'green');
+      toast('Name copied to clipboard', 'green');
     } catch (error) {
       console.error(error);
       dispatch(copiedToClipboardActionCreator(true));
-      toast('Error! Failed To Copy To Clipboard', 'red');
+      toast('Error! Failed to copy name to clipboard', 'red');
     }
   };
 };
