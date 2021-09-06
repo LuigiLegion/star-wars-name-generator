@@ -60,8 +60,20 @@ textarea.materialize-textarea:focus:not([readonly]) {
   box-shadow: none;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.white-space-pre {
+  white-space: pre;
+}
+
 .text-align-center {
   text-align: center;
+}
+
+.text-align-start {
+  text-align: start;
 }
 
 .text-style-bold {
@@ -110,8 +122,24 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .preloader {
-  margin: 0px;
+  margin: 0;
   text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
+}
+
+.names-display {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.names-display button,
+.names-display h5 {
+  margin: 20px 0;
+}
+
+.name-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .name-container {
@@ -129,14 +157,11 @@ textarea.materialize-textarea:focus:not([readonly]) {
   padding-left: 0.25em;
 }
 
-.white-space-pre {
-  white-space: pre;
-}
-
 .padding-bottom {
   padding-bottom: 2em;
 }
 
-.cursor-pointer {
-  cursor: pointer;
+#activator,
+#revealer {
+  margin: 0;
 }
