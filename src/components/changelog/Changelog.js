@@ -44,7 +44,7 @@ const Changelog = () => {
                     <span> season 1 finale.</span>
                   </div>
 
-                  <div>
+                  <div className="section">
                     <span className="text-style-bold">09/06/2021</span>
 
                     <span> - Matching Letters Highlighting feature in celebration of </span>
