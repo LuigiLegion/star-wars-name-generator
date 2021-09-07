@@ -8,6 +8,7 @@ export { default as MadeBy } from './dashboard/MadeBy';
 export { default as SuggestionBox } from './dashboard/SuggestionBox';
 export { default as Links } from './links/Links';
 export { default as LinksBurger } from './links/LinksBurger';
+export { default as Name } from './names/Name';
 export { default as NamesDisplay } from './names/NamesDisplay';
 export { default as NamesGenerate } from './names/NamesGenerate';
 export { default as Navbar } from './navbar/Navbar';
