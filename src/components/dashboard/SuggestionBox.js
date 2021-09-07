@@ -5,7 +5,7 @@ import React from 'react';
 const SuggestionBox = () => {
   return (
     <div className="text-align-center padding-bottom">
-      <div>Got any suggestions for improvement?</div>
+      <div>Got any suggestions for improvement or bugs to report?</div>
 
       <div>
         <span>Message them to me </span>
