@@ -95,7 +95,7 @@ const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
                   <td>{name.first.split('').map((letter, idx) => (
                     <span
                       key={idx}
-                      className={name.matches.first.includes(idx) ? 'text-style-bold' : ''}
+                      className={name.matches.first[idx] ? 'text-style-bold' : ''}
                     >
                       {letter}
                     </span>))}
@@ -110,7 +110,7 @@ const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
                   <td>{name.last.split('').map((letter, idx) => (
                     <span
                       key={idx}
-                      className={name.matches.last.includes(idx) ? 'text-style-bold' : ''}
+                      className={name.matches.last[idx] ? 'text-style-bold' : ''}
                     >
                       {letter}
                     </span>))}
