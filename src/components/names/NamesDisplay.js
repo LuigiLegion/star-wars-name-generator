@@ -5,6 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { Name } from '..';
 import {
   clearedNamesActionCreator,
   copyToClipboardThunkCreator,
@@ -42,11 +43,9 @@ const NamesDisplay = ({
     synth.speak(utterance);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
+  const handleClear = () => {
     clearedNamesAction();
-    toast('Names Cleared Succesfully', 'green');
+    toast('Names cleared', 'green');
   };
 
   return (
@@ -54,10 +53,7 @@ const NamesDisplay = ({
       <div className="container">
         <div className="section center">
           <div className="card white">
-            <form
-              className="card-content grey-text text-darken-3"
-              onSubmit={handleSubmit}
-            >
+            <div className="card-content names-display grey-text text-darken-3">
               <span className="card-title">
                 <span className="text-style-bold">Names List</span>
               </span>
@@ -74,94 +70,7 @@ const NamesDisplay = ({
                     </div>
                   </div>
 
-                  <ul>
-                    {names.map((name, idx) => {
-                      return (
-                        <li key={idx} className="name-container white-space-pre">
-                          <span className="text-style-bold">{`${idx + 1}. `}</span>
-
-                          <a
-                            href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.first}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {name.first}
-                          </a>
-
-                          <a
-                            className="name-containee"
-                            href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.last}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {name.last}
-                          </a>
-
-                          <img
-                            className="name-containee"
-                            src={`/icons/${name.gender}.png`}
-                            alt="Gender Icon"
-                          />
-
-                          <span className="name-containee">
-                            <span> (</span>
-
-                            {name.input ?
-                              <span
-                                className="text-style-italic"
-                                title="Originating Input Name">
-                                  {name.input}
-                              </span>
-                              :
-                              <span
-                                className="text-style-italic"
-                                title="Randomly Generated Names Have No Originating Input Name">
-                                  N/A
-                              </span>
-                            }
-
-                            <span>, </span>
-
-                            {name.scores ?
-                              <span
-                                className="text-style-italic"
-                                title={`First Name: ${name.scores.first.toFixed(2)}% match\nLast Name: ${name.scores.last.toFixed(2)}% match`}>
-                                {`${name.scores.full.toFixed(2)}% match`}
-                              </span>
-                              :
-                              <span
-                                className="text-style-italic"
-                                title="Randomly Generated Names Have No Name Match Score">
-                                  N/A
-                              </span>
-                            }
-
-                            <span>)</span>
-                          </span>
-
-                          <img
-                            className="name-containee cursor-pointer"
-                            src="/icons/speaker.png"
-                            alt="Read Aloud Icon"
-                            title="Read Aloud"
-                            onClick={() =>
-                              handleSpeak(`${name.first}, ${name.last}`)
-                            }
-                          />
-
-                          <img
-                            className="name-containee cursor-pointer"
-                            src="/icons/clipboard.png"
-                            alt="Copy To Clipboard Icon"
-                            title="Copy To Clipboard"
-                            onClick={() =>
-                              handleCopy(`${name.first} ${name.last}`)
-                            }
-                          />
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  {names.map((name, idx) => <Name key={idx} index={idx} name={name} handleCopy={handleCopy} handleSpeak={handleSpeak} />)}
 
                 </>
               ) : (
@@ -173,6 +82,7 @@ const NamesDisplay = ({
               <button
                 className="btn black black-1 waves-effect waves-light"
                 disabled={disabledClear}
+                onClick={handleClear}
               >
                 Clear
               </button>
@@ -182,7 +92,7 @@ const NamesDisplay = ({
                   Error! Failed to copy to clipboard.
                 </div>
               ) : null}
-            </form>
+            </div>
           </div>
         </div>
       </div>
