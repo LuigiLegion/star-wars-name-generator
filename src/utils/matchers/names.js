@@ -42,7 +42,7 @@ const nameRating = (sourceName, targetName) => {
 };
 
 const matchingLetterIndeces = (sourceName, targetName) => {
-  const matches = [];
+  const matches = {};
   let sourceNameIndex = 0;
   let targetNameIndex = 0;
   let letterFoundIndex = 0;
@@ -52,7 +52,7 @@ const matchingLetterIndeces = (sourceName, targetName) => {
     const targetNameLetter = targetName[targetNameIndex];
 
     if (targetNameLetter === sourceNameLetter) {
-      matches.push(targetNameIndex);
+      matches[targetNameIndex] = true;
       sourceNameIndex++;
       targetNameIndex++;
       letterFoundIndex = targetNameIndex;
@@ -69,10 +69,11 @@ const matchingLetterIndeces = (sourceName, targetName) => {
 
 const nameObject = (sourceName, targetName) => {
   const matches = matchingLetterIndeces(sourceName.toLowerCase(), targetName.toLowerCase());
+  const targetNameRating = Object.keys(matches).length;
 
   return {
     name: targetName,
-    score: nameScore(sourceName.length, matches.length),
+    score: nameScore(sourceName.length, targetNameRating),
     matches,
   }
 };
