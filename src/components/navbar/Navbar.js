@@ -4,9 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Links from '../links/Links';
-import LinksBurger from '../links/LinksBurger';
-import Preloader from './Preloader';
+import { Links, LinksBurger, Preloader } from '..';
 
 // Component
 const Navbar = ({ isLoading }) => {
@@ -30,12 +28,13 @@ const Navbar = ({ isLoading }) => {
 
   return (
     <div className="navbar-fixed">
-      <nav className="nav-wrapper navbar-container black">
+      <nav className="nav-wrapper black">
         <div>
-          <NavLink to="/" className="left navbar-logo">
-            <span className="text-style-bold text-style-glow">
-              {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
-            </span>
+          <NavLink
+            className="left navbar-logo text-style-bold text-style-glow"
+            to="/"
+          >
+            {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
           </NavLink>
 
           {largeViewCheck ? <Links /> : <LinksBurger />}

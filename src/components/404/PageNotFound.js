@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom';
 // Component
 const PageNotFound = () => {
   return (
-    <div className="dashboard container">
+    <div className="container">
       <div className="row">
-        <div className="col s12 m12">
+        <div className="col s12 m12 l12 xl12">
           <div className="section">
             <div className="card">
               <div className="card-content grey-text text-darken-3">
@@ -15,21 +15,20 @@ const PageNotFound = () => {
                   <span className="text-style-bold">404 - Page Not Found</span>
                 </span>
 
-                <h5 className="grey-text text-darken-3">
-                  This route does not exist.
-                </h5>
+                <div className="divider" />
 
-                <br />
+                <div className="card-content">
+                  <div>
+                    This page does not exist.
+                  </div>
+                </div>
 
-                <ul>
-                  <li>
-                    <NavLink to="/">
-                      <span className="text-style-bold">
-                        ← Back To Main Page
-                      </span>
-                    </NavLink>
-                  </li>
-                </ul>
+                <NavLink
+                  className="text-style-bold"
+                  to="/"
+                >
+                  ← Back To Main Page
+                </NavLink>
               </div>
             </div>
           </div>

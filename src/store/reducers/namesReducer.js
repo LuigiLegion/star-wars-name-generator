@@ -1,105 +1,143 @@
 // Imports
-import { toggledPreloaderActionCreator } from './layoutReducer';
-import { randomOptionalName, toastNotification } from '../../utils';
+import { toggledPreloaderActionCreator } from '..';
+import { nameIsValid, randomNameByRandomRating, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
 
 // Initial State
 const initialState = {
-  firstNames: [],
-  lastNames: [],
-  // planetNames: [],
+  names: [],
   disabledClear: true,
   validInitial: true,
 };
 
 // Action Types
-const GOT_FIRST_NAME = 'GOT_FIRST_NAME';
-const GOT_LAST_NAME = 'GOT_LAST_NAME';
-const CLEARED_ALL_NAMES = 'CLEARED_ALL_NAMES';
-const UPDATED_INITIAL_VALIDITY_TRUE = 'UPDATED_INITIAL_VALIDITY_TRUE';
-const UPDATED_INITIAL_VALIDITY_FALSE = 'UPDATED_INITIAL_VALIDITY_FALSE';
+const GOT_NAME = 'GOT_NAME';
+const CLEARED_NAMES = 'CLEARED_NAMES';
+const TOGGLED_INITIAL_VALIDITY = 'TOGGLED_INITIAL_VALIDITY';
 
 // Action Creators
-export const gotFirstNameActionCreator = name => ({
-  type: GOT_FIRST_NAME,
+export const gotNameActionCreator = name => ({
+  type: GOT_NAME,
   name,
 });
 
-export const gotLastNameActionCreator = name => ({
-  type: GOT_LAST_NAME,
-  name,
+export const clearedNamesActionCreator = () => ({
+  type: CLEARED_NAMES,
 });
 
-export const clearedAllNamesActionCreator = () => ({
-  type: CLEARED_ALL_NAMES,
-});
-
-export const updatedInitialValidityTrue = () => ({
-  type: UPDATED_INITIAL_VALIDITY_TRUE,
-});
-
-export const updatedInitialValidityFalse = () => ({
-  type: UPDATED_INITIAL_VALIDITY_FALSE,
+export const toggledInitialValidityActionCreator = status => ({
+  type: TOGGLED_INITIAL_VALIDITY,
+  status,
 });
 
 // Thunk Creators
-export const getNamesThunkCreator = (firstName, lastName, gender) => {
-  return async (dispatch, getState, { getFirestore }) => {
+export const getNameThunkCreator = (firstName, lastName, gender) => {
+  return async (dispatch, _, { getFirestore }) => {
     try {
       dispatch(toggledPreloaderActionCreator(true));
 
-      const firstNameInitial = firstName[0];
-      const upperCasedFirstNameInitial = firstNameInitial.toUpperCase();
-      const lowerCasedFirstNameInitial = firstNameInitial.toLowerCase();
-
-      const lastNameInitial = lastName[0];
-      const upperCasedLastNameInitial = lastNameInitial.toUpperCase();
-      const lowerCasedLastNameInitial = lastNameInitial.toLowerCase();
-
-      const firstNameInitialIsLetterCheck =
-        upperCasedFirstNameInitial !== lowerCasedFirstNameInitial;
-      const lastNameInitialIsLetterCheck =
-        upperCasedLastNameInitial !== lowerCasedLastNameInitial;
-
-      if (firstNameInitialIsLetterCheck && lastNameInitialIsLetterCheck) {
+      if (nameIsValid(firstName) && nameIsValid(lastName)) {
         const firestore = getFirestore();
 
-        const firstNamesRaw = await firestore
+        const firstNamesRawData = await firestore
           .collection(`${gender}FirstNames`)
-          .doc(upperCasedFirstNameInitial)
+          .doc(firstName[0].toUpperCase())
           .get();
-        const lastNamesRaw = await firestore
+        const lastNamesRawData = await firestore
           .collection('allLastNames')
-          .doc(upperCasedLastNameInitial)
+          .doc(lastName[0].toUpperCase())
           .get();
 
-        const firstNamesWithInitial = firstNamesRaw.data().names;
-        const lastNamesWithInitial = lastNamesRaw.data().names;
+        const firstNamesWithInitial = firstNamesRawData.data().names;
+        const lastNamesWithInitial = lastNamesRawData.data().names;
 
-        const generatedFirstName = randomOptionalName(
+        const generatedFirstName = randomNameByRandomRating(
           firstName,
           firstNamesWithInitial
         );
-        const generatedLastName = randomOptionalName(
+        const generatedLastName = randomNameByRandomRating(
           lastName,
           lastNamesWithInitial
         );
 
-        dispatch(updatedInitialValidityTrue());
-        dispatch(gotFirstNameActionCreator(generatedFirstName));
-        dispatch(gotLastNameActionCreator(generatedLastName));
-        dispatch(toggledPreloaderActionCreator(false));
+        const name = {
+          first: generatedFirstName.name,
+          last: generatedLastName.name,
+          gender,
+          input: {
+            first: firstName,
+            last: lastName,
+          },
+          scores: {
+            first: generatedFirstName.score,
+            last: generatedLastName.score,
+            full: fullNameScore(generatedFirstName.score, generatedLastName.score),
+          },
+          matches: {
+            first: generatedFirstName.matches,
+            last: generatedLastName.matches,
+          },
+        };
 
-        toastNotification('Name Generated Successfully', 'green');
+        dispatch(toggledInitialValidityActionCreator(true));
+        dispatch(gotNameActionCreator(name));
+
+        toast('Name generated', 'green');
       } else {
-        dispatch(updatedInitialValidityFalse());
-        dispatch(toggledPreloaderActionCreator(false));
+        dispatch(toggledInitialValidityActionCreator(false));
 
-        toastNotification('Error! Unable To Generate Names', 'red');
+        toast('Error! Failed to generate name', 'red');
       }
     } catch (error) {
       console.error(error);
+      toast('Error! Failed to generate name', 'red');
+    } finally {
       dispatch(toggledPreloaderActionCreator(false));
-      toastNotification('Error! Unable To Generate Names', 'red');
+    }
+  };
+};
+
+export const getRandomNameThunkCreator = gender => {
+  return async (dispatch, _, { getFirestore }) => {
+    try {
+      dispatch(toggledPreloaderActionCreator(true));
+
+      const firstNameInitial = randomInitial();
+      const lastNameInitial = randomInitial();
+
+      const firestore = getFirestore();
+
+      const firstNamesRawData = await firestore
+        .collection(`${gender}FirstNames`)
+        .doc(firstNameInitial)
+        .get();
+      const lastNamesRawData = await firestore
+        .collection('allLastNames')
+        .doc(lastNameInitial)
+        .get();
+
+      const firstNamesWithInitial = firstNamesRawData.data().names;
+      const lastNamesWithInitial = lastNamesRawData.data().names;
+
+      const generatedFirstName = randomElement(firstNamesWithInitial);
+      const generatedLastName = randomElement(lastNamesWithInitial);
+
+      const name = {
+        first: generatedFirstName,
+        last: generatedLastName,
+        gender,
+        input: null,
+        scores: null,
+        matches: null,
+      };
+
+      dispatch(gotNameActionCreator(name));
+
+      toast('Name generated', 'green');
+    } catch (error) {
+      console.error(error);
+      toast('Error! Failed to generate name', 'red');
+    } finally {
+      dispatch(toggledPreloaderActionCreator(false));
     }
   };
 };
@@ -107,38 +145,24 @@ export const getNamesThunkCreator = (firstName, lastName, gender) => {
 // Reducer
 const namesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GOT_FIRST_NAME:
+    case GOT_NAME:
       return {
         ...state,
-        firstNames: [...state.firstNames, action.name],
+        names: [...state.names, action.name],
         disabledClear: false,
       };
 
-    case GOT_LAST_NAME:
+    case CLEARED_NAMES:
       return {
         ...state,
-        lastNames: [...state.lastNames, action.name],
-        disabledClear: false,
-      };
-
-    case CLEARED_ALL_NAMES:
-      return {
-        ...state,
-        firstNames: [],
-        lastNames: [],
+        names: [],
         disabledClear: true,
       };
 
-    case UPDATED_INITIAL_VALIDITY_TRUE:
+    case TOGGLED_INITIAL_VALIDITY:
       return {
         ...state,
-        validInitial: true,
-      };
-
-    case UPDATED_INITIAL_VALIDITY_FALSE:
-      return {
-        ...state,
-        validInitial: false,
+        validInitial: action.status,
       };
 
     default:

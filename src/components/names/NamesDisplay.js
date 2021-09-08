@@ -1,11 +1,16 @@
+/* eslint-disable react/button-has-type */
+
 // Imports
-import React, { Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { clearedAllNamesActionCreator } from '../../store/reducers/namesReducer';
-import { copyToClipboardThunkCreator } from '../../store/reducers/layoutReducer';
-import { toastNotification } from '../../utils';
+import { Name } from '..';
+import {
+  clearedNamesActionCreator,
+  copyToClipboardThunkCreator,
+} from '../../store';
+import { toast } from '../../utils';
 
 // Initializations
 const synth = window.speechSynthesis;
@@ -20,18 +25,12 @@ synth.onvoiceschanged = populateVoices;
 
 // Component
 const NamesDisplay = ({
-  firstNames,
-  lastNames,
+  names,
   disabledClear,
   copyError,
-  clearedAllNamesAction,
+  clearedNamesAction,
   copyToClipboardThunk,
 }) => {
-  const handleClear = () => {
-    clearedAllNamesAction();
-    toastNotification('Names Cleared Succesfully', 'green');
-  };
-
   const handleCopy = fullName => {
     copyToClipboardThunk(fullName);
   };
@@ -44,92 +43,57 @@ const NamesDisplay = ({
     synth.speak(utterance);
   };
 
+  const handleClear = () => {
+    clearedNamesAction();
+    toast('Names cleared', 'green');
+  };
+
   return (
-    <div className="section">
-      <div className="card">
-        <div className="card-content grey-text text-darken-3 center">
-          <span className="card-title">
-            <span className="text-style-bold">Names List</span>
-          </span>
+    <div className="col s12 m6 l6 xl6">
+      <div className="container">
+        <div className="section center">
+          <div className="card white">
+            <div className="card-content names-display grey-text text-darken-3">
+              <span className="card-title">
+                <span className="text-style-bold">Names List</span>
+              </span>
 
-          <ul className="names">
-            {firstNames.length ? (
-              <Fragment>
-                <div>
-                  <label>These aren't the names you're looking for?</label>
+              {names.length ? (
+                <>
+                  <div className="section">
+                    <div>
+                      <label>These aren't the names you're looking for?</label>
+                    </div>
+
+                    <div>
+                      <label>Try shortening your input names!</label>
+                    </div>
+                  </div>
+
+                  {names.map((name, idx) => <Name key={idx} index={idx} name={name} handleCopy={handleCopy} handleSpeak={handleSpeak} />)}
+
+                </>
+              ) : (
+                <div className="section">
+                  Generate names to populate this list.
                 </div>
+              )}
 
-                <div>
-                  <label>Try shortening your name inputs!</label>
+              <button
+                className="btn black black-1 waves-effect waves-light"
+                disabled={disabledClear}
+                onClick={handleClear}
+              >
+                Clear
+              </button>
+
+              {copyError ? (
+                <div className="text-color-red text-style-bold">
+                  Error! Failed to copy to clipboard.
                 </div>
-
-                <br />
-
-                {firstNames.map((curFirstName, idx) => {
-                  return (
-                    <li key={idx} className="name-container">
-                      <span>{`${idx + 1}. `}</span>
-
-                      <a
-                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${curFirstName}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {`${curFirstName} `}
-                      </a>
-
-                      <a
-                        href={`https://starwars.fandom.com/wiki/Special:Search?query=${lastNames[idx]}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {lastNames[idx]}
-                      </a>
-
-                      <img
-                        className="name-containee"
-                        src="https://img.icons8.com/material-rounded/16/000000/speaker.png"
-                        alt="Text To Speech Icon"
-                        title="Text To Speech"
-                        onClick={() =>
-                          handleSpeak(`${curFirstName}, ${lastNames[idx]}`)
-                        }
-                      />
-
-                      <img
-                        className="name-containee"
-                        src="https://img.icons8.com/material-rounded/16/000000/clipboard.png"
-                        alt="Copy To Clipboard Icon"
-                        title="Copy To Clipboard"
-                        onClick={() =>
-                          handleCopy(`${curFirstName} ${lastNames[idx]}`)
-                        }
-                      />
-                    </li>
-                  );
-                })}
-              </Fragment>
-            ) : (
-              <li>
-                <span>Generate names to populate this list.</span>
-              </li>
-            )}
-          </ul>
-
-          <button
-            className="btn black black-1 clear-button"
-            type="button"
-            disabled={disabledClear}
-            onClick={handleClear}
-          >
-            Clear
-          </button>
-
-          {copyError ? (
-            <div className="text-color-red text-style-bold">
-              Error! Failed to copy to clipboard.
+              ) : null}
             </div>
-          ) : null}
+          </div>
         </div>
       </div>
     </div>
@@ -138,24 +102,22 @@ const NamesDisplay = ({
 
 // Container
 const mapStateToProps = state => ({
-  firstNames: state.names.firstNames,
-  lastNames: state.names.lastNames,
+  names: state.names.names,
   disabledClear: state.names.disabledClear,
   copyError: state.layout.copyError,
 });
 
 const mapDispatchToProps = dispatch => ({
-  clearedAllNamesAction: () => dispatch(clearedAllNamesActionCreator()),
+  clearedNamesAction: () => dispatch(clearedNamesActionCreator()),
   copyToClipboardThunk: text => dispatch(copyToClipboardThunkCreator(text)),
 });
 
 // Prop Types
 NamesDisplay.propTypes = {
-  firstNames: PropTypes.array,
-  lastNames: PropTypes.array,
+  names: PropTypes.arrayOf(PropTypes.object),
   disabledClear: PropTypes.bool,
   copyError: PropTypes.bool,
-  clearedAllNamesAction: PropTypes.func,
+  clearedNamesAction: PropTypes.func,
   copyToClipboardThunk: PropTypes.func,
 };
 
