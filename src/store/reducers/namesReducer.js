@@ -1,6 +1,6 @@
 // Imports
 import { toggledPreloaderActionCreator } from '..';
-import { nameIsValid, randomNameByRandomRating, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
+import { isValidName, randomNameByRandomRating, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
 
 // Initial State
 const initialState = {
@@ -35,7 +35,7 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
     try {
       dispatch(toggledPreloaderActionCreator(true));
 
-      if (nameIsValid(firstName) && nameIsValid(lastName)) {
+      if (isValidName(firstName) && isValidName(lastName)) {
         const firestore = getFirestore();
 
         const firstNamesRawData = await firestore
