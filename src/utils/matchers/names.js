@@ -9,7 +9,7 @@ const randomElement = array => array[randomIndex(array.length)];
 
 const arrayOfEmptyArrays = length => [...Array(length)].map(_ => []);
 
-const nameIsValid = name => name[0].toLowerCase() !== name[0].toUpperCase();
+const isValidName = name => name[0].toLowerCase() !== name[0].toUpperCase();
 
 const nameScore = (sourceNameLength, targetNameRating) => (targetNameRating / sourceNameLength) * 100;
 
@@ -67,7 +67,7 @@ const matchingLetterIndeces = (sourceName, targetName) => {
   return matches;
 };
 
-const nameObject = (sourceName, targetName) => {
+const name = (sourceName, targetName) => {
   const matches = matchingLetterIndeces(sourceName.toLowerCase(), targetName.toLowerCase());
   const targetNameRating = Object.keys(matches).length;
 
@@ -91,7 +91,7 @@ const nameListsByRating = (sourceName, targetNames) => {
 };
 
 const randomNameByRandomRating = (sourceName, targetNames) =>
-  nameObject(sourceName, randomElement(randomElement(nameListsByRating(sourceName.toLowerCase(), targetNames))));
+  name(sourceName, randomElement(randomElement(nameListsByRating(sourceName.toLowerCase(), targetNames))));
 
 // Exports
-export { nameIsValid, randomNameByRandomRating, fullNameScore, randomInitial, randomElement };
+export { isValidName, randomNameByRandomRating, fullNameScore, randomInitial, randomElement };
