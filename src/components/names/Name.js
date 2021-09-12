@@ -44,8 +44,8 @@ const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
           <img
             className="name-containee"
             src={`/icons/${name.gender}.png`}
-            alt="Name Gender Icon"
-            title="Name Gender"
+            alt="Gender Icon"
+            title="Gender"
           />
 
           <img
