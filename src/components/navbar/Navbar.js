@@ -34,7 +34,7 @@ const Navbar = ({ isLoading }) => {
             className="left navbar-logo text-style-bold text-style-glow"
             to="/"
           >
-            {largeViewCheck ? 'Star Wars Name Generator' : 'SWNameGen'}
+            {largeViewCheck ? 'Star Wars Name Generator' : 'SWNG'}
           </NavLink>
 
           {largeViewCheck ? <Links /> : <LinksBurger />}
