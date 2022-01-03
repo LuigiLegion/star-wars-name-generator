@@ -1,11 +1,34 @@
 // Imports
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { signInThunkCreator } from '../../store';
 
 // Component
-const Links = () => {
+const SignedOutLinks = ({ signInThunk }) => {
   return (
     <ul className="right">
+      <li className="navbar-link">
+        <NavLink
+          className="text-style-glow"
+          to="/"
+        >
+          Hello, guest.
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          className="text-style-bold text-style-glow"
+          to="/"
+          onClick={signInThunk}
+        >
+          Sign In
+        </NavLink>
+      </li>
+
       <li>
         <NavLink
           className="text-style-bold text-style-glow"
@@ -60,5 +83,18 @@ const Links = () => {
   );
 };
 
+// Container
+const mapDispatchToProps = dispatch => ({
+  signInThunk: () => dispatch(signInThunkCreator()),
+});
+
+// Prop Types
+SignedOutLinks.propTypes = {
+  signInThunk: PropTypes.func,
+};
+
 // Exports
-export default Links;
+export default connect(
+  null,
+  mapDispatchToProps,
+)(SignedOutLinks);
