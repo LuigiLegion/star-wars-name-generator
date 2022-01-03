@@ -4,13 +4,19 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Links, LinksBurger, Preloader } from '..';
+import {
+  SignedInLinks,
+  SignedInLinksBurger,
+  SignedOutLinks,
+  SignedOutLinksBurger,
+  Preloader,
+} from '..';
 
 // Component
-const Navbar = ({ isLoading }) => {
+const Navbar = ({ uid, isLoading }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
-  const largeViewCheck = width > 1007;
+  const largeViewCheck = width > 1024;
 
   const updateNavbarDimensions = () => {
     setWidth(window.innerWidth);
@@ -26,6 +32,18 @@ const Navbar = ({ isLoading }) => {
     };
   }, [width]);
 
+  let links;
+
+  if (uid && largeViewCheck) {
+    links = <SignedInLinks />;
+  } else if (uid) {
+    links = <SignedInLinksBurger />;
+  } else if (largeViewCheck) {
+    links = <SignedOutLinks />;
+  } else {
+    links = <SignedOutLinksBurger />;
+  }
+
   return (
     <div className="navbar-fixed">
       <nav className="nav-wrapper black">
@@ -37,10 +55,10 @@ const Navbar = ({ isLoading }) => {
             {largeViewCheck ? 'Star Wars Name Generator' : 'SWNG'}
           </NavLink>
 
-          {largeViewCheck ? <Links /> : <LinksBurger />}
+          {links}
         </div>
 
-        <div>{isLoading ? <Preloader /> : null}</div>
+        <div>{isLoading && <Preloader />}</div>
       </nav>
     </div>
   );
@@ -48,11 +66,13 @@ const Navbar = ({ isLoading }) => {
 
 // Container
 const mapStateToProps = state => ({
+  uid: state.firebase.auth.uid,
   isLoading: state.layout.isLoading,
 });
 
 // Prop Types
 Navbar.propTypes = {
+  uid: PropTypes.string,
   isLoading: PropTypes.bool,
 };
 
