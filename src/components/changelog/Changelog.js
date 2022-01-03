@@ -53,6 +53,16 @@ const Changelog = () => {
 
                     <span> series premiere.</span>
                   </div>
+
+                  <div>
+                    <span className="text-style-bold">01/03/2021</span>
+
+                    <span> - Authentication and Favorites List features in celebration of </span>
+
+                    <span className="text-style-italic">The Book of Boba Fett</span>
+
+                    <span> series premiere.</span>
+                  </div>
                 </div>
 
                 <NavLink
