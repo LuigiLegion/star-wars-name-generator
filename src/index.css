@@ -126,13 +126,13 @@ textarea.materialize-textarea:focus:not([readonly]) {
   text-shadow: 0 0 2px #ffffff, 0 0 5px #ffffff;
 }
 
-.names-display {
+.names-list {
   padding: 20px;
   margin-top: 60px;
 }
 
-.names-display button,
-.names-display h5 {
+.names-list button,
+.names-list h5 {
   margin: 20px 0;
 }
 
@@ -155,6 +155,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   align-items: center;
   flex-wrap: wrap;
   padding-left: 0.25em;
+}
+
+.favorites-list-container {
+  padding-bottom: 4em;
 }
 
 .padding-bottom {
