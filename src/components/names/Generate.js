@@ -8,7 +8,11 @@ import PropTypes from 'prop-types';
 import { getNameThunkCreator, getRandomNameThunkCreator } from '../../store';
 
 // Component
-const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
+const Generate = ({
+  validInitial,
+  getNameThunk,
+  getRandomNameThunk,
+}) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -113,7 +117,7 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
                 Generate
               </button>
 
-              {!validInitial ? (
+              {!validInitial && (
                 <div className="section">
                   <div className="text-color-red text-style-bold text-align-center">
                     Names in a galaxy far far away usually start with a letter.
@@ -123,7 +127,7 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
                     Please check your input names.
                   </div>
                 </div>
-              ) : null}
+              )}
 
               <div className="divider" />
 
@@ -164,7 +168,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Prop Types
-NamesGenerate.propTypes = {
+Generate.propTypes = {
   validInitial: PropTypes.bool,
   getNameThunk: PropTypes.func,
   getRandomNameThunk: PropTypes.func,
@@ -173,5 +177,5 @@ NamesGenerate.propTypes = {
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(NamesGenerate);
+  mapDispatchToProps,
+)(Generate);
