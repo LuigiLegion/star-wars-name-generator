@@ -49,7 +49,12 @@ export const signInThunkCreator = () => {
       await signInWithGoogle();
 
       const {
-        currentUser: { uid, email, displayName, photoURL },
+        currentUser: {
+          uid,
+          email,
+          displayName,
+          photoURL,
+        },
       } = firebase.auth();
 
       const userDataRaw = await firestore
