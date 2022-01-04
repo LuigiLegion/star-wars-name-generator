@@ -38,29 +38,27 @@ export const clearedFavoritesActionCreator = () => ({
 });
 
 // Thunk Creators
-// export const getFavoritesThunkCreator = () => {
-export const getFavoritesThunkCreator = uid => {
-  // return async (dispatch, getState, { getFirebase, getFirestore }) => {
-  return async (dispatch, getState, { getFirestore }) => {
+export const getFavoritesThunkCreator = () => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
     try {
       dispatch(toggledPreloaderActionCreator(true));
 
-      // const firebase = getFirebase();
+      const firebase = getFirebase();
 
-      // const { currentUser } = firebase.auth();
+      const { currentUser: { uid } } = firebase.auth();
 
-      // if (currentUser) {
-      if (uid) {
-        const firestore = getFirestore();
+      const firestore = getFirestore();
 
-        const userDataRaw = await firestore
-          .collection('users')
-          // .doc(currentUser.uid)
-          .doc(uid)
-          .get();
-        const { favorites } = userDataRaw.data();
+      const userDataRaw = await firestore
+        .collection('users')
+        .doc(uid)
+        .get();
+      const userData = userDataRaw.data();
 
-        dispatch(gotFavoritesActionCreator(favorites));
+      if (!userData) {
+        dispatch(gotFavoritesActionCreator([]));
+      } else {
+        dispatch(gotFavoritesActionCreator(userData.favorites));
       }
     } catch (error) {
       console.error(error);
