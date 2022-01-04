@@ -1,16 +1,24 @@
 // Imports
 import { toggledPreloaderActionCreator } from '..';
-import { isValidName, randomNameByRandomRating, fullNameScore, randomInitial, randomElement, toast } from '../../utils';
+import {
+  isValidName,
+  randomNameByRandomRating,
+  fullNameScore,
+  randomInitial,
+  randomElement,
+  toast,
+} from '../../utils';
 
 // Initial State
 const initialState = {
   names: [],
-  disabledClear: true,
   validInitial: true,
 };
 
 // Action Types
 const GOT_NAME = 'GOT_NAME';
+const ADDED_TO_NAMES = 'ADDED_TO_NAMES';
+const REMOVED_FROM_NAMES = 'REMOVED_FROM_NAMES';
 const CLEARED_NAMES = 'CLEARED_NAMES';
 const TOGGLED_INITIAL_VALIDITY = 'TOGGLED_INITIAL_VALIDITY';
 
@@ -18,6 +26,16 @@ const TOGGLED_INITIAL_VALIDITY = 'TOGGLED_INITIAL_VALIDITY';
 export const gotNameActionCreator = name => ({
   type: GOT_NAME,
   name,
+});
+
+export const addedToNamesActionCreator = name => ({
+  type: ADDED_TO_NAMES,
+  name,
+});
+
+export const removedFromNamesActionCreator = index => ({
+  type: REMOVED_FROM_NAMES,
+  index,
 });
 
 export const clearedNamesActionCreator = () => ({
@@ -80,11 +98,9 @@ export const getNameThunkCreator = (firstName, lastName, gender) => {
 
         dispatch(toggledInitialValidityActionCreator(true));
         dispatch(gotNameActionCreator(name));
-
         toast('Name generated', 'green');
       } else {
         dispatch(toggledInitialValidityActionCreator(false));
-
         toast('Error! Failed to generate name', 'red');
       }
     } catch (error) {
@@ -131,7 +147,6 @@ export const getRandomNameThunkCreator = gender => {
       };
 
       dispatch(gotNameActionCreator(name));
-
       toast('Name generated', 'green');
     } catch (error) {
       console.error(error);
@@ -146,17 +161,22 @@ export const getRandomNameThunkCreator = gender => {
 const namesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GOT_NAME:
+    case ADDED_TO_NAMES:
       return {
         ...state,
         names: [...state.names, action.name],
-        disabledClear: false,
+      };
+
+    case REMOVED_FROM_NAMES:
+      return {
+        ...state,
+        names: state.names.filter((_, idx) => idx !== action.index),
       };
 
     case CLEARED_NAMES:
       return {
         ...state,
         names: [],
-        disabledClear: true,
       };
 
     case TOGGLED_INITIAL_VALIDITY:
