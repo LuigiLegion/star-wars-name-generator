@@ -9,40 +9,19 @@ import { Name } from '..';
 import {
   clearedNamesActionCreator,
   copyToClipboardThunkCreator,
+  addToFavoritesThunkCreator,
 } from '../../store';
 import { toast } from '../../utils';
 
-// Initializations
-const synth = window.speechSynthesis;
-
-let voices;
-const populateVoices = () => {
-  voices = synth.getVoices();
-};
-populateVoices();
-
-synth.onvoiceschanged = populateVoices;
-
 // Component
-const NamesDisplay = ({
+const Names = ({
+  uid,
   names,
-  disabledClear,
-  copyError,
   clearedNamesAction,
   copyToClipboardThunk,
+  addToFavoritesThunk,
+  handleReadAloud,
 }) => {
-  const handleCopy = fullName => {
-    copyToClipboardThunk(fullName);
-  };
-
-  const handleSpeak = fullName => {
-    const utterance = new SpeechSynthesisUtterance(fullName);
-    const [voice] = voices.filter(curVoice => curVoice.voiceURI === 'Samantha');
-    utterance.voice = voice;
-
-    synth.speak(utterance);
-  };
-
   const handleClear = () => {
     clearedNamesAction();
     toast('Names cleared', 'green');
@@ -53,26 +32,25 @@ const NamesDisplay = ({
       <div className="container">
         <div className="section center">
           <div className="card white">
-            <div className="card-content names-display grey-text text-darken-3">
+            <div className="card-content names-list grey-text text-darken-3">
               <span className="card-title">
                 <span className="text-style-bold">Names List</span>
               </span>
 
               {names.length ? (
-                <>
-                  <div className="section">
-                    <div>
-                      <label>These aren't the names you're looking for?</label>
-                    </div>
-
-                    <div>
-                      <label>Try shortening your input names!</label>
-                    </div>
-                  </div>
-
-                  {names.map((name, idx) => <Name key={idx} index={idx} name={name} handleCopy={handleCopy} handleSpeak={handleSpeak} />)}
-
-                </>
+                <div className="section">
+                  {names.map((name, idx) => (
+                    <Name
+                      key={idx}
+                      uid={uid}
+                      index={idx}
+                      name={name}
+                      handleReadAloud={handleReadAloud}
+                      copyToClipboardThunk={copyToClipboardThunk}
+                      addToFavoritesThunk={addToFavoritesThunk}
+                    />
+                  ))}
+                </div>
               ) : (
                 <div className="section">
                   Generate names to populate this list.
@@ -81,17 +59,11 @@ const NamesDisplay = ({
 
               <button
                 className="btn black black-1 waves-effect waves-light"
-                disabled={disabledClear}
+                disabled={!names.length}
                 onClick={handleClear}
               >
                 Clear
               </button>
-
-              {copyError ? (
-                <div className="text-color-red text-style-bold">
-                  Error! Failed to copy to clipboard.
-                </div>
-              ) : null}
             </div>
           </div>
         </div>
@@ -102,27 +74,28 @@ const NamesDisplay = ({
 
 // Container
 const mapStateToProps = state => ({
+  uid: state.firebase.auth.uid,
   names: state.names.names,
-  disabledClear: state.names.disabledClear,
-  copyError: state.layout.copyError,
 });
 
 const mapDispatchToProps = dispatch => ({
   clearedNamesAction: () => dispatch(clearedNamesActionCreator()),
   copyToClipboardThunk: text => dispatch(copyToClipboardThunkCreator(text)),
+  addToFavoritesThunk: (name, index) => dispatch(addToFavoritesThunkCreator(name, index)),
 });
 
 // Prop Types
-NamesDisplay.propTypes = {
+Names.propTypes = {
+  uid: PropTypes.string,
   names: PropTypes.arrayOf(PropTypes.object),
-  disabledClear: PropTypes.bool,
-  copyError: PropTypes.bool,
   clearedNamesAction: PropTypes.func,
   copyToClipboardThunk: PropTypes.func,
+  addToFavoritesThunk: PropTypes.func,
+  handleReadAloud: PropTypes.func,
 };
 
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(NamesDisplay);
+  mapDispatchToProps,
+)(Names);
