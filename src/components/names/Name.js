@@ -3,7 +3,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // Component
-const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
+const Name = ({
+  uid,
+  index,
+  name,
+  handleReadAloud,
+  copyToClipboardThunk,
+  addToFavoritesThunk,
+}) => {
   return (
     <div className="card white-space-pre">
       <div className="card-content name-card-container">
@@ -30,7 +37,8 @@ const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
           {name.scores ?
             <span
               className="name-containee"
-              title={`Originating Input Name: ${name.input.first} ${name.input.last}`}>
+              title={`Originating Input Name: ${name.input.first} ${name.input.last}\nMatch: ${name.scores.full.toFixed(2)}%`}
+            >
               {`(${name.scores.full.toFixed(2)}% match)`}
             </span>
             :
@@ -54,7 +62,7 @@ const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
             alt="Read Aloud Icon"
             title="Read Aloud"
             onClick={() =>
-              handleSpeak(`${name.first}, ${name.last}`)
+              handleReadAloud(`${name.first}, ${name.last}`)
             }
           />
 
@@ -64,9 +72,17 @@ const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
             alt="Copy To Clipboard Icon"
             title="Copy To Clipboard"
             onClick={() =>
-              handleCopy(`${name.first} ${name.last}`)
+              copyToClipboardThunk(`${name.first} ${name.last}`)
             }
           />
+
+          {uid && <img
+            className="name-containee cursor-pointer"
+            src="/icons/favorite.png"
+            alt="Add To Favorites Icon"
+            title="Add To Favorites"
+            onClick={() => addToFavoritesThunk(name, index)}
+          />}
         </div>
 
         <span id="activator" className="card-title activator">
@@ -150,12 +166,14 @@ const NameDisplay = ({index, name, handleCopy, handleSpeak}) => {
 };
 
 // Prop Types
-NameDisplay.propTypes = {
+Name.propTypes = {
+  uid: PropTypes.string,
   index: PropTypes.number,
   name: PropTypes.object,
-  handleCopy: PropTypes.func,
-  handleSpeak: PropTypes.func,
+  handleReadAloud: PropTypes.func,
+  copyToClipboardThunk: PropTypes.func,
+  addToFavoritesThunk: PropTypes.func,
 };
 
 // Exports
-export default NameDisplay;
+export default Name;
