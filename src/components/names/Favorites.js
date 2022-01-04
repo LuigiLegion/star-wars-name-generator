@@ -24,7 +24,7 @@ const Favorites = ({
 }) => {
   useEffect(() => {
     if (uid && !favorites.length) {
-      getFavoritesThunk(uid);
+      getFavoritesThunk();
     }
   }, [uid]);
 
@@ -87,7 +87,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getFavoritesThunk: uid => dispatch(getFavoritesThunkCreator(uid)),
+  getFavoritesThunk: () => dispatch(getFavoritesThunkCreator()),
   copyToClipboardThunk: text => dispatch(copyToClipboardThunkCreator(text)),
   removeFromFavoritesThunk: (name, index) => dispatch(removeFromFavoritesThunkCreator(name, index)),
 });
