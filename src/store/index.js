@@ -23,7 +23,13 @@ const rrfConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 export const db = firebase.firestore();
+
+export const auth = firebase.auth();
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
+export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 const middleware = composeWithDevTools(
   applyMiddleware(
@@ -44,5 +50,7 @@ export const rrfProps = {
 
 // Exports
 export default store;
-export * from './reducers/layoutReducer';
+export * from './reducers/authReducer';
 export * from './reducers/namesReducer';
+export * from './reducers/favoritesReducer';
+export * from './reducers/layoutReducer';
