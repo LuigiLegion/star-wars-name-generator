@@ -1,15 +1,15 @@
 // Imports
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
 
 // Component
-const Name = ({
-  uid,
+const Favorite = ({
   index,
-  name,
+  favorite,
   handleReadAloud,
   copyToClipboard,
-  addToFavoritesThunk,
+  removeFromFavoritesThunk,
 }) => {
   return (
     <div className="card white-space-pre">
@@ -18,40 +18,50 @@ const Name = ({
           <span className="text-style-bold">{`${index + 1}. `}</span>
 
           <a
-            href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.first}`}
+            href={`https://starwars.fandom.com/wiki/Special:Search?query=${favorite.first}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {name.first}
+            {favorite.first}
           </a>
 
           <a
             className="name-containee"
-            href={`https://starwars.fandom.com/wiki/Special:Search?query=${name.last}`}
+            href={`https://starwars.fandom.com/wiki/Special:Search?query=${favorite.last}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {name.last}
+            {favorite.last}
           </a>
 
-          {name.scores ?
-            <span
-              className="name-containee"
-              title={`Originating Input Name: ${name.input.first} ${name.input.last}\nMatch: ${name.scores.full.toFixed(2)}%`}
-            >
-              {`(${name.scores.full.toFixed(2)}% match)`}
-            </span>
+          {favorite.scores ?
+            <>
+              <span
+                className="name-containee"
+                title={`Originating Input Name: ${favorite.input.first} ${favorite.input.last}\nMatch: ${favorite.scores.full.toFixed(2)}%`}
+              >
+                {`(${favorite.scores.full.toFixed(2)}% match,`}
+              </span>
+
+              <span
+                className="name-containee"
+                title="Favorited At Timestamp"
+              >
+                {`favorited at ${moment(favorite.createdAt).format('h:mm A, MM/DD/YYYY')})`}
+              </span>
+            </>
             :
             <span
               className="name-containee"
-              title="Randomly generated names have no Name Match Score">
-                (N/A)
+              title="Favorited At Timestamp"
+            >
+              {`(Favorited at ${moment(favorite.createdAt).format('h:mm A, MM/DD/YYYY')})`}
             </span>
           }
 
           <img
             className="name-containee"
-            src={`/icons/${name.gender}.png`}
+            src={`/icons/${favorite.gender}.png`}
             alt="Gender Icon"
             title="Gender"
           />
@@ -62,7 +72,7 @@ const Name = ({
             alt="Read Aloud Icon"
             title="Read Aloud"
             onClick={() =>
-              handleReadAloud(`${name.first}, ${name.last}`)
+              handleReadAloud(`${favorite.first}, ${favorite.last}`)
             }
           />
 
@@ -72,17 +82,17 @@ const Name = ({
             alt="Copy To Clipboard Icon"
             title="Copy To Clipboard"
             onClick={() =>
-              copyToClipboard(`${name.first} ${name.last}`)
+              copyToClipboard(`${favorite.first} ${favorite.last}`)
             }
           />
 
-          {uid && <img
+          <img
             className="name-containee cursor-pointer"
-            src="/icons/favorite.png"
-            alt="Add To Favorites Icon"
-            title="Add To Favorites"
-            onClick={() => addToFavoritesThunk(name, index)}
-          />}
+            src="/icons/unfavorite.png"
+            alt="Remove From Favorites Icon"
+            title="Remove From Favorites"
+            onClick={() => removeFromFavoritesThunk(favorite, index)}
+          />
         </div>
 
         <span id="activator" className="card-title activator">
@@ -92,7 +102,7 @@ const Name = ({
 
       <div className="card-reveal">
         <div className="name-card-container text-align-start">
-          {name.scores ?
+          {favorite.scores ?
             <table className="striped centered responsive-table">
               <thead>
                 <tr>
@@ -106,33 +116,33 @@ const Name = ({
 
               <tbody>
                 <tr>
-                  <td>{name.input.first}</td>
+                  <td>{favorite.input.first}</td>
 
-                  <td>{name.first.split('').map((letter, idx) => (
+                  <td>{favorite.first.split('').map((letter, idx) => (
                     <span
                       key={idx}
-                      className={name.matches.first[idx] ? 'text-style-bold' : ''}
+                      className={favorite.matches.first[idx] ? 'text-style-bold' : ''}
                     >
                       {letter}
                     </span>))}
                   </td>
 
-                  <td>{`${name.scores.first.toFixed(2)}%`}</td>
+                  <td>{`${favorite.scores.first.toFixed(2)}%`}</td>
                 </tr>
 
                 <tr>
-                  <td>{name.input.last}</td>
+                  <td>{favorite.input.last}</td>
 
-                  <td>{name.last.split('').map((letter, idx) => (
+                  <td>{favorite.last.split('').map((letter, idx) => (
                     <span
                       key={idx}
-                      className={name.matches.last[idx] ? 'text-style-bold' : ''}
+                      className={favorite.matches.last[idx] ? 'text-style-bold' : ''}
                     >
                       {letter}
                     </span>))}
                   </td>
 
-                  <td>{`${name.scores.last.toFixed(2)}%`}</td>
+                  <td>{`${favorite.scores.last.toFixed(2)}%`}</td>
                 </tr>
 
                 <tr>
@@ -140,7 +150,7 @@ const Name = ({
 
                   <td>-</td>
 
-                  <td>{`${name.scores.full.toFixed(2)}%`}</td>
+                  <td>{`${favorite.scores.full.toFixed(2)}%`}</td>
                 </tr>
               </tbody>
             </table>
@@ -166,14 +176,13 @@ const Name = ({
 };
 
 // Prop Types
-Name.propTypes = {
-  uid: PropTypes.string,
+Favorite.propTypes = {
   index: PropTypes.number,
-  name: PropTypes.object,
+  favorite: PropTypes.object,
   handleReadAloud: PropTypes.func,
   copyToClipboard: PropTypes.func,
-  addToFavoritesThunk: PropTypes.func,
+  removeFromFavoritesThunk: PropTypes.func,
 };
 
 // Exports
-export default Name;
+export default Favorite;

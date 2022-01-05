@@ -1,10 +1,5 @@
-// Imports
-const firebase = require('firebase/app');
-require('firebase/auth');
-require('firebase/firestore');
-
 // Initializations
-const config = {
+const firebaseConfig = {
   apiKey: 'YOUR_API_KEY',
   authDomain: 'YOUR_DOMAIN_HERE',
   databaseURL: 'YOUR_DB_URL',
@@ -14,7 +9,5 @@ const config = {
   appId: 'YOUR_APP_ID',
 };
 
-firebase.initializeApp(config);
-
 // Exports
-module.exports = firebase;
+export default firebaseConfig;

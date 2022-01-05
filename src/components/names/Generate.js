@@ -8,7 +8,11 @@ import PropTypes from 'prop-types';
 import { getNameThunkCreator, getRandomNameThunkCreator } from '../../store';
 
 // Component
-const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
+const Generate = ({
+  validInitial,
+  getNameThunk,
+  getRandomNameThunk,
+}) => {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -102,18 +106,19 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
                   </option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-                  <option value="all">Other</option>
+                  <option value="all">Nonbinary</option>
                 </select>
               </div>
 
               <button
                 className="btn black lighten-1 waves-effect waves-light"
+                title="Generate"
                 disabled={!namesCheck}
               >
                 Generate
               </button>
 
-              {!validInitial ? (
+              {!validInitial && (
                 <div className="section">
                   <div className="text-color-red text-style-bold text-align-center">
                     Names in a galaxy far far away usually start with a letter.
@@ -123,7 +128,7 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
                     Please check your input names.
                   </div>
                 </div>
-              ) : null}
+              )}
 
               <div className="divider" />
 
@@ -139,6 +144,7 @@ const NamesGenerate = ({ validInitial, getNameThunk, getRandomNameThunk }) => {
 
               <button
                 className="btn black lighten-1 waves-effect waves-light"
+                title="I'm Feeling Lucky"
                 onClick={handleClick}
               >
                 I'm Feeling Lucky
@@ -164,7 +170,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 // Prop Types
-NamesGenerate.propTypes = {
+Generate.propTypes = {
   validInitial: PropTypes.bool,
   getNameThunk: PropTypes.func,
   getRandomNameThunk: PropTypes.func,
@@ -173,5 +179,5 @@ NamesGenerate.propTypes = {
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(NamesGenerate);
+  mapDispatchToProps,
+)(Generate);

@@ -2,11 +2,14 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
+import { signOutThunkCreator } from '../../store';
 import burgerStyles from '../../styles';
 
 // Component
-const LinksBurger = () => {
+const SignedInLinksBurger = ({ fullName, signOutThunk }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleStateChange = state => {
@@ -26,6 +29,16 @@ const LinksBurger = () => {
       styles={burgerStyles}
     >
       <div className="outline-none">
+        <div>
+          <NavLink
+            className="text-style-glow"
+            to="/"
+            onClick={closeMenu}
+          >
+            {fullName ? `Welcome back, ${fullName}.` : 'Hello, guest.'}
+          </NavLink>
+        </div>
+
         <div>
           <NavLink
             className="text-style-bold text-style-glow"
@@ -81,10 +94,41 @@ const LinksBurger = () => {
             Contact
           </a>
         </div>
+
+        <div>
+          <NavLink
+            className="text-style-bold text-style-glow"
+            to="/"
+            onClick={() => {
+              closeMenu();
+              signOutThunk();
+            }}
+          >
+            Sign Out
+          </NavLink>
+        </div>
       </div>
     </Menu>
   );
 };
 
+// Container
+const mapStateToProps = state => ({
+  fullName: state.firebase.profile.fullName,
+});
+
+const mapDispatchToProps = dispatch => ({
+  signOutThunk: () => dispatch(signOutThunkCreator()),
+});
+
+// Prop Types
+SignedInLinksBurger.propTypes = {
+  fullName: PropTypes.string,
+  signOutThunk: PropTypes.func,
+};
+
 // Exports
-export default LinksBurger;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SignedInLinksBurger);
