@@ -8,7 +8,7 @@ const Favorite = ({
   index,
   favorite,
   handleReadAloud,
-  copyToClipboardThunk,
+  copyToClipboard,
   removeFromFavoritesThunk,
 }) => {
   return (
@@ -82,7 +82,7 @@ const Favorite = ({
             alt="Copy To Clipboard Icon"
             title="Copy To Clipboard"
             onClick={() =>
-              copyToClipboardThunk(`${favorite.first} ${favorite.last}`)
+              copyToClipboard(`${favorite.first} ${favorite.last}`)
             }
           />
 
@@ -180,7 +180,7 @@ Favorite.propTypes = {
   index: PropTypes.number,
   favorite: PropTypes.object,
   handleReadAloud: PropTypes.func,
-  copyToClipboardThunk: PropTypes.func,
+  copyToClipboard: PropTypes.func,
   removeFromFavoritesThunk: PropTypes.func,
 };
 

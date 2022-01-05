@@ -8,7 +8,7 @@ const Name = ({
   index,
   name,
   handleReadAloud,
-  copyToClipboardThunk,
+  copyToClipboard,
   addToFavoritesThunk,
 }) => {
   return (
@@ -72,7 +72,7 @@ const Name = ({
             alt="Copy To Clipboard Icon"
             title="Copy To Clipboard"
             onClick={() =>
-              copyToClipboardThunk(`${name.first} ${name.last}`)
+              copyToClipboard(`${name.first} ${name.last}`)
             }
           />
 
@@ -171,7 +171,7 @@ Name.propTypes = {
   index: PropTypes.number,
   name: PropTypes.object,
   handleReadAloud: PropTypes.func,
-  copyToClipboardThunk: PropTypes.func,
+  copyToClipboard: PropTypes.func,
   addToFavoritesThunk: PropTypes.func,
 };
 

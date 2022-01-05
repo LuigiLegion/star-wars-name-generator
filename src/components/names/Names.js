@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import { Name } from '..';
 import {
   clearedNamesActionCreator,
-  copyToClipboardThunkCreator,
   addToFavoritesThunkCreator,
 } from '../../store';
 import { toast } from '../../utils';
@@ -18,9 +17,9 @@ const Names = ({
   uid,
   names,
   clearedNamesAction,
-  copyToClipboardThunk,
   addToFavoritesThunk,
   handleReadAloud,
+  copyToClipboard,
 }) => {
   const handleClear = () => {
     clearedNamesAction();
@@ -46,7 +45,7 @@ const Names = ({
                       index={idx}
                       name={name}
                       handleReadAloud={handleReadAloud}
-                      copyToClipboardThunk={copyToClipboardThunk}
+                      copyToClipboard={copyToClipboard}
                       addToFavoritesThunk={addToFavoritesThunk}
                     />
                   ))}
@@ -81,7 +80,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   clearedNamesAction: () => dispatch(clearedNamesActionCreator()),
-  copyToClipboardThunk: text => dispatch(copyToClipboardThunkCreator(text)),
   addToFavoritesThunk: (name, index) => dispatch(addToFavoritesThunkCreator(name, index)),
 });
 
@@ -90,9 +88,9 @@ Names.propTypes = {
   uid: PropTypes.string,
   names: PropTypes.arrayOf(PropTypes.object),
   clearedNamesAction: PropTypes.func,
-  copyToClipboardThunk: PropTypes.func,
   addToFavoritesThunk: PropTypes.func,
   handleReadAloud: PropTypes.func,
+  copyToClipboard: PropTypes.func,
 };
 
 // Exports
