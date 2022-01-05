@@ -9,6 +9,7 @@ import {
   Disclaimer,
   MadeBy,
 } from '..';
+import { copyToClipboard } from '../../utils';
 
 // Initializations
 const synth = window.speechSynthesis;
@@ -34,11 +35,17 @@ const Dashboard = () => {
       <div className="row">
         <Generate />
 
-        <Names handleReadAloud={handleReadAloud} />
+        <Names
+          handleReadAloud={handleReadAloud}
+          copyToClipboard={copyToClipboard}
+        />
       </div>
 
       <div className="row favorites-list-container">
-        <Favorites handleReadAloud={handleReadAloud} />
+        <Favorites
+          handleReadAloud={handleReadAloud}
+          copyToClipboard={copyToClipboard}
+        />
       </div>
 
       <div className="container">
