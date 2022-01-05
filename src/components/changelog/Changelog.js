@@ -55,9 +55,9 @@ const Changelog = () => {
                   </div>
 
                   <div>
-                    <span className="text-style-bold">01/03/2021</span>
+                    <span className="text-style-bold">01/04/2021</span>
 
-                    <span> - Authentication and Favorites List features in celebration of </span>
+                    <span> - Authentication, Favorites List, and Download To CSV features in celebration of </span>
 
                     <span className="text-style-italic">The Book of Boba Fett</span>
 
