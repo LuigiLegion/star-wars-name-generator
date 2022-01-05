@@ -8,19 +8,22 @@ import PropTypes from 'prop-types';
 import { Favorite } from '..';
 import {
   getFavoritesThunkCreator,
-  copyToClipboardThunkCreator,
   removeFromFavoritesThunkCreator,
 } from '../../store';
-// import { toast } from '../../utils';
+import {
+  formatFavorites,
+  jsonToCsv,
+  downloadDataFile,
+} from '../../utils';
 
 // Component
 const Favorites = ({
   uid,
   favorites,
   getFavoritesThunk,
-  copyToClipboardThunk,
   removeFromFavoritesThunk,
   handleReadAloud,
+  copyToClipboard,
 }) => {
   useEffect(() => {
     if (uid && !favorites.length) {
@@ -28,10 +31,14 @@ const Favorites = ({
     }
   }, [uid]);
 
-  // const handleDownloadToCsv = () => {
-  //   console.log({ favorites });
-  //   toast('CSV file downloaded', 'green');
-  // };
+  const handleDownload = () => {
+    const json = formatFavorites(favorites);
+    const fields = ['id', 'first', 'last', 'gender', 'input.first', 'input.last', 'scores.first', 'scores.last', 'scores.full', 'matches.first', 'matches.last'];
+    const paths = ['input', 'input.first', 'input.last', 'scores', 'scores.first', 'scores.last', 'scores.full', 'matches', 'matches.first', 'matches.last'];
+    const csv = jsonToCsv(json, fields, paths);
+
+    downloadDataFile(csv, 'text/csv', 'swng_favorites_list', 'csv');
+  }
 
   return (
     <div className="col s12 m12 l12 xl12">
@@ -51,7 +58,7 @@ const Favorites = ({
                       index={idx}
                       favorite={favorite}
                       handleReadAloud={handleReadAloud}
-                      copyToClipboardThunk={copyToClipboardThunk}
+                      copyToClipboard={copyToClipboard}
                       removeFromFavoritesThunk={removeFromFavoritesThunk}
                     />))}
                 </div>
@@ -65,13 +72,14 @@ const Favorites = ({
                 </div>
               )}
 
-              {/* <button
+              <button
                 className="btn black black-1 waves-effect waves-light"
+                title="Download To CSV"
                 disabled={!uid || !favorites.length}
-                onClick={handleDownloadToCsv}
+                onClick={handleDownload}
               >
                 Download To CSV
-              </button> */}
+              </button>
             </div>
           </div>
         </div>
@@ -88,7 +96,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getFavoritesThunk: () => dispatch(getFavoritesThunkCreator()),
-  copyToClipboardThunk: text => dispatch(copyToClipboardThunkCreator(text)),
   removeFromFavoritesThunk: (name, index) => dispatch(removeFromFavoritesThunkCreator(name, index)),
 });
 
@@ -97,9 +104,9 @@ Favorites.propTypes = {
   uid: PropTypes.string,
   favorites: PropTypes.arrayOf(PropTypes.object),
   getFavoritesThunk: PropTypes.func,
-  copyToClipboardThunk: PropTypes.func,
   removeFromFavoritesThunk: PropTypes.func,
   handleReadAloud: PropTypes.func,
+  copyToClipboard: PropTypes.func,
 };
 
 // Exports
