@@ -94,4 +94,10 @@ const randomNameByRandomRating = (sourceName, targetNames) =>
   name(sourceName, randomElement(randomElement(nameListsByRating(sourceName.toLowerCase(), targetNames))));
 
 // Exports
-export { isValidName, randomNameByRandomRating, fullNameScore, randomInitial, randomElement };
+export {
+  isValidName,
+  randomNameByRandomRating,
+  fullNameScore,
+  randomInitial,
+  randomElement,
+};
