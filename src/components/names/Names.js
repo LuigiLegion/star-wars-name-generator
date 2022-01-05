@@ -59,6 +59,7 @@ const Names = ({
 
               <button
                 className="btn black black-1 waves-effect waves-light"
+                title="Clear"
                 disabled={!names.length}
                 onClick={handleClear}
               >

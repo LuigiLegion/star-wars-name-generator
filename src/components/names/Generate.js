@@ -106,12 +106,13 @@ const Generate = ({
                   </option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
-                  <option value="all">Other</option>
+                  <option value="all">Nonbinary</option>
                 </select>
               </div>
 
               <button
                 className="btn black lighten-1 waves-effect waves-light"
+                title="Generate"
                 disabled={!namesCheck}
               >
                 Generate
@@ -143,6 +144,7 @@ const Generate = ({
 
               <button
                 className="btn black lighten-1 waves-effect waves-light"
+                title="I'm Feeling Lucky"
                 onClick={handleClick}
               >
                 I'm Feeling Lucky
