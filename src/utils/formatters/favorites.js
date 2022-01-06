@@ -1,7 +1,7 @@
 // Initializations
 const formatMatches = matches => JSON.stringify(Object.keys(matches).map(match => parseInt(match, 10) + 1));
 
-const formatFavorites = favorites => favorites.map((favorite, idx) => ({
+const formattedFavorites = favorites => favorites.map((favorite, idx) => ({
   id: idx + 1,
   first: favorite.first,
   last: favorite.last,
@@ -22,4 +22,4 @@ const formatFavorites = favorites => favorites.map((favorite, idx) => ({
 }));
 
 // Exports
-export default formatFavorites;
+export default formattedFavorites;

@@ -1,5 +1,5 @@
 // Exports
-export { default as formatFavorites } from './formatters/favorites';
+export { default as formattedFavorites } from './formatters/favorites';
 export { isValidName, randomNameByRandomRating, fullNameScore, randomInitial, randomElement } from './matchers/names';
 export { default as toast } from './materialize/toast';
 export { default as jsonToCsv } from './parsers/jsonToCsv';

@@ -11,7 +11,7 @@ import {
   removeFromFavoritesThunkCreator,
 } from '../../store';
 import {
-  formatFavorites,
+  formattedFavorites,
   jsonToCsv,
   downloadDataFile,
 } from '../../utils';
@@ -32,7 +32,7 @@ const Favorites = ({
   }, [uid]);
 
   const handleDownload = () => {
-    const json = formatFavorites(favorites);
+    const json = formattedFavorites(favorites);
     const fields = ['id', 'first', 'last', 'gender', 'input.first', 'input.last', 'scores.first', 'scores.last', 'scores.full', 'matches.first', 'matches.last'];
     const paths = ['input', 'input.first', 'input.last', 'scores', 'scores.first', 'scores.last', 'scores.full', 'matches', 'matches.first', 'matches.last'];
     const csv = jsonToCsv(json, fields, paths);
