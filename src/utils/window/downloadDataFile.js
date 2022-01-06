@@ -8,7 +8,7 @@ const downloadDataFile = (dataStr, type, fileNamePrefix, fileNameExtension) => {
   try {
     const blob = new Blob([dataStr], { type });
     const blobUrl = window.URL.createObjectURL(blob);
-    const fileName = `${fileNamePrefix}_${moment().format('MM_DD_YYYY_hh_mm_ss')}.${fileNameExtension}`;
+    const fileName = `${fileNamePrefix}_${moment().format('MM_DD_YYYY_HH_mm_ss')}.${fileNameExtension}`;
 
     const a = document.createElement('a');
     a.setAttribute('hidden', '');
