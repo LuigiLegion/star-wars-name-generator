@@ -1,5 +1,5 @@
 // Initializations
-const formatMatches = matches => JSON.stringify(Object.keys(matches).map(match => parseInt(match, 10) + 1));
+const formattedMatches = matches => JSON.stringify(Object.keys(matches).map(match => parseInt(match, 10) + 1));
 
 const formattedFavorites = favorites => favorites.map((favorite, idx) => ({
   id: idx + 1,
@@ -16,8 +16,8 @@ const formattedFavorites = favorites => favorites.map((favorite, idx) => ({
     full: favorite.scores.full.toFixed(2),
   } : null,
   matches: favorite.matches ? {
-    first: formatMatches(favorite.matches.first),
-    last: formatMatches(favorite.matches.last),
+    first: formattedMatches(favorite.matches.first),
+    last: formattedMatches(favorite.matches.last),
   } : null,
 }));
 
