@@ -158,7 +158,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .favorites-list-container {
-  padding-bottom: 4em;
+  padding-bottom: 3em;
 }
 
 .padding-bottom {
@@ -167,6 +167,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .padding-right {
   padding-right: 2em;
+}
+
+.margin-bottom-none {
+  margin: 0;
 }
 
 #activator,
