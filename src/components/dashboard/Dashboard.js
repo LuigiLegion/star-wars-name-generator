@@ -32,7 +32,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="row">
+      <div className="row margin-bottom-none">
         <Generate />
 
         <Names

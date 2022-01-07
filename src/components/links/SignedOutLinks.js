@@ -32,6 +32,16 @@ const SignedOutLinks = ({ signInThunk }) => {
       <li>
         <NavLink
           className="text-style-bold text-style-glow"
+          to="/"
+          onClick={signInThunk}
+        >
+          Sign Up
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          className="text-style-bold text-style-glow"
           to="/about"
         >
           About
@@ -71,7 +81,7 @@ const SignedOutLinks = ({ signInThunk }) => {
 
       <li>
         <a
-          className="text-style-bold text-style-glow"
+          className="text-style-bold text-style-glow padding-right"
           href="https://taluigi.netlify.com"
           target="_blank"
           rel="noopener noreferrer"

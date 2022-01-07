@@ -72,7 +72,7 @@ const SignedInLinks = ({ fullName, signOutThunk }) => {
 
       <li className="navbar-link">
         <NavLink
-          className="text-style-bold text-style-glow"
+          className="text-style-bold text-style-glow padding-right"
           to="/"
           onClick={signOutThunk}
         >
