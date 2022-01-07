@@ -1,6 +1,5 @@
 // Imports
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,6 +8,7 @@ import {
   SignedInLinksBurger,
   SignedOutLinks,
   SignedOutLinksBurger,
+  Logo,
   Preloader,
 } from '..';
 
@@ -48,12 +48,7 @@ const Navbar = ({ uid, isLoading }) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper black">
         <div>
-          <NavLink
-            className="left navbar-logo text-style-bold text-style-glow"
-            to="/"
-          >
-            {largeViewCheck ? 'Star Wars Name Generator' : 'SWNG'}
-          </NavLink>
+          <Logo largeViewCheck={largeViewCheck} />
 
           {links}
         </div>
