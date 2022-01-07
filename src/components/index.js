@@ -15,5 +15,6 @@ export { default as Favorites } from './names/Favorites';
 export { default as Generate } from './names/Generate';
 export { default as Name } from './names/Name';
 export { default as Names } from './names/Names';
+export { default as Logo } from './navbar/Logo';
 export { default as Navbar } from './navbar/Navbar';
 export { default as Preloader } from './navbar/Preloader';
