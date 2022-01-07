@@ -81,7 +81,7 @@ const SignedOutLinks = ({ signInThunk }) => {
 
       <li>
         <a
-          className="text-style-bold text-style-glow"
+          className="text-style-bold text-style-glow padding-right"
           href="https://taluigi.netlify.com"
           target="_blank"
           rel="noopener noreferrer"
