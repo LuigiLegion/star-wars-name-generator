@@ -49,6 +49,16 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           </NavLink>
         </li>
 
+        <li>
+          <NavLink
+            className="text-style-bold text-style-glow"
+            to="/"
+            onClick={signInThunk}
+          >
+            Sign Up
+          </NavLink>
+        </li>
+
         <div>
           <NavLink
             className="text-style-bold text-style-glow"

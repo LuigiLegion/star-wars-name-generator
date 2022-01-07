@@ -32,6 +32,16 @@ const SignedOutLinks = ({ signInThunk }) => {
       <li>
         <NavLink
           className="text-style-bold text-style-glow"
+          to="/"
+          onClick={signInThunk}
+        >
+          Sign Up
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          className="text-style-bold text-style-glow"
           to="/about"
         >
           About
