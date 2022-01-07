@@ -165,6 +165,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   padding-bottom: 2em;
 }
 
+.padding-right {
+  padding-right: 2em;
+}
+
 #activator,
 #revealer {
   margin: 0;
