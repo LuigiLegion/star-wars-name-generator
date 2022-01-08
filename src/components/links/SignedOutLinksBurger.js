@@ -39,7 +39,7 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           </NavLink>
         </div>
 
-        <li>
+        <div>
           <NavLink
             className="text-style-bold text-style-glow"
             to="/"
@@ -47,9 +47,9 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           >
             Sign In
           </NavLink>
-        </li>
+        </div>
 
-        <li>
+        <div>
           <NavLink
             className="text-style-bold text-style-glow"
             to="/"
@@ -57,7 +57,7 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           >
             Sign Up
           </NavLink>
-        </li>
+        </div>
 
         <div>
           <NavLink
