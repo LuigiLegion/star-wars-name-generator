@@ -10,7 +10,7 @@ import { signInThunkCreator } from '../../store';
 const SignedOutLinks = ({ signInThunk }) => {
   return (
     <ul className="right">
-      <li className="navbar-link">
+      <li>
         <NavLink
           className="text-style-glow"
           to="/"

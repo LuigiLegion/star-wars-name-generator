@@ -10,7 +10,7 @@ import { signOutThunkCreator } from '../../store';
 const SignedInLinks = ({ fullName, signOutThunk }) => {
   return (
     <ul className="right">
-      <li className="navbar-link">
+      <li>
         <NavLink
           className="text-style-glow"
           to="/"
@@ -70,7 +70,7 @@ const SignedInLinks = ({ fullName, signOutThunk }) => {
         </a>
       </li>
 
-      <li className="navbar-link">
+      <li>
         <NavLink
           className="text-style-bold text-style-glow padding-right"
           to="/"
