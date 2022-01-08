@@ -6,7 +6,10 @@ import { toast } from '..';
 // Initializations
 const downloadElement = (blobUrl, fileName) => {
   const a = document.createElement('a');
+
   a.setAttribute('href', blobUrl);
+  a.setAttribute('target', '_blank');
+  a.setAttribute('rel', 'noopener noreferrer');
   a.setAttribute('download', fileName);
   a.setAttribute('hidden', '');
 
