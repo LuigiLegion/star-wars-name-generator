@@ -31,13 +31,13 @@ const Changelog = () => {
                   <div className="section">
                     <span className="text-style-bold">05/04/2020</span>
 
-                    <span> - Name Read Aloud, Name Copy To Clipboard, and Name Origin Search features in celebration of Star Wars Day.</span>
+                    <span> - Name Read Aloud, Name Copy To Clipboard, and Name Origin Search features release in celebration of Star Wars Day.</span>
                   </div>
 
                   <div>
                     <span className="text-style-bold">08/11/2021</span>
 
-                    <span> - Random Name Generation, Name Match Score, Originating Input Name Display, and Name Gender Display features in celebration of </span>
+                    <span> - Random Name Generation, Name Match Score, Originating Input Name Display, and Name Gender Display features release in celebration of </span>
 
                     <span className="text-style-italic">The Bad Batch</span>
 
@@ -47,7 +47,7 @@ const Changelog = () => {
                   <div className="section">
                     <span className="text-style-bold">09/06/2021</span>
 
-                    <span> - Matching Letters Highlighting feature in celebration of </span>
+                    <span> - Matching Letters Highlighting feature release in celebration of </span>
 
                     <span className="text-style-italic">Visions</span>
 
@@ -55,9 +55,9 @@ const Changelog = () => {
                   </div>
 
                   <div>
-                    <span className="text-style-bold">01/04/2021</span>
+                    <span className="text-style-bold">01/04/2022</span>
 
-                    <span> - Authentication, Favorites List, and Download To CSV features in celebration of </span>
+                    <span> - Authentication, Favorites List, and Download To CSV features release in celebration of </span>
 
                     <span className="text-style-italic">The Book of Boba Fett</span>
 
