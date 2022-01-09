@@ -29,13 +29,15 @@ const SignedInLinksBurger = ({ fullName, signOutThunk }) => {
       styles={burgerStyles}
     >
       <div className="outline-none">
-        <div>
+        <div className="welcome-back-container">
           <NavLink
             className="text-style-glow"
             to="/"
             onClick={closeMenu}
           >
-            {fullName ? `Welcome back, ${fullName}.` : 'Hello, guest.'}
+            <div className="white-space-pre line-height-reset">
+              {fullName ? `Welcome back,\n${fullName}.` : 'Hello, guest.'}
+            </div>
           </NavLink>
         </div>
 
