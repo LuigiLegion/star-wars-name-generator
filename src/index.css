@@ -68,6 +68,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
   white-space: pre;
 }
 
+.line-height-reset {
+  line-height: 1.25em;
+}
+
 .text-align-center {
   text-align: center;
 }
@@ -159,6 +163,15 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 .favorites-list-container {
   padding-bottom: 3em;
+}
+
+.hello-container {
+  padding-top: 1.5em;
+}
+
+.welcome-back-container {
+  padding-top: 2.5em;
+  padding-bottom: 1.25em;
 }
 
 .padding-bottom {
