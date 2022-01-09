@@ -29,7 +29,7 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
       styles={burgerStyles}
     >
       <div className="outline-none">
-        <div>
+        <div className="hello-container">
           <NavLink
             className="text-style-glow"
             to="/"
