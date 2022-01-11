@@ -1,10 +1,12 @@
 // Imports
-const { Parser, transforms: { unwind } } = require('json2csv');
+import { Parser, transforms } from 'json2csv';
 
 // Initializations
 const jsonToCsv = (json, fields, paths) => {
-  const transforms = [unwind({ paths })];
-  const parser = new Parser({ fields, transforms });
+    const parser = new Parser({
+    fields,
+    transforms: [transforms.unwind({ paths })],
+  });
 
   return parser.parse(json);
 };
