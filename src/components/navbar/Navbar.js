@@ -16,7 +16,7 @@ import {
 const Navbar = ({ uid, isLoading }) => {
   const [width, setWidth] = useState(window.innerWidth);
 
-  const largeViewCheck = width > 1024;
+  const isLargeView = width > 1024;
 
   const updateNavbarDimensions = () => {
     setWidth(window.innerWidth);
@@ -34,11 +34,11 @@ const Navbar = ({ uid, isLoading }) => {
 
   let links;
 
-  if (uid && largeViewCheck) {
+  if (uid && isLargeView) {
     links = <SignedInLinks />;
   } else if (uid) {
     links = <SignedInLinksBurger />;
-  } else if (largeViewCheck) {
+  } else if (isLargeView) {
     links = <SignedOutLinks />;
   } else {
     links = <SignedOutLinksBurger />;
@@ -48,7 +48,7 @@ const Navbar = ({ uid, isLoading }) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper black">
         <div>
-          <Logo largeViewCheck={largeViewCheck} />
+          <Logo isLargeView={isLargeView} />
 
           {links}
         </div>
