@@ -22,9 +22,9 @@ const clickDownloadElement = a => {
   document.body.removeChild(a);
 };
 
-const downloadDataFile = (dataStr, dataType, fileNamePrefix, fileNameExtension) => {
+const downloadDataFile = (dataStr, type, fileNamePrefix, fileNameExtension) => {
   try {
-    const blob = new Blob([dataStr], { type: dataType });
+    const blob = new Blob([dataStr], { type });
     const blobUrl = window.URL.createObjectURL(blob);
     const fileName = `${fileNamePrefix}_${moment().format('MM_DD_YYYY_HH_mm_ss')}.${fileNameExtension}`;
 
