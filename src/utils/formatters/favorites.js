@@ -7,8 +7,8 @@ const formattedFavorites = favorites => favorites.map((favorite, idx) => ({
   last: favorite.last,
   gender: favorite.gender === 'all' ? 'nonbinary' : favorite.gender,
   input: favorite.input ? {
-    first: favorite.first,
-    last: favorite.last,
+    first: favorite.input.first,
+    last: favorite.input.last,
   } : null,
   scores: favorite.scores ? {
     first: favorite.scores.first.toFixed(2),
@@ -22,4 +22,4 @@ const formattedFavorites = favorites => favorites.map((favorite, idx) => ({
 }));
 
 // Exports
-export default formattedFavorites;
+module.exports = formattedFavorites;

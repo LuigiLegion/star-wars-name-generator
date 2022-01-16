@@ -12,7 +12,7 @@ import {
 } from '../../store';
 import {
   formattedFavorites,
-  jsonToCsv,
+  jsonArrayToCsvString,
   downloadDataFile,
 } from '../../utils';
 
@@ -32,12 +32,12 @@ const Favorites = ({
   }, [uid]);
 
   const handleDownload = () => {
-    const json = formattedFavorites(favorites);
+    const jsonArray = formattedFavorites(favorites);
     const fields = ['id', 'first', 'last', 'gender', 'input.first', 'input.last', 'scores.first', 'scores.last', 'scores.full', 'matches.first', 'matches.last'];
     const paths = ['input', 'input.first', 'input.last', 'scores', 'scores.first', 'scores.last', 'scores.full', 'matches', 'matches.first', 'matches.last'];
-    const csv = jsonToCsv(json, fields, paths);
+    const csvString = jsonArrayToCsvString(jsonArray, fields, paths);
 
-    downloadDataFile(csv, 'text/csv', 'swng_favorites_list', 'csv');
+    downloadDataFile(csvString, 'text/csv', 'swng_favorites_list', 'csv');
   }
 
   return (
