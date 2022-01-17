@@ -20,6 +20,11 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
     setMenuOpen(false);
   };
 
+  const handleSignInOrUp = () => {
+    closeMenu();
+    signInThunk();
+  }
+
   return (
     <Menu
       isOpen={menuOpen}
@@ -43,10 +48,7 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           <NavLink
             className="text-style-bold text-style-glow"
             to="/"
-            onClick={() => {
-              closeMenu();
-              signInThunk();
-            }}
+            onClick={handleSignInOrUp}
           >
             Sign In
           </NavLink>
@@ -56,10 +58,7 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           <NavLink
             className="text-style-bold text-style-glow"
             to="/"
-            onClick={() => {
-              closeMenu();
-              signInThunk();
-            }}
+            onClick={handleSignInOrUp}
           >
             Sign Up
           </NavLink>
