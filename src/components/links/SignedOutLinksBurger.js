@@ -43,7 +43,10 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           <NavLink
             className="text-style-bold text-style-glow"
             to="/"
-            onClick={signInThunk}
+            onClick={() => {
+              closeMenu();
+              signInThunk();
+            }}
           >
             Sign In
           </NavLink>
@@ -53,7 +56,10 @@ const SignedOutLinksBurger = ({ signInThunk }) => {
           <NavLink
             className="text-style-bold text-style-glow"
             to="/"
-            onClick={signInThunk}
+            onClick={() => {
+              closeMenu();
+              signInThunk();
+            }}
           >
             Sign Up
           </NavLink>
@@ -132,5 +138,5 @@ SignedOutLinksBurger.propTypes = {
 // Exports
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SignedOutLinksBurger);
