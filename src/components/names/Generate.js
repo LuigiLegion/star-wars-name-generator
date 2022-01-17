@@ -11,7 +11,7 @@ import { getNameThunkCreator, getRandomNameThunkCreator } from '../../store';
 const Generate = ({
   validInitial,
   getNameThunk,
-  getRandomNameThunk,
+  getRandomNameThunk
 }) => {
   const [state, setState] = useState({
     firstName: '',
@@ -179,5 +179,5 @@ Generate.propTypes = {
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Generate);

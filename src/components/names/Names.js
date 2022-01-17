@@ -19,7 +19,7 @@ const Names = ({
   clearedNamesAction,
   addToFavoritesThunk,
   handleReadAloud,
-  copyToClipboard,
+  copyToClipboard
 }) => {
   const handleClear = () => {
     clearedNamesAction();
@@ -96,5 +96,5 @@ Names.propTypes = {
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Names);

@@ -106,5 +106,5 @@ SignedOutLinks.propTypes = {
 // Exports
 export default connect(
   null,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SignedOutLinks);

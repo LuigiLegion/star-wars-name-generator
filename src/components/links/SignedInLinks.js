@@ -101,5 +101,5 @@ SignedInLinks.propTypes = {
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(SignedInLinks);

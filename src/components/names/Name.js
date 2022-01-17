@@ -9,7 +9,7 @@ const Name = ({
   name,
   handleReadAloud,
   copyToClipboard,
-  addToFavoritesThunk,
+  addToFavoritesThunk
 }) => {
   return (
     <div className="card white-space-pre">

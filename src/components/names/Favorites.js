@@ -23,7 +23,7 @@ const Favorites = ({
   getFavoritesThunk,
   removeFromFavoritesThunk,
   handleReadAloud,
-  copyToClipboard,
+  copyToClipboard
 }) => {
   useEffect(() => {
     if (uid && !favorites.length) {
@@ -112,5 +112,5 @@ Favorites.propTypes = {
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Favorites);

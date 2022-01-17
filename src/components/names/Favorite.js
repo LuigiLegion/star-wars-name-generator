@@ -9,7 +9,7 @@ const Favorite = ({
   favorite,
   handleReadAloud,
   copyToClipboard,
-  removeFromFavoritesThunk,
+  removeFromFavoritesThunk
 }) => {
   return (
     <div className="card white-space-pre">
