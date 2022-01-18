@@ -4,10 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { signOutThunkCreator } from '../../store';
+import { signInThunkCreator, signOutThunkCreator } from '../../store';
 
 // Component
-const SignedInLinks = ({ fullName, signOutThunk }) => {
+const Links = ({
+  fullName,
+  signInThunk,
+  signOutThunk
+}) => {
   return (
     <ul className="right">
       <li>
@@ -18,6 +22,30 @@ const SignedInLinks = ({ fullName, signOutThunk }) => {
           {fullName ? `Welcome back, ${fullName}.` : 'Hello, guest.'}
         </NavLink>
       </li>
+
+      {!fullName &&
+        <>
+          <li>
+            <NavLink
+              className="text-style-bold text-style-glow"
+              to="/"
+              onClick={signInThunk}
+            >
+              Sign In
+            </NavLink>
+          </li>
+
+          <li>
+            <NavLink
+              className="text-style-bold text-style-glow"
+              to="/"
+              onClick={signInThunk}
+            >
+              Sign Up
+            </NavLink>
+          </li>
+        </>
+      }
 
       <li>
         <NavLink
@@ -61,7 +89,7 @@ const SignedInLinks = ({ fullName, signOutThunk }) => {
 
       <li>
         <a
-          className="text-style-bold text-style-glow"
+          className={`text-style-bold text-style-glow${!fullName ? ' padding-right' : ''}`}
           href="https://taluigi.netlify.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -70,7 +98,8 @@ const SignedInLinks = ({ fullName, signOutThunk }) => {
         </a>
       </li>
 
-      <li>
+      {fullName &&
+        <li>
         <NavLink
           className="text-style-bold text-style-glow padding-right"
           to="/"
@@ -78,7 +107,8 @@ const SignedInLinks = ({ fullName, signOutThunk }) => {
         >
           Sign Out
         </NavLink>
-      </li>
+        </li>
+      }
     </ul>
   );
 };
@@ -89,17 +119,19 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  signInThunk: () => dispatch(signInThunkCreator()),
   signOutThunk: () => dispatch(signOutThunkCreator()),
 });
 
 // Prop Types
-SignedInLinks.propTypes = {
+Links.propTypes = {
   fullName: PropTypes.string,
+  signInThunk: PropTypes.func,
   signOutThunk: PropTypes.func,
 };
 
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
-)(SignedInLinks);
+  mapDispatchToProps
+)(Links);

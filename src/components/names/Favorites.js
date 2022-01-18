@@ -23,7 +23,7 @@ const Favorites = ({
   getFavoritesThunk,
   removeFromFavoritesThunk,
   handleReadAloud,
-  copyToClipboard,
+  copyToClipboard
 }) => {
   useEffect(() => {
     if (uid && !favorites.length) {
@@ -31,7 +31,7 @@ const Favorites = ({
     }
   }, [uid]);
 
-  const handleDownload = () => {
+  const handleDownloadToCsv = () => {
     const jsonArray = formattedFavorites(favorites);
     const fields = ['id', 'first', 'last', 'gender', 'input.first', 'input.last', 'scores.first', 'scores.last', 'scores.full', 'matches.first', 'matches.last'];
     const paths = ['input', 'input.first', 'input.last', 'scores', 'scores.first', 'scores.last', 'scores.full', 'matches', 'matches.first', 'matches.last'];
@@ -76,7 +76,7 @@ const Favorites = ({
                 className="btn black black-1 waves-effect waves-light"
                 title="Download To CSV"
                 disabled={!uid || !favorites.length}
-                onClick={handleDownload}
+                onClick={handleDownloadToCsv}
               >
                 Download To CSV
               </button>
@@ -112,5 +112,5 @@ Favorites.propTypes = {
 // Exports
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(Favorites);
