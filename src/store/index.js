@@ -13,7 +13,7 @@ import {
   getFirestore,
 } from 'redux-firestore';
 
-import firebaseConfig from '../config/firebaseConfig';
+import firebaseConfig from '../config/firebaseConfig.json';
 import rootReducer from './rootReducer';
 
 // Initializations
