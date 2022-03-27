@@ -126,7 +126,7 @@ const LinksBurger = ({
         <div>
           <a
             className="text-style-bold text-style-glow"
-            href="https://taluigi.netlify.com"
+            href="https://taluigi.netlify.app"
             target="_blank"
             rel="noopener noreferrer"
             onClick={closeMenu}

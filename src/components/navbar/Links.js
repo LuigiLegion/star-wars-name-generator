@@ -90,7 +90,7 @@ const Links = ({
       <li>
         <a
           className={`text-style-bold text-style-glow${!fullName ? ' padding-right' : ''}`}
-          href="https://taluigi.netlify.com"
+          href="https://taluigi.netlify.app"
           target="_blank"
           rel="noopener noreferrer"
         >
