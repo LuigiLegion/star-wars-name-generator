@@ -12,7 +12,9 @@ const About = () => {
             <div className="card">
               <div className="card-content grey-text text-darken-3">
                 <span className="card-title">
-                  <span className="text-style-bold">About</span>
+                  <span className="text-style-bold">
+                    About
+                  </span>
                 </span>
 
                 <div className="divider" />

@@ -33,7 +33,9 @@ const Names = ({
           <div className="card white">
             <div className="card-content names-list grey-text text-darken-3">
               <span className="card-title">
-                <span className="text-style-bold">Names List</span>
+                <span className="text-style-bold">
+                  Names List
+                </span>
               </span>
 
               {names.length ? (

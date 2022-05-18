@@ -141,7 +141,7 @@ const LinksBurger = ({
               className="text-style-bold text-style-glow"
               to="/"
               onClick={handleSignOut}
-              >
+            >
               Sign Out
             </NavLink>
           </div>

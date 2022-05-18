@@ -47,7 +47,9 @@ const Favorites = ({
           <div className="card white">
             <div className="card-content names-list grey-text text-darken-3">
               <span className="card-title">
-                <span className="text-style-bold">Favorites List</span>
+                <span className="text-style-bold">
+                  Favorites List
+                </span>
               </span>
 
               {uid ? favorites.length ? (
