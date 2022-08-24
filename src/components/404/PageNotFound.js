@@ -20,9 +20,7 @@ const PageNotFound = () => {
                 <div className="divider" />
 
                 <div className="card-content">
-                  <div>
-                    This page does not exist.
-                  </div>
+                  This page does not exist.
                 </div>
 
                 <NavLink
